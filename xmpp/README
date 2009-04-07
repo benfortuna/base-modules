@@ -1,0 +1,23 @@
+=============
+ Base - XMPP
+=============
+
+This module provides support for prescence via the XMPP protocol.
+
+Synopsis:
+
+Creates an xmpp connection for each registered xmpp config. Listen for account configuration changes to update connections.
+
+Usage:
+
+Configure XMPP accounts via base-accounts. Account changes will be automatically registered and XMPP connections will be started (created/enabled), stopped (deleted/disabled), or restarted (updated) with configuration changes.
+
+Services:
+
+• Connection Manager (access to connections and underlying configuration)
+• File Transfer Manager (support sending files)
+
+Dependencies:
+
+• base-accounts
+
