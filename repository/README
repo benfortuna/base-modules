@@ -1,0 +1,23 @@
+=================
+ Base Repository
+=================
+
+Synopsis:
+
+A registry publishes a repository instance for each descriptor registered (should it use config admin?)
+
+Usage:
+
+Register a repository descriptor for each required repository instance. A corresponding repository will be registered as a service once initialised.
+
+Services:
+• Jcrom
+• Session (?)
+
+Dependencies:
+
+• Sling embedded Jackrabbit
+• Sling JCR API
+• springmodules-jcr (?)
+• jcrom
+
