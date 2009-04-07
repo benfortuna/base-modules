@@ -1,0 +1,25 @@
+===============
+ Base Accounts
+===============
+
+Synopsis:
+
+Manage account configuration. Accounts represent connectivity to external systems. Includes support for:
+
+• Email (POP/IMAP/SMTP)
+• Calendars (CalDAV)
+• Contacts (CardDAV)
+• XMPP
+
+Usage:
+
+Account manager associated with registered repository instance will be provided as a service for performing account CRUD operations.
+
+Services:
+
+• Account Manager (CRUD/enable/disable)
+
+Dependencies:
+
+• base-repository (store account configurations)
+
