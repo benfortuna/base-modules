@@ -1,0 +1,18 @@
+================
+ Base Scheduler
+================
+
+Synopsis:
+
+Manages scheduling of background tasks.
+
+Usage:
+
+Start a scheduler instance for each published scheduler descriptor (?). Any jobs registered as a service are automatically scheduled.
+
+Services:
+
+• ??
+
+Dependencies:
+
