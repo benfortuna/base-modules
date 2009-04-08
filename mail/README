@@ -1,0 +1,22 @@
+===========
+ Base Mail
+===========
+
+Synopsis:
+
+Manage email sending, retrieval and storage
+
+Usage:
+
+Use the registered Mail Store services to access email folders and messages
+
+Services:
+
+• MailStore instances are provided for each configured store (local/IMAP)
+
+Dependencies:
+
+• base-accounts - manages remote store, send and retrieval configuration
+• base-repository - local data storage
+• base-scheduler - schedule synchronisation of local and remote mail stores at regular intervals
+

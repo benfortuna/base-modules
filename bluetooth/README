@@ -1,0 +1,17 @@
+================
+ Base Bluetooth
+================
+
+Synopsis:
+
+Support pairing and file transfer with other bluetooth devices.
+
+Usage:
+
+Use the registered device manager service to access known devices.
+
+Services:
+
+• DeviceManager - provides access to available bluetooth devices
+
+Dependencies:

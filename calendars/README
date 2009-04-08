@@ -1,0 +1,22 @@
+===============
+ Base Calendar
+===============
+
+Synopsis:
+
+Manages a repository of scheduling and event information. Events are maintained via one or more collections (e.g Personal/Work, etc.).
+
+Usage:
+
+Use the registered Calendar Store services to manage scheduling information
+
+Services:
+
+• CalendarStore - access to CRUD operations for scheduling information.
+
+Dependencies:
+
+• base-accounts - manages CalDAV calendar stores
+• base-repository - local data storage
+• base-scheduler - schedule periodic updates to locally cached calendar subscriptions
+

@@ -1,0 +1,21 @@
+===============
+ Base Contacts
+===============
+
+Synopsis:
+
+Manages a repository of contact information in the form of contact collections.
+
+Usage:
+
+Use the registered Contact Store services to manage contact information.
+
+Services:
+
+• ContactStore - provides access to contact CRUD operations
+
+Dependencies:
+
+• base-accounts - manages CardDAV contact store details
+• base-repository - local data storage
+

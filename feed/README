@@ -1,0 +1,20 @@
+===========
+ Base Feed
+===========
+
+Synopsis:
+
+Manages a list of feed subscriptions.
+
+Usage:
+
+Use the registered Feed Manager to retrieve aggregated content for subscribed feeds
+
+Services:
+
+• FeedManager - provides access to aggregated feed content
+
+Dependencies:
+
+• base-repository - used to store locally aggregated feed content
+• base-scheduler - to schedule feed updates
