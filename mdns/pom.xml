@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.mnode.base</groupId>
+	<artifactId>mdns</artifactId>
+	<packaging>bundle</packaging>
+	<name>Base mDNS</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>Multicast-DNS support</description>
+	<parent>
+		<artifactId>base-modules</artifactId>
+		<groupId>org.mnode.base</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>jmdns</groupId>
+			<artifactId>jmdns</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-test</artifactId>
+			<version>1.1.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse</groupId>
+			<artifactId>osgi</artifactId>
+			<version>3.3.0-v20070530</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<version>1.4.0</version>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<Export-Package>
+							org.mnode.base.mdns 
+						</Export-Package>
+						<!-- embed all compile and runtime scope dependencies -->
+						<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
+						<!--
+							add ,plugin.xml if it's present i.e.
+							src/main/resources,plugin.xml
+						-->
+						<Include-Resource>src/main/resources</Include-Resource>
+					</instructions>
+				</configuration>
+			</plugin>
+
+            <!-- generate manifest automatically once the classes are processed -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>bundle-manifest</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>manifest</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
