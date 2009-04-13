@@ -46,7 +46,7 @@ public class ServiceBrowser implements ServiceListener, ServiceTypeListener {
 	 * @see javax.jmdns.ServiceListener#serviceAdded(javax.jmdns.ServiceEvent)
 	 */
 	public void serviceAdded(ServiceEvent e) {
-		services.add(e.getInfo());
+		jmdns.requestServiceInfo(e.getType(), e.getName());
 	}
 
 	/* (non-Javadoc)
@@ -60,8 +60,7 @@ public class ServiceBrowser implements ServiceListener, ServiceTypeListener {
 	 * @see javax.jmdns.ServiceListener#serviceResolved(javax.jmdns.ServiceEvent)
 	 */
 	public void serviceResolved(ServiceEvent e) {
-		// TODO Auto-generated method stub
-
+		services.add(e.getInfo());
 	}
 
 }
