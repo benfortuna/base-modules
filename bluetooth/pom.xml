@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Bluetooth support</description>
 	<parent>
-		<artifactId>base-parent</artifactId>
+		<artifactId>base-modules</artifactId>
 		<groupId>org.mnode.base</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -18,45 +18,24 @@
 			<artifactId>marge-core</artifactId>
 			<version>0.4.0</version>
 		</dependency>
-		<!-- 
-		<dependency>
-			<groupId>org.mnode.base</groupId>
+		<!--
+			<dependency> <groupId>org.mnode.base</groupId>
 			<artifactId>bluetooth-linux</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>provided</scope>
+			<version>0.0.1-SNAPSHOT</version> <scope>provided</scope>
+			</dependency>
+		-->
+		<dependency>
+			<groupId>net.sf.bluecove</groupId>
+			<artifactId>bluecove</artifactId>
+			<version>2.1.0</version>
 		</dependency>
-		 -->
-			<dependency>
-                <groupId>net.sf.bluecove</groupId>
-                <artifactId>bluecove</artifactId>
-                <version>2.1.0</version>
-            </dependency>
 		
 		<!-- If you plan to run application on Linux -->
-            <dependency>
-                <groupId>net.sf.bluecove</groupId>
-                <artifactId>bluecove-gpl</artifactId>
-                <version>2.1.0</version>
-                <scope>runtime</scope>
-            </dependency>
-		
 		<dependency>
-			<groupId>org.springframework.osgi</groupId>
-			<artifactId>spring-osgi-test</artifactId>
-			<version>1.1.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse</groupId>
-			<artifactId>osgi</artifactId>
-			<version>3.3.0-v20070530</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-			<scope>test</scope>
+			<groupId>net.sf.bluecove</groupId>
+			<artifactId>bluecove-gpl</artifactId>
+			<version>2.1.0</version>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 	<build>
@@ -70,7 +49,7 @@
 					<manifestLocation>META-INF</manifestLocation>
 					<instructions>
 						<Export-Package>
-							org.mnode.base.bluetooth,javax.bluetooth,javax.microedition.io,javax.obex
+							org.mnode.base.bluetooth,javax.bluetooth,javax.microedition.io,javax.obex 
 						</Export-Package>
 						<!-- embed all compile and runtime scope dependencies -->
 						<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
@@ -83,21 +62,6 @@
 						<Import-Package>!com.ibm.oti.connection,!com.ibm.oti.vm,!com.sun.cdc.io,*</Import-Package>
 					</instructions>
 				</configuration>
-			</plugin>
-
-            <!-- generate manifest automatically once the classes are processed -->
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>bundle-manifest</id>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>manifest</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
