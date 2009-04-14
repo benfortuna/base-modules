@@ -1,0 +1,170 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.mnode.base</groupId>
+	<artifactId>base-modules</artifactId>
+	<packaging>pom</packaging>
+	<name>Base Modules</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>Parent POM for Base Modules</description>
+	<url>http://mnode.org/base</url>
+	<parent>
+		<artifactId>base-parent</artifactId>
+		<groupId>org.mnode.base</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<scm>
+		<connection>scm:svn:http://svn.mnode.org/base/modules/trunk</connection>
+		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk</developerConnection>
+		<url>http://svn.mnode.org/base/modules/trunk</url>
+	</scm>
+	<modules>
+		<module>account</module>
+		<module>bluetooth</module>
+		<module>calendars</module>
+		<module>contacts</module>
+		<module>feed</module>
+		<module>fix</module>
+		<module>mail</module>
+		<module>mdns</module>
+		<module>repository</module>
+		<module>scheduler</module>
+		<module>xmpp</module>
+	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-test</artifactId>
+			<version>${spring.osgi.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aopalliance</groupId>
+			<artifactId>com.springsource.org.aopalliance</artifactId>
+			<version>1.0.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>com.springsource.slf4j.api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>com.springsource.slf4j.log4j</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>test</scope>
+			<!--
+				<exclusions> <exclusion> <groupId>log4j</groupId>
+				<artifactId>log4j</artifactId> </exclusion> <exclusion>
+				<groupId>org.apache.log4j</groupId>
+				<artifactId>com.springsource.org.apache.log4j</artifactId>
+				</exclusion> </exclusions>
+			-->
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>com.springsource.slf4j.org.apache.commons.logging</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse</groupId>
+			<artifactId>osgi</artifactId>
+			<version>3.3.0-v20070530</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>log4j.osgi</artifactId>
+			<version>1.2.15-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-annotation</artifactId>
+			<version>${spring.osgi.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-extender</artifactId>
+			<version>${spring.osgi.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<properties>
+		<slf4j.version>1.5.0</slf4j.version>
+		<spring.osgi.version>1.1.2</spring.osgi.version>
+	</properties>
+	<build>
+		<plugins>
+            <!-- generate manifest automatically once the classes are processed -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>bundle-manifest</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>manifest</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+    <!-- ================================================ -->
+    <!--            Repository Configuration              -->
+    <!-- ================================================ -->
+	<repositories>
+		<repository>
+			<id>i21-s3-osgi-repo</id>
+			<name>i21 osgi artifacts repo</name>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<url>http://maven.springframework.org/osgi</url>
+		</repository>
+		<repository>
+			<id>i21-s3-maven-repo</id>
+			<name>i21 S3 milestone repo</name>
+			<url>http://maven.springframework.org/milestone</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository -
+				External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+		</repository>
+		<repository>
+			<id>eclipse-repository</id>
+			<name>Eclipse Repository</name>
+			<url>http://repo1.maven.org/eclipse/</url>
+		</repository>
+		<repository>
+			<id>spring-ext</id>
+			<name>Spring External Dependencies Repository</name>
+			<url>
+				https://springframework.svn.sourceforge.net/svnroot/springframework/repos/repo-ext/ 
+			</url>
+		</repository>
+		<!--
+			Spring-DM snapshot repository - disabled by default <repository>
+			<snapshots><enabled>true</enabled></snapshots>
+			<id>springframework.org</id> <name>Springframework Maven SNAPSHOT
+			Repository</name>
+			<url>http://s3.amazonaws.com/maven.springframework.org/snapshot</url>
+			</repository>
+		-->
+	</repositories>
+</project>
