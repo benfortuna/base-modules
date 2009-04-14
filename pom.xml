@@ -22,10 +22,14 @@
 		<module>account</module>
 		<module>bluetooth</module>
 		<module>calendars</module>
+		<!-- 
 		<module>contacts</module>
 		<module>feed</module>
+		 -->
 		<module>fix</module>
+		<!-- 
 		<module>mail</module>
+		 -->
 		<module>mdns</module>
 		<module>repository</module>
 		<module>scheduler</module>
