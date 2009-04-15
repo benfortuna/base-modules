@@ -8,5 +8,5 @@
 		configuration file so that this file can easily be used for
 		integration testing outside of an OSGi environment
 	-->
-	<bean id="deviceBrowser" class="org.mnode.base.bluetooth.DeviceBrowser"/>
+	<bean id="deviceBrowser" class="org.mnode.base.bluetooth.DeviceBrowser" init-method="start"/>
 </beans>
