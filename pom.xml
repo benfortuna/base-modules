@@ -27,6 +27,7 @@
 		<module>feed</module>
 		 -->
 		<module>fix</module>
+		<module>log</module>
 		<!-- 
 		<module>mail</module>
 		 -->
