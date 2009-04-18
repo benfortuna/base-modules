@@ -11,6 +11,11 @@
 		definitions separate is to facilitate integration testing of the
 		bundle outside of an OSGi container
 	-->
+	<osgi:reference id="logService" interface="org.osgi.service.log.LogService"
+		cardinality="0..1">
+		<osgi:listener ref="logServiceAdapter" bind-method="setLogService"
+			unbind-method="unsetLogService" />
+	</osgi:reference>
 	<osgi:reference id="logReaderService" interface="org.osgi.service.log.LogReaderService"
 		cardinality="1..1">
 		<osgi:listener ref="logCacheManager" bind-method="setLogReaderService"

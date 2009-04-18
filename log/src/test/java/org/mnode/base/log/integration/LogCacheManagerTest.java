@@ -21,7 +21,28 @@ public class LogCacheManagerTest extends AbstractConfigurableBundleCreatorTests 
 		logService.log(LogService.LOG_DEBUG, "This is a test");
 		
 		assertEquals(1, cache.getSize());
+		
+//		Logger logger = Logger.getLogger(LogCacheManagerTest.class);
+//		logger.debug("This is another test");
+//		assertEquals(2, cache.getSize());
+		
+//		Log log = LogFactory.getLog(LogCacheManagerTest.class);
+//		log.debug("This is another test");
+//		assertEquals(3, cache.getSize());
 	}
+
+	/*
+	@Override
+	protected String[] getTestFrameworkBundlesNames() {
+		List<String> testFrameworkBundleNames = new ArrayList<String>();
+		for (String bundleName : super.getTestFrameworkBundlesNames()) {
+			if (!bundleName.contains("log") && !bundleName.contains("slf4j")) {
+				testFrameworkBundleNames.add(bundleName);
+			}
+		}
+		return testFrameworkBundleNames.toArray(new String[testFrameworkBundleNames.size()]);
+	}
+	*/
 	
 	@Override
 	protected String[] getTestBundlesNames() {

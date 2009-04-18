@@ -60,4 +60,6 @@
 			<ref local="errorCache" />
 		</property>
 	</bean>
+	<bean id="logServiceAdapter" class="org.mnode.base.log.internal.LogServiceAdapter"/>
+	
 </beans>
