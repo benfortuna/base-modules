@@ -29,7 +29,8 @@
 				<configuration>
 					<manifestLocation>META-INF</manifestLocation>
 					<instructions>
-						<Export-Package> org.mnode.base.mdns </Export-Package>
+						<Export-Package> org.mnode.base.mdns,javax.jmdns</Export-Package>
+						<Private-Package>org.mnode.base.mdns.internal</Private-Package>
 						<!-- embed all compile and runtime scope dependencies -->
 						<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
