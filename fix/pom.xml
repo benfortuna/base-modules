@@ -185,7 +185,7 @@
                 <extensions>true</extensions>
                 <version>1.4.0</version>
                 <configuration>
-                    <manifestLocation>META-INF</manifestLocation>
+                    <manifestLocation>${project.build.directory}/META-INF</manifestLocation>
                     <instructions>
                         <Export-Package>
                             !org.mnode.base.fix.internal,org.mnode.base.fix*
