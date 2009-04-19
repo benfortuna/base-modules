@@ -20,7 +20,7 @@ public class MessageListenerTest extends AbstractConfigurableBundleCreatorTests 
 
 	private static final Log LOG = LogFactory.getLog(MessageListenerTest.class);
 	
-	public void testGetConnectionBrowser() throws XMPPException {
+	public void testRegisterMessageListener() throws XMPPException {
 
 		MessageListener listener = new MessageListener() {
 			@Override
