@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!--
+		regular spring configuration file defining the beans for this bundle.
+		The configuration of OSGi definitions is kept in a separate
+		configuration file so that this file can easily be used for
+		integration testing outside of an OSGi environment
+	-->
+	<bean id="cacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>classpath:ehcache.xml</value>
+		</property>
+	</bean>
+	<!-- 
+	<bean id="cacheRegistry" class="org.mnode.base.cache.internal.CacheRegistry">
+		<property name="cacheManager">
+			<ref local="cacheManager" />
+		</property>
+	</bean>
+	<bean id="cacheServiceFactory" class="org.mnode.base.cache.internal.CacheServiceFactory">
+		<property name="cacheManager">
+			<ref local="cacheManager" />
+		</property>
+	</bean>
+	 -->
+</beans>
