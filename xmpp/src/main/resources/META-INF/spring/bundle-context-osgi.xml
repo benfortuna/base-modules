@@ -2,7 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:osgi="http://www.springframework.org/schema/osgi"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                      http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd">
+                      http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
+                      osgi:default-cardinality="0..X">
 	<!--
 		definitions using elements of the osgi namespace can be included in
 		this file. There is no requirement to keep these definitions in a
@@ -10,7 +11,9 @@
 		definitions separate is to facilitate integration testing of the
 		bundle outside of an OSGi container
 	-->
-	<osgi:service id="xmppConnectionBrowser" ref="connectionBrowser"
-		interface="org.mnode.base.xmpp.ConnectionBrowser">
-	</osgi:service>
+	<osgi:reference id="messageListeners"
+		interface="org.jivesoftware.smack.MessageListener">
+		<osgi:listener ref="messageListenerRegistry"
+			bind-method="addMessageListener" unbind-method="removeMessageListener" />
+	</osgi:reference>
 </beans>

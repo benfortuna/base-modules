@@ -8,5 +8,5 @@
 		configuration file so that this file can easily be used for
 		integration testing outside of an OSGi environment
 	-->
-	<bean id="connectionBrowser" class="org.mnode.base.xmpp.ConnectionBrowser"/>
+	<bean id="messageListenerRegistry" class="org.mnode.base.xmpp.internal.MessageListenerRegistry"/>
 </beans>

@@ -34,11 +34,14 @@
 				<extensions>true</extensions>
 				<version>1.4.0</version>
 				<configuration>
-					<manifestLocation>META-INF</manifestLocation>
+					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
 					<instructions>
-						<Export-Package> org.mnode.base.xmpp,org.jivesoftware.smack</Export-Package>
+						<Export-Package> org.mnode.base.xmpp,org.jivesoftware.smack*;version="3.0.4"</Export-Package>
+						<Private-Package>org.mnode.base.xmpp.internal,org.xmlpull.mxp1,org.xmlpull.v1</Private-Package>
 						<!-- embed all compile and runtime scope dependencies -->
+						<!-- 
 						<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+						 -->
 						<Embed-Transitive>true</Embed-Transitive>
 						<!--
 							add ,plugin.xml if it's present i.e.
