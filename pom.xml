@@ -150,6 +150,36 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<inherited>false</inherited>
+				<groupId>com.google.code.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<version>1.4.0</version>
+				<configuration>
+					<header>${basedir}/etc/header.txt</header>
+					<failIfMissing>true</failIfMissing>
+					<aggregate>true</aggregate>
+					<properties>
+						<owner>Ben Fortuna</owner>
+						<year>${project.inceptionYear}</year>
+						<email>fortuna@micronode.com</email>
+					</properties>
+					<excludes>
+						<exclude>README</exclude>
+						<exclude>LICENSE</exclude>
+						<exclude>**/eclipse_config/**</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>check-headers</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
