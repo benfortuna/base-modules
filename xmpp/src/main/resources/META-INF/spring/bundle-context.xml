@@ -8,5 +8,6 @@
 		configuration file so that this file can easily be used for
 		integration testing outside of an OSGi environment
 	-->
+	<bean id="connectionListenerRegistry" class="org.mnode.base.xmpp.internal.ConnectionListenerRegistry"/>
 	<bean id="chatManagerListenerRegistry" class="org.mnode.base.xmpp.internal.ChatManagerListenerRegistry"/>
 </beans>
