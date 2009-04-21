@@ -6,6 +6,10 @@ Synopsis:
 
 Manages scheduling of background tasks.
 
+ * JobDetails - specifies details about what to execute
+ 
+ * Triggers - specifies when to execute jobs
+
 Usage:
 
 Start a scheduler instance for each published scheduler descriptor (?). Any jobs registered as a service are automatically scheduled.

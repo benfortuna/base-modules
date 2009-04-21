@@ -4,6 +4,15 @@
 
 This module provides support for prescence via the XMPP protocol.
 
+ * ChatManagerListeners - most IM clients will open a new window when a chat is
+ initiated.
+ 
+ * ConnectionListeners - may be used to notify users of unexpected disconnection
+ and reconnection attempts.
+ 
+ * FileTransferListeners - are notified on requests for file transfer and may be
+ used to manage files and transfer monitoring.
+
 Synopsis:
 
 Creates an xmpp connection for each registered xmpp config. Listen for account configuration changes to update connections.
