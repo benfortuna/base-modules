@@ -6,6 +6,25 @@ Synopsis:
 
 Manage email sending, retrieval and storage
 
+ * SendMailQueue - sending mail is a typically expensive operation, so it makes
+ sense to queue outgoing messages and send in batch operations. Clients may also
+ want the opportunity to cancel outgoing messages prior to sending.
+ 
+ * POP message retrieval is typically performed periodically by copying messages
+ from a remote store to a local one (and optionally deleting from the remote store).
+ 
+ * IMAP clients typically support caching of message headers and/or body.
+ 
+ * Some components may monitor incoming and/or outgoing messages for relevant content.
+ For example, a calendar component may check for attached iCalendar objects, an
+ address book component may monitor vCard attachments, or a document repository
+ may monitor for PDF, MS Office, etc. attachments. Additionally, mail filters may
+ be applied as messages are received to assist with categorisation and organisation.
+ 
+ * Message Rules - periodic execution of message rules can help with message organisation.
+ Example rules include archival of old messages, deletion of expired messages, etc.
+ 
+
 Usage:
 
 Use the registered Mail Store services to access email folders and messages
