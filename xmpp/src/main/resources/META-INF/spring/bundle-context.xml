@@ -8,6 +8,5 @@
 		configuration file so that this file can easily be used for
 		integration testing outside of an OSGi environment
 	-->
-	<bean id="rosterListenerRegistry" class="org.mnode.base.xmpp.internal.RosterListenerRegistry"/>
-	<bean id="messageListenerRegistry" class="org.mnode.base.xmpp.internal.MessageListenerRegistry"/>
+	<bean id="chatManagerListenerRegistry" class="org.mnode.base.xmpp.internal.ChatManagerListenerRegistry"/>
 </beans>
