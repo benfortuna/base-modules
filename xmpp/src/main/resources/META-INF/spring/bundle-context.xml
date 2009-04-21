@@ -10,4 +10,5 @@
 	-->
 	<bean id="connectionListenerRegistry" class="org.mnode.base.xmpp.internal.ConnectionListenerRegistry"/>
 	<bean id="chatManagerListenerRegistry" class="org.mnode.base.xmpp.internal.ChatManagerListenerRegistry"/>
+	<bean id="fileTransferListenerRegistry" class="org.mnode.base.xmpp.internal.FileTransferListenerRegistry"/>
 </beans>

@@ -27,4 +27,9 @@
 		<osgi:listener ref="chatManagerListenerRegistry"
 			bind-method="addChatManagerListener" unbind-method="removeChatManagerListener" />
 	</osgi:reference>
+	<osgi:reference id="fileTransferListeners"
+		interface="org.jivesoftware.smackx.filetransfer.FileTransferListener">
+		<osgi:listener ref="fileTransferListenerRegistry"
+			bind-method="addFileTransferListener" unbind-method="removeFileTransferListener" />
+	</osgi:reference>
 </beans>
