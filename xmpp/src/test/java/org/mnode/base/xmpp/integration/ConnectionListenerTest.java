@@ -5,9 +5,8 @@ import org.apache.commons.logging.LogFactory;
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
 
-public class ConnectionListenerTest extends AbstractConfigurableBundleCreatorTests {
+public class ConnectionListenerTest extends AbstractXmppTest {
 
 	private static final Log LOG = LogFactory.getLog(ConnectionListenerTest.class);
 
@@ -42,12 +41,6 @@ public class ConnectionListenerTest extends AbstractConfigurableBundleCreatorTes
 		connection.login("test", "!password");
 		
 		connection.disconnect();
-	}
-	
-	@Override
-	protected String[] getTestBundlesNames() {
-		return new String[] { "org.mnode.base, xmpp, 0.0.1-SNAPSHOT",
-			"net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3"};
 	}
 
 }

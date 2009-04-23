@@ -11,13 +11,12 @@ import org.jivesoftware.smack.RosterListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Presence;
-import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
 
 /**
  * @author fortuna
  *
  */
-public class RosterListenerTest extends AbstractConfigurableBundleCreatorTests {
+public class RosterListenerTest extends AbstractXmppTest {
 
 	private static final Log LOG = LogFactory.getLog(RosterListenerTest.class);
 	
@@ -47,11 +46,6 @@ public class RosterListenerTest extends AbstractConfigurableBundleCreatorTests {
 		connection.connect();
 		connection.login("test", "!password");
 		connection.disconnect();
-	}
-	
-	@Override
-	protected String[] getTestBundlesNames() {
-		return new String[] { "org.mnode.base, xmpp, 0.0.1-SNAPSHOT" };
 	}
 
 }

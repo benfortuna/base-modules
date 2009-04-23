@@ -13,13 +13,12 @@ import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smackx.ChatState;
 import org.jivesoftware.smackx.ChatStateListener;
-import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
 
 /**
  * @author fortuna
  *
  */
-public class ChatManagerListenerTest extends AbstractConfigurableBundleCreatorTests {
+public class ChatManagerListenerTest extends AbstractXmppTest {
 
 	private static final Log LOG = LogFactory.getLog(ChatManagerListenerTest.class);
 	
@@ -43,12 +42,6 @@ public class ChatManagerListenerTest extends AbstractConfigurableBundleCreatorTe
 //		bundleContext.registerService(XMPPConnection.class.getName(), connection, null);
 		
 		connection.disconnect();
-	}
-	
-	@Override
-	protected String[] getTestBundlesNames() {
-		return new String[] { "org.mnode.base, xmpp, 0.0.1-SNAPSHOT",
-			"net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3"};
 	}
 	
 	public static class MessageListenerImpl implements ChatStateListener {

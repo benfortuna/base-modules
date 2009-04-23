@@ -17,6 +17,8 @@
 		ref="chatManagerListenerRegistry" bind-method="addConnection"
 		unbind-method="removeConnection" /> </osgi:reference>
 	-->
+	<osgi:service id="chatContextManagerService" interface="org.mnode.base.xmpp.ChatContextManager"
+		ref="chatContextManager" />
 	<osgi:reference id="connectionListeners"
 		interface="org.jivesoftware.smack.ConnectionListener">
 		<osgi:listener ref="connectionListenerRegistry"
