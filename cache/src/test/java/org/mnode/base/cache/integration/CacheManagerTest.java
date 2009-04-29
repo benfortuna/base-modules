@@ -28,7 +28,7 @@ public class CacheManagerTest extends AbstractConfigurableBundleCreatorTests {
 	
 	@Override
 	protected String[] getTestBundlesNames() {
-		return new String[] { "org.mnode.base, cache, 0.0.1-SNAPSHOT",
+		return new String[] { "org.mnode.base, org.mnode.base.cache, 0.0.1-SNAPSHOT",
 				"org.springframework, spring-context-support, 2.5.5",
 				"net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3"};
 	}
