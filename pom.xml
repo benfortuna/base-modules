@@ -19,22 +19,23 @@
 		<url>http://svn.mnode.org/base/modules/trunk</url>
 	</scm>
 	<modules>
-		<module>account</module>
-		<module>bluetooth</module>
-		<module>calendars</module>
 		<!-- 
 		<module>contacts</module>
 		<module>feed</module>
 		 -->
-		<module>fix</module>
-		<module>log</module>
 		<!-- 
 		<module>mail</module>
 		 -->
+		<module>account</module>
+		<module>bluetooth</module>
+		<module>calendars</module>
+		<module>fix</module>
+		<module>log</module>
 		<module>mdns</module>
 		<module>repository</module>
 		<module>scheduler</module>
 		<module>xmpp</module>
+		<module>views</module>
 	</modules>
 	<dependencies>
 		<dependency>
@@ -75,12 +76,6 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse</groupId>
-			<artifactId>osgi</artifactId>
-			<version>3.3.0-v20070530</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.osgi</groupId>
 			<artifactId>log4j.osgi</artifactId>
 			<version>1.2.15-SNAPSHOT</version>
@@ -109,6 +104,18 @@
 			<artifactId>com.springsource.net.sf.cglib</artifactId>
 			<version>2.1.3</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.main</artifactId>
+			<version>1.0.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse</groupId>
+			<artifactId>osgi</artifactId>
+			<version>3.3.0-v20070530</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<properties>
