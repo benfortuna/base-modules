@@ -7,7 +7,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mnode.base</groupId>
-	<artifactId>log</artifactId>
+	<artifactId>org.mnode.base.log</artifactId>
 	<packaging>bundle</packaging>
 	<name>Base Log</name>
 	<version>0.0.1-SNAPSHOT</version>
@@ -66,7 +66,7 @@
 				<extensions>true</extensions>
 				<version>1.4.0</version>
 				<configuration>
-					<manifestLocation>META-INF</manifestLocation>
+					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
 					<instructions>
 						<!-- Conflict with spring dm integrating with logging frameworks -->
 						<!-- 
