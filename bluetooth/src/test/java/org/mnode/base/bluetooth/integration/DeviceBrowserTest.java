@@ -33,7 +33,7 @@ public class DeviceBrowserTest extends AbstractConfigurableBundleCreatorTests {
 	
 	@Override
 	protected String[] getTestBundlesNames() {
-		return new String[] { "org.mnode.base, bluetooth, 0.0.1-SNAPSHOT"};
+		return new String[] { "org.mnode.base, org.mnode.base.bluetooth, 0.0.1-SNAPSHOT"};
 //				"org.mnode.base, bluetooth-linux, 0.0.1-SNAPSHOT"};
 	}
 
