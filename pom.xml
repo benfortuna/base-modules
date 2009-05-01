@@ -22,17 +22,19 @@
 		<!-- 
 		<module>contacts</module>
 		<module>feed</module>
-		 -->
-		<!-- 
 		<module>mail</module>
-		 -->
 		<module>account</module>
+		 -->
 		<module>bluetooth</module>
+		<!-- 
 		<module>calendars</module>
 		<module>fix</module>
+		 -->
 		<module>log</module>
 		<module>mdns</module>
+		<!-- 
 		<module>repository</module>
+		 -->
 		<module>scheduler</module>
 		<module>xmpp</module>
 		<module>views</module>
