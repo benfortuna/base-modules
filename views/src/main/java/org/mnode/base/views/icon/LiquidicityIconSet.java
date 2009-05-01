@@ -10,8 +10,8 @@ import java.util.Map;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * @author Ben
@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  */
 public class LiquidicityIconSet implements IconSet {
 
-    private static final Logger LOG = LoggerFactory.getLogger(LiquidicityIconSet.class);
+    private static final Log LOG = LogFactory.getLog(LiquidicityIconSet.class);
     
     private Map<String, Icon> icons;
     
