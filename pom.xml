@@ -26,6 +26,7 @@
 		<module>account</module>
 		 -->
 		<module>bluetooth</module>
+		<module>cache</module>
 		<!-- 
 		<module>calendars</module>
 		<module>fix</module>
