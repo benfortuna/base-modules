@@ -1,24 +1,35 @@
 /**
- * 
+ * This file is part of Base Modules.
+ *
+ * Copyright (c) 2009, Ben Fortuna [fortuna@micronode.com]
+ *
+ * Base Modules is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Base Modules is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Base Modules.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.mnode.base.cache.internal;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 
-import org.mnode.base.cache.CacheDescriptor;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.ServiceFactory;
-import org.osgi.framework.ServiceRegistration;
-
 /**
  * @author fortuna
  *
  */
-public class CacheServiceFactory implements ServiceFactory {
+public class CacheServiceFactory {
 
 	private CacheManager cacheManager;
 
+	/*
 	public Object getService(Bundle bundle, ServiceRegistration registration) {
 		cacheManager = new CacheManager();
 		String cacheId = bundle.getSymbolicName() + registration.getReference().getProperty(CacheDescriptor.KEY_CACHE_ID);
@@ -33,11 +44,14 @@ public class CacheServiceFactory implements ServiceFactory {
 		}
 		return cache;
 	}
+	*/
 
+	/*
 	public void ungetService(Bundle bundle, ServiceRegistration registration, Object service) {
 		// TODO Auto-generated method stub
 
 	}
+	*/
 	
 	/**
 	 * @param id
