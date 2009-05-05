@@ -4,7 +4,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mnode.base</groupId>
-    <artifactId>org.mnode.base.fix</artifactId>
+    <artifactId>fix</artifactId>
     <packaging>bundle</packaging>
     <name>Base - FIX</name>
     <version>0.0.1-SNAPSHOT</version>
@@ -163,6 +163,7 @@
 
     <!-- see http://felix.apache.org/site/maven-bundle-plugin-bnd.html for more info -->
     <build>
+    	<finalName>${project.groupId}.${project.artifactId}-${project.version}</finalName>
         <resources>
             <!-- standard Maven folder -->
             <resource>
