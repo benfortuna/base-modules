@@ -28,6 +28,11 @@
 			<artifactId>swing-worker</artifactId>
 			<version>1.1</version>
 		</dependency>
+		<dependency>
+			<groupId>jxlayer</groupId>
+			<artifactId>layer</artifactId>
+			<version>20080814</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -39,7 +44,7 @@
 				<configuration>
 					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
 					<instructions>
-						<Export-Package>org.mnode.base.views*,org.jdesktop.swingx,org.jdesktop.swingx.action</Export-Package>
+						<Export-Package>org.mnode.base.views*,org.jdesktop.swingx*,org.jdesktop.jxlayer*</Export-Package>
 						<Import-Package>org.apache.batik.ext.awt;resolution:=optional,*</Import-Package>
 						<Private-Package>org.apache.commons.lang*,org.jdesktop*</Private-Package>
 						<!-- embed all compile and runtime scope dependencies -->
