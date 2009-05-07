@@ -19,6 +19,7 @@
 package org.mnode.base.xmpp.integration;
 
 import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
+import org.springframework.osgi.test.platform.Platforms;
 
 public abstract class AbstractXmppTest extends AbstractConfigurableBundleCreatorTests {
 	
@@ -26,6 +27,11 @@ public abstract class AbstractXmppTest extends AbstractConfigurableBundleCreator
 	protected final String[] getTestBundlesNames() {
 		return new String[] { "org.mnode.base, org.mnode.base.xmpp, 0.0.1-SNAPSHOT",
 			"net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3"};
+	}
+
+	@Override
+	protected String getPlatformName() {
+		return Platforms.FELIX;
 	}
 
 }
