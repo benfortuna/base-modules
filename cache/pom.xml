@@ -6,7 +6,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.mnode.base</groupId>
-  <artifactId>cache</artifactId>
+  <artifactId>org.mnode.base.cache</artifactId>
   <packaging>bundle</packaging>
   <name>Base Cache</name>
   <version>0.0.1-SNAPSHOT</version>
@@ -25,6 +25,9 @@
   	</dependency>
   </dependencies>
   <scm>
+  	<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/cache</connection>
+  	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/cache</developerConnection>
+  	<url>http://svn.mnode.org/base/modules/trunk/cache</url>
   </scm>
 	<build>
 		<finalName>${project.groupId}.${project.artifactId}-${project.version}</finalName>

@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mnode.base</groupId>
-	<artifactId>scheduler</artifactId>
+	<artifactId>org.mnode.base.scheduler</artifactId>
 	<packaging>bundle</packaging>
 	<name>Base Scheduler</name>
 	<version>0.0.1-SNAPSHOT</version>
@@ -31,6 +31,11 @@
 		<groupId>org.mnode.base</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<scm>
+		<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/scheduler</connection>
+		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/scheduler</developerConnection>
+		<url>http://svn.mnode.org/base/modules/trunk/scheduler</url>
+	</scm>
 
     <!-- for packaging as an OSGi bundle, we use the maven-bundle-plugin -->
 	<!--
