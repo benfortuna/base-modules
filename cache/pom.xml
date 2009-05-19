@@ -6,7 +6,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.mnode.base</groupId>
-  <artifactId>org.mnode.base.cache</artifactId>
+  <artifactId>base-cache</artifactId>
   <packaging>bundle</packaging>
   <name>Base Cache</name>
   <version>0.0.1-SNAPSHOT</version>
