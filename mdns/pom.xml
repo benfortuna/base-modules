@@ -2,16 +2,21 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mnode.base</groupId>
-	<artifactId>mdns</artifactId>
+	<artifactId>base-mdns</artifactId>
 	<packaging>bundle</packaging>
 	<name>Base mDNS</name>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Multicast-DNS support</description>
 	<parent>
-		<artifactId>base-modules</artifactId>
+		<artifactId>base-parent</artifactId>
 		<groupId>org.mnode.base</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<scm>
+		<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/mdns</connection>
+		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/mdns</developerConnection>
+		<url>http://svn.mnode.org/base/modules/trunk/mdns</url>
+	</scm>
 	<dependencies>
 		<dependency>
 			<groupId>jmdns</groupId>
