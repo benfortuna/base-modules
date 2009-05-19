@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Multicast-DNS support</description>
 	<parent>
-		<artifactId>base-parent</artifactId>
+		<artifactId>base-modules</artifactId>
 		<groupId>org.mnode.base</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
