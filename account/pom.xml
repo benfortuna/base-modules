@@ -4,7 +4,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mnode.base</groupId>
-    <artifactId>account</artifactId>
+    <artifactId>base-account</artifactId>
     <packaging>bundle</packaging>
     <name>Base - Account</name>
     <version>0.0.1-SNAPSHOT</version>
@@ -15,6 +15,11 @@
         <spring.osgi.version>1.1.2</spring.osgi.version>
         <equinox.ver>3.2.2</equinox.ver>
     </properties>
+	<scm>
+		<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/account</connection>
+		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/account</developerConnection>
+		<url>http://svn.mnode.org/base/modules/trunk/account</url>
+	</scm>
 
     <dependencies>
 
