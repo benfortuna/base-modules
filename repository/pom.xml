@@ -254,7 +254,7 @@
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
-					<manifestLocation>META-INF</manifestLocation>
+					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
 					<instructions>
 						<Export-Package>
 							!org.mnode.base.repository.internal,net.sf.cglib.*,org.mnode.base.repository*,org.jcrom*,javax.jcr*
