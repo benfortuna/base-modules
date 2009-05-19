@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mnode.base</groupId>
+  <artifactId>base-feed</artifactId>
+  <packaging>bundle</packaging>
+  <name>Base Feed</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <description>Support for RSS/Atom feeds</description>
+  <dependencies>
+    <dependency>
+      <groupId>rome</groupId>
+      <artifactId>rome</artifactId>
+      <version>0.9</version>
+    </dependency>
+    <dependency>
+      <groupId>rome</groupId>
+      <artifactId>rome-fetcher</artifactId>
+      <version>0.3</version>
+    </dependency>
+  </dependencies>
+</project>
