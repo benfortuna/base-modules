@@ -7,7 +7,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mnode.base</groupId>
-	<artifactId>org.mnode.base.log</artifactId>
+	<artifactId>base-log</artifactId>
 	<packaging>bundle</packaging>
 	<name>Base Log</name>
 	<version>0.0.1-SNAPSHOT</version>
