@@ -144,7 +144,7 @@
 		<profile>
     	  <id>integration-test</id>
     	  <properties>
-			<test.sourceDir>src/integration/java</test.sourceDir>
+			<test.sourceDir>src/it/java</test.sourceDir>
     	  </properties>
 	    </profile>
 	</profiles>
