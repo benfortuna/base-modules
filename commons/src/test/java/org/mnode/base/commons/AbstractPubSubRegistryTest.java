@@ -38,11 +38,11 @@ public class AbstractPubSubRegistryTest {
 		
 		registry = new AbstractPubSubRegistry<String, String>() {
 			@Override
-			protected void subscribe(String publisher, String subscriber) {
+			protected void subscribe(String publisher, String subscriber, Map<String, String> props) {
 				subscribed.put(publisher, subscriber);
 			}
 			@Override
-			protected void unsubscribe(String publisher, String subscriber) {
+			protected void unsubscribe(String publisher, String subscriber, Map<String, String> props) {
 				subscribed.remove(publisher);
 			}
 		};

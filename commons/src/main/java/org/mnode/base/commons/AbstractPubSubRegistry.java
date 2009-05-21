@@ -19,6 +19,7 @@
 package org.mnode.base.commons;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,42 +27,42 @@ public abstract class AbstractPubSubRegistry<P, S> {
 
 	private List<P> publishers;
 
-	private List<S> subscribers;
+	private Map<S, Map<String, String>> subscribers;
 	
 	public AbstractPubSubRegistry() {
 		publishers = new ArrayList<P>();
-		subscribers = new ArrayList<S>();
+		subscribers = new HashMap<S, Map<String, String>>();
 	}
 	
-	public final void registerPublisher(P publisher, Map<?, ?> properties) {
+	public final void registerPublisher(P publisher, Map<String, String> properties) {
 		publishers.add(publisher);
-		for (S subscriber : subscribers) {
-			subscribe(publisher, subscriber);
+		for (S subscriber : subscribers.keySet()) {
+			subscribe(publisher, subscriber, subscribers.get(subscriber));
 		}
 	}
 	
-	public final void unregisterPublisher(P publisher, Map<?, ?> properties) {
+	public final void unregisterPublisher(P publisher, Map<String, String> properties) {
 		publishers.remove(publisher);
-		for (S subscriber : subscribers) {
-			unsubscribe(publisher, subscriber);
+		for (S subscriber : subscribers.keySet()) {
+			unsubscribe(publisher, subscriber, subscribers.get(subscriber));
 		}
 	}
 	
-	public final void registerSubscriber(S subscriber, Map<?, ?> properties) {
-		subscribers.add(subscriber);
+	public final void registerSubscriber(S subscriber, Map<String, String> properties) {
+		subscribers.put(subscriber, properties);
 		for (P publisher : publishers) {
-			subscribe(publisher, subscriber);
+			subscribe(publisher, subscriber, properties);
 		}
 	}
 	
-	public final void unregisterSubscriber(S subscriber, Map<?, ?> properties) {
+	public final void unregisterSubscriber(S subscriber, Map<String, String> properties) {
 		subscribers.remove(subscriber);
 		for (P publisher : publishers) {
-			unsubscribe(publisher, subscriber);
+			unsubscribe(publisher, subscriber, properties);
 		}
 	}
 	
-	protected abstract void subscribe(P publisher, S subscriber);
+	protected abstract void subscribe(P publisher, S subscriber, Map<String, String> properties);
 	
-	protected abstract void unsubscribe(P publisher, S subscriber);
+	protected abstract void unsubscribe(P publisher, S subscriber, Map<String, String> properties);
 }
