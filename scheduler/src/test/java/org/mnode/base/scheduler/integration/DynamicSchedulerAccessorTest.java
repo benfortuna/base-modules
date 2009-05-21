@@ -54,7 +54,7 @@ public class DynamicSchedulerAccessorTest extends
 	
 	@Override
 	protected String[] getTestBundlesNames() {
-		return new String[] { "org.mnode.base, org.mnode.base.scheduler, 0.0.1-SNAPSHOT",
+		return new String[] { "org.mnode.base, base-scheduler, 0.0.1-SNAPSHOT",
 				"org.springframework, spring-context-support, 2.5.5",
 				"org.springframework, spring-tx, 2.5.5",
 				"net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3"};
