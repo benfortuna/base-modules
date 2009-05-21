@@ -28,8 +28,9 @@
 		configuration file so that this file can easily be used for
 		integration testing outside of an OSGi environment
 	-->
-	<bean id="jmdns" class="javax.jmdns.JmDNS" factory-method="create" />
-	<bean id="serviceListenerRegistry" class="org.mnode.base.mdns.internal.ServiceListenerRegistry">
-		<constructor-arg ref="jmdns" />
-	</bean>
+	<bean id="JmDNS" class="javax.jmdns.JmDNS" factory-method="create" />
+	
+	<bean id="ServiceTypeListenerRegistry" class="org.mnode.base.mdns.internal.ServiceTypeListenerRegistry"/>
+	
+	<bean id="ServiceListenerRegistry" class="org.mnode.base.mdns.internal.ServiceListenerRegistry"/>
 </beans>

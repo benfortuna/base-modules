@@ -18,22 +18,31 @@
  */
 package org.mnode.base.mdns.internal;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.jmdns.JmDNS;
-import javax.jmdns.ServiceListener;
+import javax.jmdns.ServiceTypeListener;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.mnode.base.commons.AbstractPubSubRegistry;
 
-public class ServiceListenerRegistry extends AbstractPubSubRegistry<JmDNS, ServiceListener> {
+public class ServiceTypeListenerRegistry extends AbstractPubSubRegistry<JmDNS, ServiceTypeListener> {
+
+	private static final Log LOG = LogFactory.getLog(ServiceTypeListenerRegistry.class);
 	
 	@Override
-	protected void subscribe(JmDNS publisher, ServiceListener subscriber, Map<String, String> props) {
-		publisher.addServiceListener(props.get("serviceType"), subscriber);
+	protected void subscribe(JmDNS publisher, ServiceTypeListener subscriber, Map<String, String> props) {
+		try {
+			publisher.addServiceTypeListener(subscriber);
+		} catch (IOException e) {
+			LOG.error("Error subscribing", e);
+		}
 	}
 	
 	@Override
-	protected void unsubscribe(JmDNS publisher, ServiceListener subscriber, Map<String, String> props) {
-		publisher.removeServiceListener(props.get("serviceType"), subscriber);
+	protected void unsubscribe(JmDNS publisher, ServiceTypeListener subscriber, Map<String, String> props) {
+		publisher.removeServiceTypeListener(subscriber);
 	}
 }

@@ -30,6 +30,7 @@ import javax.jmdns.ServiceTypeListener;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
+import org.springframework.osgi.test.platform.Platforms;
 
 /**
  * @author fortuna
@@ -72,10 +73,13 @@ public class ServiceListenerTest extends AbstractConfigurableBundleCreatorTests 
 	
 	@Override
 	protected String[] getTestBundlesNames() {
-		return new String[] { "org.mnode.base, base-mdns, 0.0.1-SNAPSHOT" };
+		return new String[] { "org.mnode.base, base-mdns, 0.0.1-SNAPSHOT",
+				"org.mnode.base, base-commons, 0.0.1-SNAPSHOT" };
 	}
 	
-//	protected boolean createManifestOnlyFromTestClass() {
-//		return false;
-//	}
+
+	@Override
+	protected String getPlatformName() {
+		return Platforms.FELIX;
+	}
 }
