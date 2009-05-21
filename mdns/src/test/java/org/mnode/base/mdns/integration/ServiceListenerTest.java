@@ -72,7 +72,7 @@ public class ServiceListenerTest extends AbstractConfigurableBundleCreatorTests 
 	
 	@Override
 	protected String[] getTestBundlesNames() {
-		return new String[] { "org.mnode.base, org.mnode.base.mdns, 0.0.1-SNAPSHOT" };
+		return new String[] { "org.mnode.base, base-mdns, 0.0.1-SNAPSHOT" };
 	}
 	
 //	protected boolean createManifestOnlyFromTestClass() {
