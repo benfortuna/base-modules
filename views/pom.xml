@@ -22,6 +22,7 @@
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.4</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.swinglabs</groupId>
@@ -51,7 +52,7 @@
 					<instructions>
 						<Export-Package>org.mnode.base.views*,org.jdesktop.swingx*,org.jdesktop.jxlayer*</Export-Package>
 						<Import-Package>org.apache.batik.ext.awt;resolution:=optional,*</Import-Package>
-						<Private-Package>org.apache.commons.lang*,org.jdesktop*</Private-Package>
+						<Private-Package>org.jdesktop*</Private-Package>
 						<!-- embed all compile and runtime scope dependencies -->
 						<!--
 							<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
