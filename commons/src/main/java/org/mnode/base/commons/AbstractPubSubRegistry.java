@@ -27,42 +27,42 @@ public abstract class AbstractPubSubRegistry<P, S> {
 
 	private List<P> publishers;
 
-	private Map<S, Map<String, String>> subscribers;
+	private Map<S, Map<String, ?>> subscribers;
 	
 	public AbstractPubSubRegistry() {
 		publishers = new ArrayList<P>();
-		subscribers = new HashMap<S, Map<String, String>>();
+		subscribers = new HashMap<S, Map<String, ?>>();
 	}
 	
-	public final void registerPublisher(P publisher, Map<String, String> properties) {
+	public final void registerPublisher(P publisher, Map<String, ?> properties) {
 		publishers.add(publisher);
 		for (S subscriber : subscribers.keySet()) {
 			subscribe(publisher, subscriber, subscribers.get(subscriber));
 		}
 	}
 	
-	public final void unregisterPublisher(P publisher, Map<String, String> properties) {
+	public final void unregisterPublisher(P publisher, Map<String, ?> properties) {
 		publishers.remove(publisher);
 		for (S subscriber : subscribers.keySet()) {
 			unsubscribe(publisher, subscriber, subscribers.get(subscriber));
 		}
 	}
 	
-	public final void registerSubscriber(S subscriber, Map<String, String> properties) {
+	public final void registerSubscriber(S subscriber, Map<String, ?> properties) {
 		subscribers.put(subscriber, properties);
 		for (P publisher : publishers) {
 			subscribe(publisher, subscriber, properties);
 		}
 	}
 	
-	public final void unregisterSubscriber(S subscriber, Map<String, String> properties) {
+	public final void unregisterSubscriber(S subscriber, Map<String, ?> properties) {
 		subscribers.remove(subscriber);
 		for (P publisher : publishers) {
 			unsubscribe(publisher, subscriber, properties);
 		}
 	}
 	
-	protected abstract void subscribe(P publisher, S subscriber, Map<String, String> properties);
+	protected abstract void subscribe(P publisher, S subscriber, Map<String, ?> properties);
 	
-	protected abstract void unsubscribe(P publisher, S subscriber, Map<String, String> properties);
+	protected abstract void unsubscribe(P publisher, S subscriber, Map<String, ?> properties);
 }
