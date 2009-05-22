@@ -42,16 +42,16 @@
 	<osgi:reference id="connectionListeners"
 		interface="org.jivesoftware.smack.ConnectionListener">
 		<osgi:listener ref="connectionListenerRegistry"
-			bind-method="addConnectionListener" unbind-method="removeConnectionListener" />
+			bind-method="registerSubscriber" unbind-method="unregisterSubscriber" />
 	</osgi:reference>
 	<osgi:reference id="chatManagerListeners"
 		interface="org.jivesoftware.smack.ChatManagerListener">
 		<osgi:listener ref="chatManagerListenerRegistry"
-			bind-method="addChatManagerListener" unbind-method="removeChatManagerListener" />
+			bind-method="registerSubscriber" unbind-method="unregisterSubscriber" />
 	</osgi:reference>
 	<osgi:reference id="fileTransferListeners"
 		interface="org.jivesoftware.smackx.filetransfer.FileTransferListener">
 		<osgi:listener ref="fileTransferListenerRegistry"
-			bind-method="addFileTransferListener" unbind-method="removeFileTransferListener" />
+			bind-method="registerSubscriber" unbind-method="unregisterSubscriber" />
 	</osgi:reference>
 </beans>

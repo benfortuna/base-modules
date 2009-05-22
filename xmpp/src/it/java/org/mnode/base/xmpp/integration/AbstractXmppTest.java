@@ -26,7 +26,8 @@ public abstract class AbstractXmppTest extends AbstractConfigurableBundleCreator
 	@Override
 	protected final String[] getTestBundlesNames() {
 		return new String[] { "org.mnode.base, base-xmpp, 0.0.1-SNAPSHOT",
-			"net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3"};
+		        "org.mnode.base, base-commons, 0.0.1-SNAPSHOT",
+			    "net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3"};
 	}
 
 	@Override
