@@ -33,7 +33,7 @@ public class ServiceTypeListenerRegistry extends AbstractPubSubRegistry<JmDNS, S
 	private static final Log LOG = LogFactory.getLog(ServiceTypeListenerRegistry.class);
 	
 	@Override
-	protected void subscribe(JmDNS publisher, ServiceTypeListener subscriber, Map<String, String> props) {
+	protected void subscribe(JmDNS publisher, ServiceTypeListener subscriber, Map<String, ?> props) {
 		try {
 			publisher.addServiceTypeListener(subscriber);
 		} catch (IOException e) {
@@ -42,7 +42,7 @@ public class ServiceTypeListenerRegistry extends AbstractPubSubRegistry<JmDNS, S
 	}
 	
 	@Override
-	protected void unsubscribe(JmDNS publisher, ServiceTypeListener subscriber, Map<String, String> props) {
+	protected void unsubscribe(JmDNS publisher, ServiceTypeListener subscriber, Map<String, ?> props) {
 		publisher.removeServiceTypeListener(subscriber);
 	}
 }
