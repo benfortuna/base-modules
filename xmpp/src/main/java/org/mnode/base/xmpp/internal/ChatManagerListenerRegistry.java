@@ -27,6 +27,12 @@ import org.jivesoftware.smackx.ChatStateManager;
 import org.jivesoftware.smackx.ServiceDiscoveryManager;
 import org.mnode.base.commons.AbstractPubSubRegistry;
 
+/**
+ * A pub/sub registry for chat manager events.
+ * 
+ * @author fortuna
+ *
+ */
 public final class ChatManagerListenerRegistry extends AbstractPubSubRegistry<XMPPConnection, ChatManagerListener>
     implements ConnectionCreationListener {
 
@@ -36,10 +42,16 @@ public final class ChatManagerListenerRegistry extends AbstractPubSubRegistry<XM
         ServiceDiscoveryManager.getIdentityName();
     }
 
+    /**
+     * 
+     */
     public ChatManagerListenerRegistry() {
         XMPPConnection.addConnectionCreationListener(this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void connectionCreated(XMPPConnection connection) {
         // NOTE: getInstance(org.jivesoftware.smack.XMPPConnection) needs to be

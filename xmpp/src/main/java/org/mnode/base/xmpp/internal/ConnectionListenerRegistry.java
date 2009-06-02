@@ -27,34 +27,55 @@ import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.mnode.base.commons.AbstractPubSubRegistry;
 
-public class ConnectionListenerRegistry extends AbstractPubSubRegistry<XMPPConnection, ConnectionListener> implements ConnectionCreationListener {
-	
-	private static final Log LOG = LogFactory.getLog(ConnectionListenerRegistry.class);
-	
-	public ConnectionListenerRegistry() {
-		XMPPConnection.addConnectionCreationListener(this);
-	}
-	
-	@Override
-	public void connectionCreated(XMPPConnection connection) {
-	    registerPublisher(connection, null);
-	}
+/**
+ * A pub/sub registry for connection events.
+ * 
+ * @author fortuna
+ *
+ */
+public class ConnectionListenerRegistry extends
+        AbstractPubSubRegistry<XMPPConnection, ConnectionListener> implements
+        ConnectionCreationListener {
 
-	@Override
-	protected void subscribe(XMPPConnection publisher,
-	        ConnectionListener subscriber, Map<String, ?> properties) {
-	    publisher.addConnectionListener(subscriber);
-	}
-	
-	@Override
-	protected void unsubscribe(XMPPConnection publisher,
-	        ConnectionListener subscriber, Map<String, ?> properties) {
-	    try {
-	        publisher.removeConnectionListener(subscriber);
-	    } catch (NullPointerException npe) {
+    private static final Log LOG = LogFactory
+            .getLog(ConnectionListenerRegistry.class);
+
+    /**
+     * 
+     */
+    public ConnectionListenerRegistry() {
+        XMPPConnection.addConnectionCreationListener(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void connectionCreated(XMPPConnection connection) {
+        registerPublisher(connection, null);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void subscribe(XMPPConnection publisher,
+            ConnectionListener subscriber, Map<String, ?> properties) {
+        publisher.addConnectionListener(subscriber);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void unsubscribe(XMPPConnection publisher,
+            ConnectionListener subscriber, Map<String, ?> properties) {
+        try {
+            publisher.removeConnectionListener(subscriber);
+        } catch (NullPointerException npe) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("Connection listener removal failed: " + npe);
             }
         }
-	}
+    }
 }

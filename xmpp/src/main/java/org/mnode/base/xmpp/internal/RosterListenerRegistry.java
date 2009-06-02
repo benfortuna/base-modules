@@ -25,30 +25,50 @@ import org.jivesoftware.smack.RosterListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.mnode.base.commons.AbstractPubSubRegistry;
 
-public class RosterListenerRegistry extends AbstractPubSubRegistry<XMPPConnection, RosterListener> implements ConnectionCreationListener {
-	
-	public RosterListenerRegistry() {
-		XMPPConnection.addConnectionCreationListener(this);
-	}
-	
-	@Override
-	public void connectionCreated(XMPPConnection connection) {
-	    registerPublisher(connection, null);
-	}
-	
-	@Override
-	protected void subscribe(XMPPConnection publisher,
-	        RosterListener subscriber, Map<String, ?> properties) {
-	    if (publisher.getRoster() != null) {
-	        publisher.getRoster().addRosterListener(subscriber);
-	    }
-	}
-	
-	@Override
-	protected void unsubscribe(XMPPConnection publisher,
-	        RosterListener subscriber, Map<String, ?> properties) {
-	    if (publisher.getRoster() != null) {
-	        publisher.getRoster().removeRosterListener(subscriber);
-	    }
-	}
+/**
+ * A pub/sub registry for roster events.
+ * 
+ * @author fortuna
+ *
+ */
+public class RosterListenerRegistry extends
+        AbstractPubSubRegistry<XMPPConnection, RosterListener> implements
+        ConnectionCreationListener {
+
+    /**
+     * 
+     */
+    public RosterListenerRegistry() {
+        XMPPConnection.addConnectionCreationListener(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void connectionCreated(XMPPConnection connection) {
+        registerPublisher(connection, null);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void subscribe(XMPPConnection publisher,
+            RosterListener subscriber, Map<String, ?> properties) {
+        if (publisher.getRoster() != null) {
+            publisher.getRoster().addRosterListener(subscriber);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void unsubscribe(XMPPConnection publisher,
+            RosterListener subscriber, Map<String, ?> properties) {
+        if (publisher.getRoster() != null) {
+            publisher.getRoster().removeRosterListener(subscriber);
+        }
+    }
 }

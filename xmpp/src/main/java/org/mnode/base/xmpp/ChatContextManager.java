@@ -20,7 +20,19 @@ package org.mnode.base.xmpp;
 
 import org.jivesoftware.smack.Chat;
 
+/**
+ * Implementations manage available contexts for chats.
+ * 
+ * @author fortuna
+ *
+ */
 public interface ChatContextManager {
 
-	ChatContext getContext(Chat chat);
+    /**
+     * @param chat
+     *            a chat instance associated with the returned context
+     * @return a context for the specified chat, or null if no context is
+     *         available
+     */
+    ChatContext getContext(Chat chat);
 }

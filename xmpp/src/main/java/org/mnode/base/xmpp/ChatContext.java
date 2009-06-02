@@ -20,18 +20,27 @@ package org.mnode.base.xmpp;
 
 import org.jivesoftware.smack.XMPPConnection;
 
+/**
+ * A context that provides useful associations for chat instances.
+ * 
+ * @author fortuna
+ * 
+ */
 public class ChatContext {
 
-	private XMPPConnection connection;
-	
-	public ChatContext(XMPPConnection connection) {
-		this.connection = connection;
-	}
+    private XMPPConnection connection;
 
-	/**
-	 * @return the connection
-	 */
-	public XMPPConnection getConnection() {
-		return connection;
-	}
+    /**
+     * @param conn the connection from which the chat originated
+     */
+    public ChatContext(XMPPConnection conn) {
+        this.connection = conn;
+    }
+
+    /**
+     * @return the connection from which the chat originated
+     */
+    public XMPPConnection getConnection() {
+        return connection;
+    }
 }

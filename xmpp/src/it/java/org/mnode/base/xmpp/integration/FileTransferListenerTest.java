@@ -27,23 +27,26 @@ import org.jivesoftware.smackx.filetransfer.FileTransferRequest;
 
 public class FileTransferListenerTest extends AbstractXmppTest {
 
-	private static final Log LOG = LogFactory.getLog(FileTransferListenerTest.class);
+    private static final Log LOG = LogFactory
+            .getLog(FileTransferListenerTest.class);
 
-	public void testRegisterFileTransferListener() throws XMPPException {
-		FileTransferListener listener = new FileTransferListener() {
-			@Override
-			public void fileTransferRequest(FileTransferRequest request) {
-				LOG.info("File transfer requested: " + request.getFileName() + " (" + request.getFileSize() + " bytes)");
-			}
-		};
-		
-		bundleContext.registerService(FileTransferListener.class.getName(), listener, null);
+    public void testRegisterFileTransferListener() throws XMPPException {
+        FileTransferListener listener = new FileTransferListener() {
+            @Override
+            public void fileTransferRequest(FileTransferRequest request) {
+                LOG.info("File transfer requested: " + request.getFileName()
+                        + " (" + request.getFileSize() + " bytes)");
+            }
+        };
 
-		XMPPConnection connection = new XMPPConnection("basepatterns.org");
-		connection.connect();
-		connection.login("test", "!password");
-		
-		connection.disconnect();
-	}
+        bundleContext.registerService(FileTransferListener.class.getName(),
+                listener, null);
+
+        XMPPConnection connection = new XMPPConnection("basepatterns.org");
+        connection.connect();
+        connection.login("test", "!password");
+
+        connection.disconnect();
+    }
 
 }

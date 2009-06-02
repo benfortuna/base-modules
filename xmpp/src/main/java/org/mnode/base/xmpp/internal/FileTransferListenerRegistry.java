@@ -26,28 +26,47 @@ import org.jivesoftware.smackx.filetransfer.FileTransferListener;
 import org.jivesoftware.smackx.filetransfer.FileTransferManager;
 import org.mnode.base.commons.AbstractPubSubRegistry;
 
-public class FileTransferListenerRegistry extends AbstractPubSubRegistry<FileTransferManager, FileTransferListener>
-    implements ConnectionCreationListener {
-	
-	public FileTransferListenerRegistry() {
-		XMPPConnection.addConnectionCreationListener(this);
-	}
-	
-	@Override
-	public void connectionCreated(XMPPConnection connection) {
-		FileTransferManager ftm = new FileTransferManager(connection);
-		registerPublisher(ftm, null);
-	}
+/**
+ * A pub/sub registry for file transfer events.
+ * 
+ * @author fortuna
+ *
+ */
+public class FileTransferListenerRegistry extends
+        AbstractPubSubRegistry<FileTransferManager, FileTransferListener>
+        implements ConnectionCreationListener {
 
-	@Override
-	protected void subscribe(FileTransferManager publisher,
-	        FileTransferListener subscriber, Map<String, ?> properties) {
-	    publisher.addFileTransferListener(subscriber);
-	}
-	
-	@Override
-	protected void unsubscribe(FileTransferManager publisher,
-	        FileTransferListener subscriber, Map<String, ?> properties) {
-	    publisher.removeFileTransferListener(subscriber);
-	}
+    /**
+     * 
+     */
+    public FileTransferListenerRegistry() {
+        XMPPConnection.addConnectionCreationListener(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void connectionCreated(XMPPConnection connection) {
+        FileTransferManager ftm = new FileTransferManager(connection);
+        registerPublisher(ftm, null);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void subscribe(FileTransferManager publisher,
+            FileTransferListener subscriber, Map<String, ?> properties) {
+        publisher.addFileTransferListener(subscriber);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void unsubscribe(FileTransferManager publisher,
+            FileTransferListener subscriber, Map<String, ?> properties) {
+        publisher.removeFileTransferListener(subscriber);
+    }
 }

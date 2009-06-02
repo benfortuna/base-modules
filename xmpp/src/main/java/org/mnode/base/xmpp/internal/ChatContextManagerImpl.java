@@ -28,27 +28,43 @@ import org.jivesoftware.smack.XMPPConnection;
 import org.mnode.base.xmpp.ChatContext;
 import org.mnode.base.xmpp.ChatContextManager;
 
-public class ChatContextManagerImpl implements ChatContextManager, ConnectionCreationListener {
+/**
+ * A chat context manages that maintains contexts in a map.
+ * 
+ * @author fortuna
+ *
+ */
+public class ChatContextManagerImpl implements ChatContextManager,
+        ConnectionCreationListener {
 
-	private Map<Chat, ChatContext> contexts;
-	
-	public ChatContextManagerImpl() {
-		contexts = new HashMap<Chat, ChatContext>();
-		XMPPConnection.addConnectionCreationListener(this);
-	}
-	
-	@Override
-	public ChatContext getContext(Chat chat) {
-		return contexts.get(chat);
-	}
+    private Map<Chat, ChatContext> contexts;
 
-	@Override
-	public void connectionCreated(final XMPPConnection connection) {
-		connection.getChatManager().addChatListener(new ChatManagerListener() {
-			@Override
-			public void chatCreated(Chat chat, boolean createdLocally) {
-				contexts.put(chat, new ChatContext(connection));
-			}
-		});
-	}
+    /**
+     * 
+     */
+    public ChatContextManagerImpl() {
+        contexts = new HashMap<Chat, ChatContext>();
+        XMPPConnection.addConnectionCreationListener(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ChatContext getContext(Chat chat) {
+        return contexts.get(chat);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void connectionCreated(final XMPPConnection connection) {
+        connection.getChatManager().addChatListener(new ChatManagerListener() {
+            @Override
+            public void chatCreated(Chat chat, boolean createdLocally) {
+                contexts.put(chat, new ChatContext(connection));
+            }
+        });
+    }
 }
