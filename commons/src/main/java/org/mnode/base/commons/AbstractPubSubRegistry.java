@@ -23,46 +23,89 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Base class for registry implementations to assist implementation of the
+ * whiteboard pattern.
+ * 
+ * @author fortuna
+ * 
+ * @param <P>
+ *            the publisher type
+ * @param <S>
+ *            the subscriber type
+ */
 public abstract class AbstractPubSubRegistry<P, S> {
 
-	private List<P> publishers;
+    private List<P> publishers;
 
-	private Map<S, Map<String, ?>> subscribers;
-	
-	public AbstractPubSubRegistry() {
-		publishers = new ArrayList<P>();
-		subscribers = new HashMap<S, Map<String, ?>>();
-	}
-	
-	public final void registerPublisher(P publisher, Map<String, ?> properties) {
-		publishers.add(publisher);
-		for (S subscriber : subscribers.keySet()) {
-			subscribe(publisher, subscriber, subscribers.get(subscriber));
-		}
-	}
-	
-	public final void unregisterPublisher(P publisher, Map<String, ?> properties) {
-		publishers.remove(publisher);
-		for (S subscriber : subscribers.keySet()) {
-			unsubscribe(publisher, subscriber, subscribers.get(subscriber));
-		}
-	}
-	
-	public final void registerSubscriber(S subscriber, Map<String, ?> properties) {
-		subscribers.put(subscriber, properties);
-		for (P publisher : publishers) {
-			subscribe(publisher, subscriber, properties);
-		}
-	}
-	
-	public final void unregisterSubscriber(S subscriber, Map<String, ?> properties) {
-		subscribers.remove(subscriber);
-		for (P publisher : publishers) {
-			unsubscribe(publisher, subscriber, properties);
-		}
-	}
-	
-	protected abstract void subscribe(P publisher, S subscriber, Map<String, ?> properties);
-	
-	protected abstract void unsubscribe(P publisher, S subscriber, Map<String, ?> properties);
+    private Map<S, Map<String, ?>> subscribers;
+
+    /**
+     * 
+     */
+    public AbstractPubSubRegistry() {
+        publishers = new ArrayList<P>();
+        subscribers = new HashMap<S, Map<String, ?>>();
+    }
+
+    /**
+     * @param publisher the source
+     * @param properties additional publishing properties
+     */
+    public final void registerPublisher(P publisher, Map<String, ?> properties) {
+        publishers.add(publisher);
+        for (S subscriber : subscribers.keySet()) {
+            subscribe(publisher, subscriber, subscribers.get(subscriber));
+        }
+    }
+
+    /**
+     * @param publisher the source
+     * @param properties additional publishing properties
+     */
+    public final void unregisterPublisher(P publisher, Map<String, ?> properties) {
+        publishers.remove(publisher);
+        for (S subscriber : subscribers.keySet()) {
+            unsubscribe(publisher, subscriber, subscribers.get(subscriber));
+        }
+    }
+
+    /**
+     * @param subscriber the destination
+     * @param properties additional subscription properties
+     */
+    public final void registerSubscriber(S subscriber, Map<String, ?> properties) {
+        subscribers.put(subscriber, properties);
+        for (P publisher : publishers) {
+            subscribe(publisher, subscriber, properties);
+        }
+    }
+
+    /**
+     * @param subscriber the destination
+     * @param properties additional subscription properties
+     */
+    public final void unregisterSubscriber(S subscriber,
+            Map<String, ?> properties) {
+        subscribers.remove(subscriber);
+        for (P publisher : publishers) {
+            unsubscribe(publisher, subscriber, properties);
+        }
+    }
+
+    /**
+     * @param publisher the source
+     * @param subscriber the destination
+     * @param properties additional subscription properties
+     */
+    protected abstract void subscribe(P publisher, S subscriber,
+            Map<String, ?> properties);
+
+    /**
+     * @param publisher the source
+     * @param subscriber the destination
+     * @param properties additional subscription properties
+     */
+    protected abstract void unsubscribe(P publisher, S subscriber,
+            Map<String, ?> properties);
 }
