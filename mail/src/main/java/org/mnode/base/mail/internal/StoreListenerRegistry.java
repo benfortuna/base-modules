@@ -25,15 +25,29 @@ import javax.mail.event.StoreListener;
 
 import org.mnode.base.commons.AbstractPubSubRegistry;
 
-public class StoreListenerRegistry extends AbstractPubSubRegistry<Store, StoreListener> {
-	
-	@Override
-	protected void subscribe(Store store, StoreListener subscriber, Map<String, ?> props) {
-		store.addStoreListener(subscriber);
-	}
-	
-	@Override
-	protected void unsubscribe(Store store, StoreListener subscriber, Map<String, ?> props) {
-		store.removeStoreListener(subscriber);
-	}
+/**
+ * A pub/sub registry for store events.
+ * 
+ * @author fortuna
+ */
+public class StoreListenerRegistry extends
+        AbstractPubSubRegistry<Store, StoreListener> {
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void subscribe(Store store, StoreListener subscriber,
+            Map<String, ?> props) {
+        store.addStoreListener(subscriber);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void unsubscribe(Store store, StoreListener subscriber,
+            Map<String, ?> props) {
+        store.removeStoreListener(subscriber);
+    }
 }
