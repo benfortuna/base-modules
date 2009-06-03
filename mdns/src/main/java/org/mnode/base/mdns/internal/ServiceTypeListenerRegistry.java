@@ -28,21 +28,33 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mnode.base.commons.AbstractPubSubRegistry;
 
+/**
+ * A pub/sub registry for JmDNS service type events.
+ * 
+ * @author fortuna
+ *
+ */
 public class ServiceTypeListenerRegistry extends AbstractPubSubRegistry<JmDNS, ServiceTypeListener> {
 
-	private static final Log LOG = LogFactory.getLog(ServiceTypeListenerRegistry.class);
-	
-	@Override
-	protected void subscribe(JmDNS publisher, ServiceTypeListener subscriber, Map<String, ?> props) {
-		try {
-			publisher.addServiceTypeListener(subscriber);
-		} catch (IOException e) {
-			LOG.error("Error subscribing", e);
-		}
-	}
-	
-	@Override
-	protected void unsubscribe(JmDNS publisher, ServiceTypeListener subscriber, Map<String, ?> props) {
-		publisher.removeServiceTypeListener(subscriber);
-	}
+    private static final Log LOG = LogFactory.getLog(ServiceTypeListenerRegistry.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void subscribe(JmDNS publisher, ServiceTypeListener subscriber, Map<String, ?> props) {
+        try {
+            publisher.addServiceTypeListener(subscriber);
+        } catch (IOException e) {
+            LOG.error("Error subscribing", e);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void unsubscribe(JmDNS publisher, ServiceTypeListener subscriber, Map<String, ?> props) {
+        publisher.removeServiceTypeListener(subscriber);
+    }
 }

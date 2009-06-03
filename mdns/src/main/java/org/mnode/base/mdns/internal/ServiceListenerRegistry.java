@@ -25,15 +25,27 @@ import javax.jmdns.ServiceListener;
 
 import org.mnode.base.commons.AbstractPubSubRegistry;
 
+/**
+ * A pub/sub registry for JmDNS service events.
+ * 
+ * @author fortuna
+ *
+ */
 public class ServiceListenerRegistry extends AbstractPubSubRegistry<JmDNS, ServiceListener> {
-	
-	@Override
-	protected void subscribe(JmDNS publisher, ServiceListener subscriber, Map<String, ?> props) {
-		publisher.addServiceListener((String) props.get("serviceType"), subscriber);
-	}
-	
-	@Override
-	protected void unsubscribe(JmDNS publisher, ServiceListener subscriber, Map<String, ?> props) {
-		publisher.removeServiceListener((String) props.get("serviceType"), subscriber);
-	}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void subscribe(JmDNS publisher, ServiceListener subscriber, Map<String, ?> props) {
+        publisher.addServiceListener((String) props.get("serviceType"), subscriber);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void unsubscribe(JmDNS publisher, ServiceListener subscriber, Map<String, ?> props) {
+        publisher.removeServiceListener((String) props.get("serviceType"), subscriber);
+    }
 }
