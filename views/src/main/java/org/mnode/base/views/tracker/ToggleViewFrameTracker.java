@@ -27,18 +27,18 @@ import org.mnode.base.views.ToggleViewFrame.Mode;
 
 /**
  * @author Ben
- *
+ * 
  */
 public class ToggleViewFrameTracker extends FrameTracker implements PropertyChangeListener {
 
     private ToggleViewFrame frame;
 
-	/**
-	 * @param frame
-	 * @param id
-	 */
-	public ToggleViewFrameTracker(ToggleViewFrame frame, String id) {
-		super(frame, id);
+    /**
+     * @param frame the toggle view frame to track
+     * @param id an identifier for this tracker
+     */
+    public ToggleViewFrameTracker(ToggleViewFrame frame, String id) {
+        super(frame, id);
         this.frame = frame;
 
         frame.setToggleMode(getToggleMode());
@@ -48,58 +48,46 @@ public class ToggleViewFrameTracker extends FrameTracker implements PropertyChan
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
         }
         frame.addPropertyChangeListener(this);
-	}
+    }
 
-	/*
-	@Override
-	public void componentResized(ComponentEvent e) {
-		if (Frame.MAXIMIZED_BOTH != frame.getExtendedState()) {
-			if (Mode.MINIMAL.equals(frame.getToggleMode())) {
-		        // save preferences on component mini size..
-		        getPreferences().putInt(getUniqueId() +  ".miniWidth", frame.getWidth());
-			}
-			else {
-		        // save preferences on component full size..
-		        getPreferences().putInt(getUniqueId() +  ".fullWidth", frame.getWidth());
-			}
-		}
-		super.componentResized(e);
-	}
-	*/
-	
-	/* (non-Javadoc)
-	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
-	 */
-	public void propertyChange(PropertyChangeEvent e) {
+    /*
+     * @Override public void componentResized(ComponentEvent e) { if (Frame.MAXIMIZED_BOTH != frame.getExtendedState())
+     * { if (Mode.MINIMAL.equals(frame.getToggleMode())) { // save preferences on component mini size..
+     * getPreferences().putInt(getUniqueId() + ".miniWidth", frame.getWidth()); } else { // save preferences on
+     * component full size.. getPreferences().putInt(getUniqueId() + ".fullWidth", frame.getWidth()); } }
+     * super.componentResized(e); }
+     */
+
+    /**
+     * {@inheritDoc}
+     */
+    public void propertyChange(PropertyChangeEvent e) {
         if ("toggleMode".equals(e.getPropertyName())) {
-        	getPreferences().put(getUniqueId() + "." + e.getPropertyName(),
-        			((Mode) e.getNewValue()).name());
+            getPreferences().put(getUniqueId() + "." + e.getPropertyName(), ((Mode) e.getNewValue()).name());
+        } else if ("miniWidth".equals(e.getPropertyName()) || "fullWidth".equals(e.getPropertyName())) {
+            getPreferences().putInt(getUniqueId() + "." + e.getPropertyName(), (Integer) e.getNewValue());
         }
-        else if ("miniWidth".equals(e.getPropertyName()) || "fullWidth".equals(e.getPropertyName())) {
-        	getPreferences().putInt(getUniqueId() + "." + e.getPropertyName(),
-        			(Integer) e.getNewValue());
-        }
-		
-	}
-	
-	/**
-	 * @return
-	 */
-	public Mode getToggleMode() {
-		return Mode.valueOf(getPreferences().get(getUniqueId() + ".toggleMode", Mode.MINIMAL.name()));
-	}
-	
-	/**
-	 * @return
-	 */
-	public int getMiniWidth() {
-		return getPreferences().getInt(getUniqueId() + ".miniWidth", frame.getSize().width);
-	}
-	
-	/**
-	 * @return
-	 */
-	public int getFullWidth() {
-		return getPreferences().getInt(getUniqueId() + ".fullWidth", frame.getSize().width);
-	}
+
+    }
+
+    /**
+     * @return the last know toggle mode of the frame
+     */
+    public Mode getToggleMode() {
+        return Mode.valueOf(getPreferences().get(getUniqueId() + ".toggleMode", Mode.MINIMAL.name()));
+    }
+
+    /**
+     * @return the last known compact mode width of the frame
+     */
+    public int getMiniWidth() {
+        return getPreferences().getInt(getUniqueId() + ".miniWidth", frame.getSize().width);
+    }
+
+    /**
+     * @return the last known full mode width of the frame
+     */
+    public int getFullWidth() {
+        return getPreferences().getInt(getUniqueId() + ".fullWidth", frame.getSize().width);
+    }
 }

@@ -44,7 +44,7 @@ public class ShowStatusBarAction extends AbstractActionExt {
     private List<JXStatusBar> statusBars;
 
     /**
-     * Default constructor.
+     * @param id the action identifier
      */
     public ShowStatusBarAction(String id) {
         super(MESSAGES.getString("action.showStatusBar"), id);
@@ -54,7 +54,7 @@ public class ShowStatusBarAction extends AbstractActionExt {
     }
     
     /**
-     * @param statusBar
+     * @param statusBar a status bar whose visibility is controlled by this action
      */
     public void addStatusBar(JXStatusBar statusBar) {
     	statusBars.add(statusBar);
@@ -62,8 +62,8 @@ public class ShowStatusBarAction extends AbstractActionExt {
         statusBar.setVisible(isSelected());
     }
     
-    /* (non-Javadoc)
-     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+    /**
+     * {@inheritDoc}
      */
     public void actionPerformed(ActionEvent e) {
     	for (JXStatusBar statusBar : statusBars) {

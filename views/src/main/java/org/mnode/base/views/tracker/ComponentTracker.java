@@ -28,6 +28,7 @@ import java.util.prefs.Preferences;
 
 /**
  * Tracks component changes.
+ * 
  * @author Ben Fortuna
  */
 public class ComponentTracker implements ComponentListener {
@@ -39,21 +40,22 @@ public class ComponentTracker implements ComponentListener {
     private String id;
 
     /**
-     * Constructor made protected to ensure only instantiated
-     * by PrefsManager.
-     * @param component a component to monitor for preference
-     * changes
+     * Constructor made protected to ensure only instantiated by PrefsManager.
+     * 
+     * @param component
+     *            a component to monitor for preference changes
      */
     public ComponentTracker(final Component component) {
         this(component, component.getName());
     }
 
     /**
-     * Constructor made protected to ensure only instantiated
-     * by PrefsManager.
-     * @param component a component to monitor for preference
-     * changes
-     * @param id the identifier of a specific component
+     * Constructor made protected to ensure only instantiated by PrefsManager.
+     * 
+     * @param component
+     *            a component to monitor for preference changes
+     * @param id
+     *            the identifier of a specific component
      */
     public ComponentTracker(final Component component, final String id) {
         this.component = component;
@@ -63,29 +65,29 @@ public class ComponentTracker implements ComponentListener {
 
         component.setLocation(getLocation());
         component.setSize(getSize());
-//        component.setVisible(isVisible());
+        // component.setVisible(isVisible());
 
         component.addComponentListener(this);
     }
 
     /**
-     * @return
+     * @return a unique identifier for the tracker
      */
     public String getUniqueId() {
-    	if (id != null) {
-        	return component.getClass().getName() + "." + id;
-    	}
-    	return component.getClass().getName();
+        if (id != null) {
+            return component.getClass().getName() + "." + id;
+        }
+        return component.getClass().getName();
     }
 
     /**
-     * @see java.awt.event.ComponentListener#componentHidden(java.awt.event.ComponentEvent)
+     * {@inheritDoc}
      */
     public void componentHidden(final ComponentEvent e) {
     }
 
     /**
-     * @see java.awt.event.ComponentListener#componentMoved(java.awt.event.ComponentEvent)
+     * {@inheritDoc}
      */
     public void componentMoved(final ComponentEvent e) {
         // save preferences on component location..
@@ -94,50 +96,44 @@ public class ComponentTracker implements ComponentListener {
     }
 
     /**
-     * @see java.awt.event.ComponentListener#componentResized(java.awt.event.ComponentEvent)
+     * {@inheritDoc}
      */
     public void componentResized(final ComponentEvent e) {
         // save preferences on component size..
-        getPreferences().putInt(getUniqueId() +  ".width",
-                component.getWidth());
-        getPreferences().putInt(getUniqueId() + ".height",
-                component.getHeight());
+        getPreferences().putInt(getUniqueId() + ".width", component.getWidth());
+        getPreferences().putInt(getUniqueId() + ".height", component.getHeight());
     }
 
     /**
-     * @see java.awt.event.ComponentListener#componentShown(java.awt.event.ComponentEvent)
+     * {@inheritDoc}
      */
     public void componentShown(final ComponentEvent e) {
     }
 
     /**
      * Returns the saved location preferences for the component.
+     * 
      * @return a point specifying a location
      */
     public final Point getLocation() {
-    	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        return new Point(Math.min(screenSize.width - getSize().width,
-        		getPreferences().getInt(getUniqueId() + ".x",
-                        component.getLocation().x)),
-                        Math.min(screenSize.height - getSize().height,
-                getPreferences().getInt(getUniqueId() + ".y",
-                        component.getLocation().y)));
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        return new Point(Math.min(screenSize.width - getSize().width, getPreferences().getInt(getUniqueId() + ".x",
+                component.getLocation().x)), Math.min(screenSize.height - getSize().height, getPreferences().getInt(
+                getUniqueId() + ".y", component.getLocation().y)));
     }
 
     /**
      * Returns the saved size preferences for the component.
+     * 
      * @return a dimension specifying a size
      */
     public final Dimension getSize() {
-    	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        return new Dimension(Math.min(screenSize.width,
-        		getPreferences().getInt(getUniqueId() + ".width",
-                        component.getSize().width)),
-                        Math.min(screenSize.height,
-                getPreferences().getInt(getUniqueId() + ".height",
-                        component.getSize().height)));
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        return new Dimension(Math.min(screenSize.width, getPreferences().getInt(getUniqueId() + ".width",
+                component.getSize().width)), Math.min(screenSize.height, getPreferences().getInt(
+                getUniqueId() + ".height", component.getSize().height)));
     }
-    
+
     /**
      * @return Returns the component.
      */

@@ -38,36 +38,39 @@ import javax.swing.SwingWorker;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-
 /**
+ * @param <K> the key for views in this container
+ * @param <V> the view type held by this container
+ * 
  * @author fortuna
- *
+ * 
  */
 @SuppressWarnings("serial")
-public abstract class AbstractTabbedView<K, V extends AbstractView> extends AbstractView implements PropertyChangeListener {
+public abstract class AbstractTabbedView<K, V extends AbstractView> extends AbstractView implements
+        PropertyChangeListener {
 
-	private Map<K, V> views;
-	
-	private JTabbedPane tabs;
-	
-	/**
-	 * @param id
-	 * @param title
-	 */
-	public AbstractTabbedView(String id, String title) {
-		this(id, title, null);
-	}
+    private Map<K, V> views;
 
-	/**
-	 * @param id
-	 * @param title
-	 * @param icon
-	 */
-	public AbstractTabbedView(String id, String title, ImageIcon icon) {
-		super(id, title, icon);
-		
-		views = new HashMap<K, V>();
-		
+    private JTabbedPane tabs;
+
+    /**
+     * @param id the identifier for this view
+     * @param title the title for this view
+     */
+    public AbstractTabbedView(String id, String title) {
+        this(id, title, null);
+    }
+
+    /**
+     * @param id the identifier for this view
+     * @param title the title for this view
+     * @param icon the icon for this view
+     */
+    public AbstractTabbedView(String id, String title, ImageIcon icon) {
+        super(id, title, icon);
+
+        views = new HashMap<K, V>();
+
         tabs = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
         tabs.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         tabs.addChangeListener(new ChangeListener() {
@@ -78,40 +81,39 @@ public abstract class AbstractTabbedView<K, V extends AbstractView> extends Abst
                         setStatusMessage(views.get(key).getStatusMessage());
                         setProgress(views.get(key).getProgress());
                         views.get(key).addPropertyChangeListener(AbstractTabbedView.this);
-                    }
-                    else {
+                    } else {
                         views.get(key).removePropertyChangeListener(AbstractTabbedView.this);
                     }
                 }
             }
         });
         add(tabs, BorderLayout.CENTER);
-	}
+    }
 
-	/**
-	 * @return
-	 */
-	public Map<K, V> getViews() {
-		return views;
-	}
-	
-	/**
-	 * @return
-	 */
-	public K getCurrentKey() {
-		for (K key : views.keySet()) {
-			if (views.get(key).equals(tabs.getSelectedComponent())) {
-				return key;
-			}
-		}
-		return null;
-	}
-	
-	/**
-	 * @param key
-	 * @return
-	 */
-	public V getView(final K key) {
+    /**
+     * @return a map of all views held in this container
+     */
+    public Map<K, V> getViews() {
+        return views;
+    }
+
+    /**
+     * @return the key for the currently active view
+     */
+    public K getCurrentKey() {
+        for (K key : views.keySet()) {
+            if (views.get(key).equals(tabs.getSelectedComponent())) {
+                return key;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param key the key for the view to return
+     * @return the view associated with the specified key, or null if no such view exists
+     */
+    public V getView(final K key) {
         V view = views.get(key);
         if (view == null) {
             view = createView(key);
@@ -122,10 +124,12 @@ public abstract class AbstractTabbedView<K, V extends AbstractView> extends Abst
                 public void onClose() {
                     closeTab(key);
                 }
+
                 @Override
                 public void onCloseAll() {
                     closeAllTabs();
                 }
+
                 @Override
                 public void onCloseOthers() {
                     closeOtherTabs(key);
@@ -134,26 +138,26 @@ public abstract class AbstractTabbedView<K, V extends AbstractView> extends Abst
             tabs.setTabComponentAt(tabs.indexOfComponent(view), tab);
         }
         return view;
-	}
-	
+    }
+
     /**
-     * @param key
+     * @param key the key of the view to make active
      */
     public void showView(final K key) {
         SwingWorker<V, Object> showViewWorker = new SwingWorker<V, Object>() {
             @Override
             protected V doInBackground() throws Exception {
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-//                setStatusMessage("Loading..");
-                
+                // setStatusMessage("Loading..");
+
                 return getView(key);
             }
-            
+
             @Override
             protected void done() {
                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-//                setStatusMessage("Ready.");
-                
+                // setStatusMessage("Ready.");
+
                 try {
                     tabs.setSelectedComponent(get());
                 } catch (InterruptedException e) {
@@ -167,46 +171,52 @@ public abstract class AbstractTabbedView<K, V extends AbstractView> extends Abst
         };
         showViewWorker.execute();
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void propertyChange(PropertyChangeEvent e) {
         if ("statusMessage".equals(e.getPropertyName())) {
             setStatusMessage((String) e.getNewValue());
-        }
-        else if ("progress".equals(e.getPropertyName())) {
+        } else if ("progress".equals(e.getPropertyName())) {
             setProgress((Integer) e.getNewValue());
         }
     }
-    
+
     /**
-     * @param l
+     * Subscribes a listener to tab change events.
+     * @param l a listener for tab change events
      */
     public void addTabChangeListener(ChangeListener l) {
-    	tabs.addChangeListener(l);
+        tabs.addChangeListener(l);
     }
-    
+
     /**
-     * @param l
+     * Unsubscribes a listener from tab change events.
+     * @param l a listener for tab change events
      */
     public void removeTabChangeListener(ChangeListener l) {
-    	tabs.removeChangeListener(l);
+        tabs.removeChangeListener(l);
     }
-    
+
     /**
-     * @param key
-     * @return
+     * Creates a new view for use by this container.
+     * @param key the key of the new view
+     * @return a new view instance associated with the specified key
      */
     protected abstract V createView(K key);
-    
+
     /**
-     * @param calendar
+     * Closes the tab of the view with the specified key.
+     * @param key the key of the view to close
      */
     public void closeTab(K key) {
         V view = views.remove(key);
         view.close();
         tabs.removeTabAt(tabs.indexOfComponent(view));
     }
-    
+
     /**
      * 
      */
@@ -219,9 +229,10 @@ public abstract class AbstractTabbedView<K, V extends AbstractView> extends Abst
             tabs.removeTabAt(i);
         }
     }
-    
+
     /**
-     * @param calendar
+     * Closes all view tabs except the one associated with the specified key.
+     * @param key the key of the view that should not be closed
      */
     public void closeOtherTabs(K key) {
         List<K> removals = new ArrayList<K>();

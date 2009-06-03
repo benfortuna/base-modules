@@ -78,15 +78,15 @@ public class DefaultIconSet extends IconKeys implements IconSet {
 
     private static Log log = LogFactory.getLog(DefaultIconSet.class);
 
-    private Map icons = new HashMap();
+    private Map<String, Icon> icons = new HashMap<String, Icon>();
 
-    private Map disabledIcons = new HashMap();
+    private Map<String, Icon> disabledIcons = new HashMap<String, Icon>();
 
-    private Map rolloverIcons = new HashMap();
+    private Map<String, Icon> rolloverIcons = new HashMap<String, Icon>();
 
-    private Map pressedIcons = new HashMap();
+    private Map<String, Icon> pressedIcons = new HashMap<String, Icon>();
 
-    private Map selectedIcons = new HashMap();
+    private Map<String, Icon> selectedIcons = new HashMap<String, Icon>();
 
     private Document document;
 
@@ -116,46 +116,47 @@ public class DefaultIconSet extends IconKeys implements IconSet {
     /**
      * @param url a url for an icon set definition
      * @throws ParserConfigurationException
+     *             thrown if the icon set descriptor is invalid
      * @throws SAXException
+     *             thrown if the icon set descriptor is not valid XML
      * @throws IOException
+     *             thrown if unable to read from the specified input stream
      */
     public DefaultIconSet(final URL url) throws ParserConfigurationException,
     SAXException, IOException {
         this(url.openStream());
     }
     
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getId()
+    /**
+     * {@inheritDoc}
      */
     public String getId() {
         return document.getDocumentElement().getAttribute("id");
     }
     
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getName()
+    /**
+     * {@inheritDoc}
      */
     public String getName() {
         return document.getDocumentElement().getElementsByTagName("name").item(0).getNodeValue();
     }
     
-    
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getDescription()
+    /**
+     * {@inheritDoc}
      */
     public String getDescription() {
         return document.getDocumentElement().getElementsByTagName("description").item(0).getNodeValue();
     }
 
-    
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getAuthor()
+    /**
+     * {@inheritDoc}
      */
     public String getAuthor() {
         return document.getDocumentElement().getElementsByTagName("author").item(0).getNodeValue();
     }
     
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getIcon(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     public final Icon getIcon(final String key) {
         if (icons.get(key) == null) {
@@ -173,8 +174,8 @@ public class DefaultIconSet extends IconKeys implements IconSet {
         return (Icon) icons.get(key);
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getDisabledIcon(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     public final Icon getDisabledIcon(final String key) {
         if (disabledIcons.get(key) == null) {
@@ -192,8 +193,8 @@ public class DefaultIconSet extends IconKeys implements IconSet {
         return (Icon) disabledIcons.get(key);
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getRolloverIcon(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     public final Icon getRolloverIcon(final String key) {
         if (rolloverIcons.get(key) == null) {
@@ -211,8 +212,8 @@ public class DefaultIconSet extends IconKeys implements IconSet {
         return (Icon) rolloverIcons.get(key);
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getPressedIcon(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     public final Icon getPressedIcon(final String key) {
         if (pressedIcons.get(key) == null) {
@@ -235,8 +236,8 @@ public class DefaultIconSet extends IconKeys implements IconSet {
         return (Icon) pressedIcons.get(key);
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getSelectedIcon(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     public final Icon getSelectedIcon(final String key) {
         if (selectedIcons.get(key) == null) {
@@ -297,8 +298,8 @@ public class DefaultIconSet extends IconKeys implements IconSet {
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#isPressedIconGenerated()
+    /**
+     * {@inheritDoc}
      */
     public final boolean isPressedIconGenerated() {
         return pressedIconGenerated;

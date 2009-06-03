@@ -22,20 +22,17 @@ import java.util.EventObject;
 
 /**
  * @author Ben
- *
+ * 
  */
 public class ActivityEvent extends EventObject {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3393401314231042562L;
+    private static final long serialVersionUID = -3393401314231042562L;
 
-	/**
-	 * @param arg0
-	 */
-	public ActivityEvent(Object source) {
-		super(source);
-	}
+    /**
+     * @param source the event source
+     */
+    public ActivityEvent(Object source) {
+        super(source);
+    }
 
 }

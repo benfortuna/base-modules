@@ -27,26 +27,22 @@ import javax.swing.Icon;
 public interface IconSet {
 
     /**
-     * Returns the identifier of the icon set.
-     * @return
+     * @return the identifier of the icon set.
      */
     String getId();
     
     /**
-     * Returns the name of the icon set.
-     * @return
+     * @return the name of the icon set.
      */
     String getName();
     
     /**
-     * Returns a description of the icon set.
-     * @return
+     * @return a description of the icon set.
      */
     String getDescription();
     
     /**
-     * Returns the author of the icon set.
-     * @return
+     * @return the author of the icon set.
      */
     String getAuthor();
     

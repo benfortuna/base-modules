@@ -35,98 +35,90 @@ import org.mnode.base.views.action.CloseViewAction;
 import org.mnode.base.views.tracker.TrackerRegistry;
 
 /**
- * Abstract base implementation for views. Default view layout is a
- * {@link BorderLayout}.
+ * Abstract base implementation for views. Default view layout is a {@link BorderLayout}.
+ * 
  * @author Ben Fortuna
  */
 public abstract class AbstractView extends JXPanel implements View {
-    
-    private static final GradientPaint BLUE_EXPERIENCE = new GradientPaint(
-            new Point2D.Double(0, 0),
-            new Color(168, 204, 241),
-            new Point2D.Double(0, 1),
-            new Color(44, 61, 146));
-    
+
+    private static final GradientPaint BLUE_EXPERIENCE = new GradientPaint(new Point2D.Double(0, 0), new Color(168,
+            204, 241), new Point2D.Double(0, 1), new Color(44, 61, 146));
+
     private String id;
-    
+
     private String title;
-    
+
     private ImageIcon icon;
-    
+
     private JMenuBar menuBar;
-    
+
     private Dimension maximumSize;
-    
+
     private CloseViewAction closeViewAction;
-    
+
     private ViewStatusBar statusBar;
-    
-//    private JMenuItem showStatusBarItem;
-    
+
+    // private JMenuItem showStatusBarItem;
+
     private String statusMessage;
-    
+
     private int progress;
-    
+
     /**
-     * @param id
-     * @param title
+     * @param id the identifier for this view 
+     * @param title the title for this view
      */
     public AbstractView(String id, String title) {
         this(id, title, null);
     }
-    
+
     /**
-     * @param id
-     * @param title
+     * @param id the identifier for this view 
+     * @param title the title for this view
+     * @param icon the icon for this view
      */
     public AbstractView(String id, String title, ImageIcon icon) {
         super(new BorderLayout());
-//        setBackgroundPainter(new GlossPainter<Component>());
-//                new BasicGradientPainter(BasicGradientPainter.BLUE_EXPERIENCE));
-        
-//        GlossPainter gloss = new GlossPainter();
+        // setBackgroundPainter(new GlossPainter<Component>());
+        // new BasicGradientPainter(BasicGradientPainter.BLUE_EXPERIENCE));
 
-//        PinstripePainter stripes = new PinstripePainter();
-//        stripes.setPaint(new Color(1.0f, 1.0f, 1.0f, 0.17f));
-//        stripes.setSpacing(5.0);
-        
-//        MattePainter matte = new MattePainter(new Color(51, 51, 51));
+        // GlossPainter gloss = new GlossPainter();
 
-//        setBackgroundPainter(new CompoundPainter(matte, gloss));
-//        setBackgroundPainter(new MattePainter<Component>(BLUE_EXPERIENCE));
-        
+        // PinstripePainter stripes = new PinstripePainter();
+        // stripes.setPaint(new Color(1.0f, 1.0f, 1.0f, 0.17f));
+        // stripes.setSpacing(5.0);
+
+        // MattePainter matte = new MattePainter(new Color(51, 51, 51));
+
+        // setBackgroundPainter(new CompoundPainter(matte, gloss));
+        // setBackgroundPainter(new MattePainter<Component>(BLUE_EXPERIENCE));
+
         this.id = id;
         this.title = title;
         this.icon = icon;
-        
-        this.progress = 0;
-        
-        closeViewAction = new CloseViewAction();
-        
-//        statusBar = new ViewStatusBar(this);
-//        statusBar.setVisible(false);
 
-//        add(statusBar, BorderLayout.SOUTH);
-        
-//        ActionContainerFactory actionFactory = new ActionContainerFactory();
-//        showStatusBarItem = actionFactory.createMenuItem(
-//                new ShowStatusBarAction(statusBar));
+        this.progress = 0;
+
+        closeViewAction = new CloseViewAction();
+
+        // statusBar = new ViewStatusBar(this);
+        // statusBar.setVisible(false);
+
+        // add(statusBar, BorderLayout.SOUTH);
+
+        // ActionContainerFactory actionFactory = new ActionContainerFactory();
+        // showStatusBarItem = actionFactory.createMenuItem(
+        // new ShowStatusBarAction(statusBar));
     }
-    
+
     /**
      * @param context
      */
     /*
-    protected void activate(ComponentContext context) {
-        menuBar = (ViewMenuBar) Components.newInstance(
-                "ViewMenuBar", null, context.getBundleContext());
-        
-        menuBar.getFileMenu().insert(closeViewAction, 0);
-//        menuBar.getFileMenu().insertSeparator(1);
-        
-        menuBar.getViewMenu().insert(showStatusBarItem, 0);
-    }
-    */
+     * protected void activate(ComponentContext context) { menuBar = (ViewMenuBar) Components.newInstance(
+     * "ViewMenuBar", null, context.getBundleContext()); menuBar.getFileMenu().insert(closeViewAction, 0); //
+     * menuBar.getFileMenu().insertSeparator(1); menuBar.getViewMenu().insert(showStatusBarItem, 0); }
+     */
 
     /**
      * @return the id
@@ -143,35 +135,39 @@ public abstract class AbstractView extends JXPanel implements View {
     }
 
     /**
-     * @param title the title to set
+     * @param title
+     *            the title to set
      */
     public final void setTitle(String title) {
         String oldTitle = this.title;
-        
+
         this.title = title;
         firePropertyChange("title", oldTitle, title);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public ImageIcon getIcon() {
-    	return icon;
+        return icon;
     }
 
     /**
-     * @param icon
+     * @param icon the icon associated with this view
      */
     public void setIcon(ImageIcon icon) {
-    	ImageIcon oldIcon = this.icon;
-    	this.icon = icon;
+        ImageIcon oldIcon = this.icon;
+        this.icon = icon;
         firePropertyChange("icon", oldIcon, icon);
     }
-    
+
     /**
-     * @param menuBar
+     * @param menuBar the menu bar to show with this view
      */
     public void setMenuBar(JMenuBar menuBar) {
-		this.menuBar = menuBar;
-	}
-    
+        this.menuBar = menuBar;
+    }
+
     /**
      * @return the menuBar
      */
@@ -194,64 +190,70 @@ public abstract class AbstractView extends JXPanel implements View {
     }
 
     /**
-     * @return
+     * @return the window containing this view
      */
     public Window getWindow() {
-    	return SwingUtilities.getWindowAncestor(this);
+        return SwingUtilities.getWindowAncestor(this);
     }
-    
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.View#getViewComponent()
+
+    /**
+     * {@inheritDoc}
      */
     public Component getViewComponent() {
-    	return this;
+        return this;
     }
 
-	/**
-	 * @return the statusMessage
-	 */
-	public final String getStatusMessage() {
-		return statusMessage;
-	}
+    /**
+     * @return the statusMessage
+     */
+    public final String getStatusMessage() {
+        return statusMessage;
+    }
 
-	/**
-	 * @param statusMessage the statusMessage to set
-	 */
-	public final void setStatusMessage(String statusMessage) {
+    /**
+     * @param statusMessage
+     *            the statusMessage to set
+     */
+    public final void setStatusMessage(String statusMessage) {
         String oldStatusMessage = this.statusMessage;
-		this.statusMessage = statusMessage;
-		if (getStatusBar() != null) {
-			getStatusBar().setMessage(statusMessage);
-		}
+        this.statusMessage = statusMessage;
+        if (getStatusBar() != null) {
+            getStatusBar().setMessage(statusMessage);
+        }
         firePropertyChange("statusMessage", oldStatusMessage, statusMessage);
-	}
+    }
 
-	/**
-	 * @param statusBar the statusBar to set
-	 */
-	public final void setStatusBar(ViewStatusBar statusBar) {
-		this.statusBar = statusBar;
+    /**
+     * @param statusBar
+     *            the statusBar to set
+     */
+    public final void setStatusBar(ViewStatusBar statusBar) {
+        this.statusBar = statusBar;
         TrackerRegistry.getInstance().register(statusBar, id + ".statusBar");
-	}
+    }
 
-	/**
-	 * @return the progress
-	 */
-	public final int getProgress() {
-		return progress;
-	}
+    /**
+     * @return the progress
+     */
+    public final int getProgress() {
+        return progress;
+    }
 
-	/**
-	 * @param progress the progress to set
-	 */
-	public final void setProgress(int progress) {
-		int oldProgress = this.progress;
-		this.progress = progress;
+    /**
+     * @param progress
+     *            the progress to set
+     */
+    public final void setProgress(int progress) {
+        int oldProgress = this.progress;
+        this.progress = progress;
         firePropertyChange("progress", oldProgress, progress);
-	}
-	
-	@Override
-	public void close() {
-		// Default implementation does nothing..
-	}
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void close() {
+        // Default implementation does nothing..
+    }
 }

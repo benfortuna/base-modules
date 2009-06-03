@@ -37,8 +37,8 @@ public class LiquidicityIconSetFactory extends AbstractIconSetFactory {
         defaultIconSet = new LiquidicityIconSet();
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.AbstractIconSetFactory#getAvailableIds()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String[] getAvailableIds() {
@@ -46,16 +46,16 @@ public class LiquidicityIconSetFactory extends AbstractIconSetFactory {
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.AbstractIconSetFactory#getDefaultIconSet()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public IconSet getDefaultIconSet() {
         return defaultIconSet;
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.AbstractIconSetFactory#getIconSet(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public IconSet getIconSet(String id) {

@@ -48,32 +48,32 @@ public class LiquidicityIconSet implements IconSet {
         icons = new HashMap<String, Icon>();
     }
     
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getAuthor()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String getAuthor() {
         return "GoSquared";
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getDescription()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String getDescription() {
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getDisabledIcon(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Icon getDisabledIcon(String key) {
         return getIcon(key + "_disabled");
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getIcon(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Icon getIcon(String key) {
@@ -93,8 +93,8 @@ public class LiquidicityIconSet implements IconSet {
         return icon;
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getId()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String getId() {
@@ -102,8 +102,8 @@ public class LiquidicityIconSet implements IconSet {
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getName()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String getName() {
@@ -111,32 +111,32 @@ public class LiquidicityIconSet implements IconSet {
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getPressedIcon(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Icon getPressedIcon(String key) {
         return getIcon(key + "_pressed");
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getRolloverIcon(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Icon getRolloverIcon(String key) {
         return getIcon(key + "_rollover");
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#getSelectedIcon(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Icon getSelectedIcon(String key) {
         return getIcon(key + "_selected");
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.IconSet#isPressedIconGenerated()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean isPressedIconGenerated() {

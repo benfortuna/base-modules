@@ -31,31 +31,33 @@ import org.jdesktop.swingx.action.ActionManager;
 import org.mnode.base.views.AbstractTabbedView;
 
 /**
+ * @param <T>
+ *            the view type for this action
+ * @param <K>
+ *            the key for views in the tab view
+ *            
  * @author fortuna
- *
+ * 
  */
-public class CloseTab<T extends AbstractTabbedView<K,?>, K> extends AbstractTabAction<T, K> {
+public class CloseTab<T extends AbstractTabbedView<K, ?>, K> extends AbstractTabAction<T, K> {
 
-	/**
-     * 
-     */
     private static final long serialVersionUID = 1075084627405360036L;
-	
-	/**
-	 * 
-	 */
-	public CloseTab(String id) {
-		super("Close Tab", id);
-		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-		setEnabled(false);
-        ActionManager.getInstance().addAction(this);
-	}
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		getView().closeTab(getTabKey());
-	}
+    /**
+     * @param id the action identifier
+     */
+    public CloseTab(String id) {
+        super("Close Tab", id);
+        setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        setEnabled(false);
+        ActionManager.getInstance().addAction(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        getView().closeTab(getTabKey());
+    }
 }

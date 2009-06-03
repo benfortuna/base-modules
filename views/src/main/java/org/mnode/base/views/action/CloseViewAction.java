@@ -48,8 +48,8 @@ public class CloseViewAction extends AbstractAction {
         setEnabled(false);
     }
     
-    /* (non-Javadoc)
-     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+    /**
+     * {@inheritDoc}
      */
     public void actionPerformed(ActionEvent e) {
         frame.setVisible(false);

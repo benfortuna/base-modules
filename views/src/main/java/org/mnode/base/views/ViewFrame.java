@@ -29,20 +29,22 @@ import org.jdesktop.swingx.JXFrame;
 import org.mnode.base.views.tracker.TrackerRegistry;
 
 /**
+ * @param <V> the view type embedded by this frame
+ * 
  * @author Ben
- *
+ * 
  */
 public class ViewFrame<V extends View> extends JXFrame {
 
-	private V view;
-	
+    private V view;
+
     /**
      * 
      */
     private static final long serialVersionUID = -4529231089491229015L;
 
     /**
-     * @param view
+     * @param view a view instance to embed in this frame
      */
     public ViewFrame(V view) {
         super(view.getTitle());
@@ -51,11 +53,11 @@ public class ViewFrame<V extends View> extends JXFrame {
         }
         setJMenuBar(view.getMenuBar());
         setMaximumSize(view.getMaximumSize());
-        
+
         add(view.getViewComponent(), BorderLayout.CENTER);
-        
-//        view.getCloseViewAction().setFrame(this);
-        
+
+        // view.getCloseViewAction().setFrame(this);
+
         setJMenuBar(view.getMenuBar());
         setStatusBar(view.getStatusBar());
         pack();
@@ -63,7 +65,7 @@ public class ViewFrame<V extends View> extends JXFrame {
 
         // register tracker for window size/location memory..
         TrackerRegistry.getInstance().register(this, view.getId());
-        
+
         view.addPropertyChangeListener("title", new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent e) {
                 setTitle((String) e.getNewValue());
@@ -74,14 +76,14 @@ public class ViewFrame<V extends View> extends JXFrame {
                 setIconImage(((ImageIcon) e.getNewValue()).getImage());
             }
         });
-        
+
         this.view = view;
     }
 
-	/**
-	 * @return the view
-	 */
-	public final V getView() {
-		return view;
-	}
+    /**
+     * @return the view
+     */
+    public final V getView() {
+        return view;
+    }
 }

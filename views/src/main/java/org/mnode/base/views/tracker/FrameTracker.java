@@ -30,15 +30,15 @@ public class FrameTracker extends ComponentTracker {
     private Frame frame;
     
     /**
-     * @param component
+     * @param frame the frame to track
      */
     public FrameTracker(Frame frame) {
         super(frame);
     }
 
     /**
-     * @param component
-     * @param id
+     * @param frame the frame to track
+     * @param id an identifier for this tracker
      */
     public FrameTracker(Frame frame, String id) {
         super(frame, id);
@@ -48,6 +48,9 @@ public class FrameTracker extends ComponentTracker {
 //        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void componentMoved(ComponentEvent e) {
     	try {
@@ -64,6 +67,9 @@ public class FrameTracker extends ComponentTracker {
         super.componentMoved(e);
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void componentResized(ComponentEvent e) {
         if (Frame.MAXIMIZED_BOTH == frame.getExtendedState()) {
@@ -79,7 +85,7 @@ public class FrameTracker extends ComponentTracker {
     
     /**
      * Returns the saved maximised state of the component.
-     * @return
+     * @return true if the last state of the frame was maximised
      */
     public boolean isMaximised() {
         return getPreferences().getBoolean(getUniqueId() + ".maximised",

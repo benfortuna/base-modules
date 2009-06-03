@@ -24,50 +24,48 @@ import org.jdesktop.swingx.JXStatusBar;
 
 /**
  * @author Ben
- *
+ * 
  */
 public class JXStatusBarTracker extends ComponentTracker {
-	
-	JXStatusBar statusBar;
-	
-	/**
-	 * @param component
-	 */
-	public JXStatusBarTracker(JXStatusBar statusBar) {
-		super(statusBar);
-	}
 
-	/**
-	 * @param component
-	 * @param id
-	 */
-	public JXStatusBarTracker(JXStatusBar statusBar, String id) {
-		super(statusBar, id);
-		this.statusBar = statusBar;
-		statusBar.setVisible(isVisible());
-	}
+    JXStatusBar statusBar;
 
     /**
-     * @see java.awt.event.ComponentListener#componentHidden(java.awt.event.ComponentEvent)
+     * @param statusBar the status bar to track
+     */
+    public JXStatusBarTracker(JXStatusBar statusBar) {
+        super(statusBar);
+    }
+
+    /**
+     * @param statusBar the status bar to track
+     * @param id an identifier for this tracker
+     */
+    public JXStatusBarTracker(JXStatusBar statusBar, String id) {
+        super(statusBar, id);
+        this.statusBar = statusBar;
+        statusBar.setVisible(isVisible());
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public void componentHidden(final ComponentEvent e) {
         getPreferences().putBoolean(getUniqueId() + ".visible", false);
     }
 
     /**
-     * @see java.awt.event.ComponentListener#componentShown(java.awt.event.ComponentEvent)
+     * {@inheritDoc}
      */
     public void componentShown(final ComponentEvent e) {
         getPreferences().putBoolean(getUniqueId() + ".visible", true);
     }
 
     /**
-     * Returns the saved visibility of the status bar.
-     * @return
+     * @return the saved visibility of the status bar.
      */
     public boolean isVisible() {
-        return getPreferences().getBoolean(getUniqueId() + ".visible",
-                statusBar.isVisible());
+        return getPreferences().getBoolean(getUniqueId() + ".visible", statusBar.isVisible());
     }
 
 }

@@ -29,7 +29,7 @@ import org.jdesktop.swingx.JXStatusBar.Constraint.ResizeBehavior;
 
 /**
  * @author Ben
- *
+ * 
  */
 public class ViewStatusBar extends JXStatusBar {
 
@@ -38,15 +38,14 @@ public class ViewStatusBar extends JXStatusBar {
      */
     private static final long serialVersionUID = -1704890150047395745L;
 
-    private static final ResourceBundle MESSAGES = ResourceBundle.getBundle(
-            "org.mnode.base.views.messages");
+    private static final ResourceBundle MESSAGES = ResourceBundle.getBundle("org.mnode.base.views.messages");
 
     private JLabel messageLabel;
-    
+
     private String defaultMessage;
-    
+
     /**
-     * Default constructor.
+     * @param view the view associated with the status bar
      */
     public ViewStatusBar(View view) {
         messageLabel = new JLabel();
@@ -54,29 +53,31 @@ public class ViewStatusBar extends JXStatusBar {
         resetMessage();
         add(messageLabel, new JXStatusBar.Constraint(ResizeBehavior.FILL));
         view.addPropertyChangeListener("statusMessage", new PropertyChangeListener() {
-        	@Override
-        	public void propertyChange(PropertyChangeEvent e) {
-        		setMessage((String) e.getNewValue());
-        	}
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                setMessage((String) e.getNewValue());
+            }
         });
     }
-    
+
     /**
      * Updates the status message.
-     * @param message
+     * 
+     * @param message the new status message
      */
     public void setMessage(String message) {
         messageLabel.setText(message);
     }
-    
+
     /**
      * Updates the default status message.
-     * @param message
+     * 
+     * @param message the new default status message
      */
     public void setDefaultMessage(String message) {
         defaultMessage = message;
     }
-    
+
     /**
      * Resets the status message.
      */

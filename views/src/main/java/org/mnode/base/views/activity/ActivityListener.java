@@ -22,17 +22,17 @@ import java.util.EventListener;
 
 /**
  * @author Ben
- *
+ * 
  */
 public interface ActivityListener extends EventListener {
 
-	/**
-	 * @param e
-	 */
-	void mouseIdle(ActivityEvent e);
-	
-	/**
-	 * @param e
-	 */
-	void mouseActive(ActivityEvent e);
+    /**
+     * @param e the event fired when mouse is idle
+     */
+    void mouseIdle(ActivityEvent e);
+
+    /**
+     * @param e the event fired when mouse is active
+     */
+    void mouseActive(ActivityEvent e);
 }

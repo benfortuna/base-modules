@@ -39,101 +39,104 @@ import org.mnode.base.views.tracker.TrackerRegistry;
 
 /**
  * @author Ben
- *
+ * 
  */
 public class ToggleViewFrame extends JXFrame {
 
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = -9219831694981041264L;
+    private static final long serialVersionUID = -9219831694981041264L;
 
-	public enum Mode {FULL, MINIMAL};
-	
-	private Mode toggleMode;
-	
-//	private JToggleButton toggleButton;
-	
-	private int miniWidth;
-	
-	private int fullWidth;
-	
-	private String title;
-	
-	private View mainView;
-	
-	private View sideView;
-	
-	/**
-	 * 
-	 */
-	public ToggleViewFrame(final String title, View mainView, View sideView) {
-		super(title);
-		this.title = title;
-		this.mainView = mainView;
-		this.sideView = sideView;
-		
-		miniWidth = 0;
-		fullWidth = 0;
-		/*
-		mainPane = new JXPanel();
-		mainPane.setVisible(false);
-		mainPane.setBackgroundPainter(new GlossPainter<Component>(
-				new GradientPaint(
-			            new Point2D.Double(0, 0),
-			            new Color(168, 204, 241),
-			            new Point2D.Double(0, 1),
-			            new Color(44, 61, 146))));
-		*/
-		add(mainView.getViewComponent(), BorderLayout.CENTER);
-		
-		/*
-		toggleButton = new JToggleButton("F");
-		toggleButton.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
-					setToggleMode(Mode.FULL);
-				}
-				else {
-					setToggleMode(Mode.MINIMAL);
-				}
-			}
-		});
-		
-		sidePane = new JXPanel(new FlowLayout());
-		sidePane.add(toggleButton);
-		*/
-		add(sideView.getViewComponent(), BorderLayout.EAST);
-		
-		setSize(miniWidth, 700);
-
-		// register tracker for window size/location memory..
-        TrackerRegistry.getInstance().register(this, getName());
-		
-		addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-	            // if frame is maximised don't update the saved width..
-		        if (Frame.MAXIMIZED_BOTH != getExtendedState()) {
-					if (Mode.MINIMAL.equals(getToggleMode())) {
-						setMiniWidth(getSize().width);
-					}
-					else {
-						setFullWidth(getSize().width);
-					}
-		        }
-			}
-		});
+    /**
+     * Available view modes.
+     * 
+     * @author fortuna
+     *
+     */
+    public enum Mode {
         
-		// copy title and icon from main view..
-//		setTitle(mainView.getTitle() + " - " + title);
-//		setIconImage(mainView.getIcon().getImage());
-		
+        /**
+         * The normal view mode.
+         */
+        FULL,
+        
+        /**
+         * A compact view mode.
+         */
+        MINIMAL
+    };
+
+    private Mode toggleMode;
+
+    // private JToggleButton toggleButton;
+
+    private int miniWidth;
+
+    private int fullWidth;
+
+    private String title;
+
+    private View mainView;
+
+    private View sideView;
+
+    /**
+     * @param title the frame title
+     * @param mainView the primary view, which is not visible in compact mode
+     * @param sideView the side view
+     */
+    public ToggleViewFrame(final String title, View mainView, View sideView) {
+        super(title);
+        this.title = title;
+        this.mainView = mainView;
+        this.sideView = sideView;
+
+        miniWidth = 0;
+        fullWidth = 0;
+        /*
+         * mainPane = new JXPanel(); mainPane.setVisible(false); mainPane.setBackgroundPainter(new
+         * GlossPainter<Component>( new GradientPaint( new Point2D.Double(0, 0), new Color(168, 204, 241), new
+         * Point2D.Double(0, 1), new Color(44, 61, 146))));
+         */
+        add(mainView.getViewComponent(), BorderLayout.CENTER);
+
+        /*
+         * toggleButton = new JToggleButton("F"); toggleButton.addItemListener(new ItemListener() { public void
+         * itemStateChanged(ItemEvent e) { if (e.getStateChange() == ItemEvent.SELECTED) { setToggleMode(Mode.FULL); }
+         * else { setToggleMode(Mode.MINIMAL); } } }); sidePane = new JXPanel(new FlowLayout());
+         * sidePane.add(toggleButton);
+         */
+        add(sideView.getViewComponent(), BorderLayout.EAST);
+
+        setSize(miniWidth, 700);
+
+        // register tracker for window size/location memory..
+        TrackerRegistry.getInstance().register(this, getName());
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                // if frame is maximised don't update the saved width..
+                if (Frame.MAXIMIZED_BOTH != getExtendedState()) {
+                    if (Mode.MINIMAL.equals(getToggleMode())) {
+                        setMiniWidth(getSize().width);
+                    } else {
+                        setFullWidth(getSize().width);
+                    }
+                }
+            }
+        });
+
+        // copy title and icon from main view..
+        // setTitle(mainView.getTitle() + " - " + title);
+        // setIconImage(mainView.getIcon().getImage());
+
         mainView.addPropertyChangeListener("title", new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent e) {
-            	if (Mode.FULL.equals(getToggleMode())) {
+                if (Mode.FULL.equals(getToggleMode())) {
                     setTitle((String) e.getNewValue() + " - " + title);
-            	}
+                }
             }
         });
         mainView.addPropertyChangeListener("icon", new PropertyChangeListener() {
@@ -141,142 +144,147 @@ public class ToggleViewFrame extends JXFrame {
                 setIconImage(((ImageIcon) e.getNewValue()).getImage());
             }
         });
-	}
-	
-	/**
-	 * @param toggleMode
-	 */
-	public void setToggleMode(Mode newMode) {
+    }
+
+    /**
+     * @param newMode the new mode to enable
+     */
+    public void setToggleMode(Mode newMode) {
         // if frame is maximised do nothing..
         if (Frame.MAXIMIZED_BOTH == getExtendedState()) {
-        	return;
+            return;
         }
         // if mode unchanged do nothing..
         else if (newMode.equals(toggleMode)) {
-        	return;
+            return;
         }
-        
-		Mode oldMode = this.toggleMode;
-		this.toggleMode = newMode;
-		
-//		setVisible(false);
-//		getGlassPane().setVisible(true);
-		if (Mode.MINIMAL.equals(toggleMode)) {
-//			mainView.setVisible(false);
-			remove(mainView.getViewComponent());
-//			remove(sideView);
-//			validate();
-			add(sideView.getViewComponent(), BorderLayout.CENTER);
-			setJMenuBar(sideView.getMenuBar());
-			setStatusBar(sideView.getStatusBar());
-			setMaximumSize(sideView.getMaximumSize());
-			validate();
-//			repaint();
-			setSize(miniWidth, getSize().height);
-			setLocation(getLocation().x + fullWidth - miniWidth, getLocation().y);
-			sideView.getViewComponent().requestFocus();
-			setTitle(title);
-			setIconImage(sideView.getIcon().getImage());
-		}
-		else {
-//			mainView.setVisible(true);
-//			remove(sideView);
-//			validate();
-			add(mainView.getViewComponent(), BorderLayout.CENTER);
-			add(sideView.getViewComponent(), BorderLayout.EAST);
-			setJMenuBar(mainView.getMenuBar());
-			setStatusBar(mainView.getStatusBar());
-			setMaximumSize(null);
-			validate();
-//			repaint();
-			setSize(fullWidth, getSize().height);
-			setLocation(getLocation().x - fullWidth + miniWidth, getLocation().y);
-//			if (!toggleButton.isSelected()) {
-//				toggleButton.setSelected(true);
-//			}
-			setTitle(mainView.getTitle() + " - " + title);
-			setIconImage(mainView.getIcon().getImage());
-		}
-//		setVisible(true);
-//		getGlassPane().setVisible(false);
-		firePropertyChange("toggleMode", oldMode, newMode);
-	}
 
-	/**
-	 * @return the toggleMode
-	 */
-	public final Mode getToggleMode() {
-		return toggleMode;
-	}
+        Mode oldMode = this.toggleMode;
+        this.toggleMode = newMode;
 
-	/**
-	 * @return the miniWidth
-	 */
-	public final int getMiniWidth() {
-		return miniWidth;
-	}
+        // setVisible(false);
+        // getGlassPane().setVisible(true);
+        if (Mode.MINIMAL.equals(toggleMode)) {
+            // mainView.setVisible(false);
+            remove(mainView.getViewComponent());
+            // remove(sideView);
+            // validate();
+            add(sideView.getViewComponent(), BorderLayout.CENTER);
+            setJMenuBar(sideView.getMenuBar());
+            setStatusBar(sideView.getStatusBar());
+            setMaximumSize(sideView.getMaximumSize());
+            validate();
+            // repaint();
+            setSize(miniWidth, getSize().height);
+            setLocation(getLocation().x + fullWidth - miniWidth, getLocation().y);
+            sideView.getViewComponent().requestFocus();
+            setTitle(title);
+            setIconImage(sideView.getIcon().getImage());
+        } else {
+            // mainView.setVisible(true);
+            // remove(sideView);
+            // validate();
+            add(mainView.getViewComponent(), BorderLayout.CENTER);
+            add(sideView.getViewComponent(), BorderLayout.EAST);
+            setJMenuBar(mainView.getMenuBar());
+            setStatusBar(mainView.getStatusBar());
+            setMaximumSize(null);
+            validate();
+            // repaint();
+            setSize(fullWidth, getSize().height);
+            setLocation(getLocation().x - fullWidth + miniWidth, getLocation().y);
+            // if (!toggleButton.isSelected()) {
+            // toggleButton.setSelected(true);
+            // }
+            setTitle(mainView.getTitle() + " - " + title);
+            setIconImage(mainView.getIcon().getImage());
+        }
+        // setVisible(true);
+        // getGlassPane().setVisible(false);
+        firePropertyChange("toggleMode", oldMode, newMode);
+    }
 
-	/**
-	 * @param miniWidth the miniWidth to set
-	 */
-	public final void setMiniWidth(int miniWidth) {
-		int oldMiniWidth = this.miniWidth;
-		this.miniWidth = miniWidth;
-		sideView.getViewComponent().setPreferredSize(new Dimension(miniWidth - getSize().width + getContentPane().getSize().width,
-				getSize().height));
-		if (Mode.MINIMAL.equals(toggleMode)) {
-			setSize(miniWidth, getSize().height);
-		}
-		firePropertyChange("miniWidth", oldMiniWidth, miniWidth);
-	}
+    /**
+     * @return the toggleMode
+     */
+    public final Mode getToggleMode() {
+        return toggleMode;
+    }
 
-	/**
-	 * @return the fullWidth
-	 */
-	public final int getFullWidth() {
-		return fullWidth;
-	}
+    /**
+     * @return the miniWidth
+     */
+    public final int getMiniWidth() {
+        return miniWidth;
+    }
 
-	/**
-	 * @param fullWidth the fullWidth to set
-	 */
-	public final void setFullWidth(int fullWidth) {
-		int oldFullWidth = this.fullWidth;
-		this.fullWidth = fullWidth;
-		if (Mode.FULL.equals(toggleMode)) {
-			setSize(fullWidth, getSize().height);
-		}
-		firePropertyChange("fullWidth", oldFullWidth, fullWidth);
-	}
-	
-	public static void main(String[] args) {
-		JToggleButton toggleButton = new JToggleButton("F");
-		
-		AbstractView sideView = new AbstractView("side", "Side Pane") {
-		};
-		sideView.setMaximumSize(new Dimension(300, 1024));
-		
-		JXPanel sidePane = new JXPanel(new FlowLayout());
-		sidePane.add(toggleButton);
-		sidePane.add(new JXButton("E"));
-		sidePane.add(new JXButton("A"));
-		sidePane.add(new JXButton("T"));
-		sidePane.add(new JXButton("M"));
-		sideView.add(sidePane);
+    /**
+     * @param miniWidth
+     *            the miniWidth to set
+     */
+    public final void setMiniWidth(int miniWidth) {
+        int oldMiniWidth = this.miniWidth;
+        this.miniWidth = miniWidth;
+        sideView.getViewComponent().setPreferredSize(
+                new Dimension(miniWidth - getSize().width + getContentPane().getSize().width, getSize().height));
+        if (Mode.MINIMAL.equals(toggleMode)) {
+            setSize(miniWidth, getSize().height);
+        }
+        firePropertyChange("miniWidth", oldMiniWidth, miniWidth);
+    }
 
-		final ToggleViewFrame f = new ToggleViewFrame(ToggleViewFrame.class.getSimpleName(), new AbstractView("centre", "Centre") {}, sideView);
-		toggleButton.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
-					f.setToggleMode(Mode.FULL);
-				}
-				else {
-					f.setToggleMode(Mode.MINIMAL);
-				}
-			}
-		});
+    /**
+     * @return the fullWidth
+     */
+    public final int getFullWidth() {
+        return fullWidth;
+    }
+
+    /**
+     * @param fullWidth
+     *            the fullWidth to set
+     */
+    public final void setFullWidth(int fullWidth) {
+        int oldFullWidth = this.fullWidth;
+        this.fullWidth = fullWidth;
+        if (Mode.FULL.equals(toggleMode)) {
+            setSize(fullWidth, getSize().height);
+        }
+        firePropertyChange("fullWidth", oldFullWidth, fullWidth);
+    }
+
+    /**
+     * @param args command-line arguments
+     */
+    public static void main(String[] args) {
+        JToggleButton toggleButton = new JToggleButton("F");
+
+        AbstractView sideView = new AbstractView("side", "Side Pane") {
+        };
+        sideView.setMaximumSize(new Dimension(300, 1024));
+
+        JXPanel sidePane = new JXPanel(new FlowLayout());
+        sidePane.add(toggleButton);
+        sidePane.add(new JXButton("E"));
+        sidePane.add(new JXButton("A"));
+        sidePane.add(new JXButton("T"));
+        sidePane.add(new JXButton("M"));
+        sideView.add(sidePane);
+
+        final ToggleViewFrame f = new ToggleViewFrame(ToggleViewFrame.class.getSimpleName(), new AbstractView("centre",
+                "Centre") {
+        }, sideView);
+        toggleButton.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    f.setToggleMode(Mode.FULL);
+                } else {
+                    f.setToggleMode(Mode.MINIMAL);
+                }
+            }
+        });
         f.setDefaultCloseOperation(JXFrame.EXIT_ON_CLOSE);
-//        f.setLocation(0, 0);
+        // f.setLocation(0, 0);
         f.setVisible(true);
-	}
+    }
 }

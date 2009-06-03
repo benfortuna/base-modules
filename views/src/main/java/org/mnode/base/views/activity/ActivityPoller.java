@@ -25,85 +25,80 @@ import java.util.List;
 
 /**
  * @author Ben
- *
+ * 
  */
 public class ActivityPoller extends Thread {
 
-	private long lastMouseMovement;
-	
-	private List<ActivityListener> listeners;
-	
-	private ActivityEvent event;
-	
-	private long idleThreshold;
-	
-	private boolean idle;
-	
-	/**
-	 * 
-	 */
-	public ActivityPoller(long idleThreshold) {
-		this.idleThreshold = idleThreshold;
-		listeners = new ArrayList<ActivityListener>();
-		lastMouseMovement = System.currentTimeMillis();
-		event = new ActivityEvent(this);
-	}
-	
-	/**
-	 * @param l
-	 */
-	public void addActivityListener(ActivityListener l) {
-		listeners.add(l);
-	}
-	
-	/**
-	 * @param l
-	 */
-	public void removeActivityListener(ActivityListener l) {
-		listeners.remove(l);
-	}
-	
-	@Override
-	public void run() {
-		Point lastMousePosition = MouseInfo.getPointerInfo().getLocation();
-		while (true) {
-			try {
-				Thread.sleep(1000);
-			}
-			catch (InterruptedException ie) {
-				break;
-			}
-			Point currentMousePosition = MouseInfo.getPointerInfo().getLocation();
-			if (!currentMousePosition.equals(lastMousePosition)) {
-				lastMouseMovement = System.currentTimeMillis();
-				lastMousePosition = currentMousePosition;
-				if (idle) {
-					idle = false;
-					fireMouseActive();
-				}
-			}
-			else if (!idle && (System.currentTimeMillis() - lastMouseMovement > idleThreshold)) {
-				idle = true;
-				fireMouseIdle();
-			}
-		}
-	}
-	
-	/**
-	 * 
-	 */
-	private void fireMouseIdle() {
-		for (ActivityListener l : listeners) {
-			l.mouseIdle(event);
-		}
-	}
-	
-	/**
-	 * 
-	 */
-	private void fireMouseActive() {
-		for (ActivityListener l : listeners) {
-			l.mouseActive(event);
-		}
-	}
+    private long lastMouseMovement;
+
+    private List<ActivityListener> listeners;
+
+    private ActivityEvent event;
+
+    private long idleThreshold;
+
+    private boolean idle;
+
+    /**
+     * @param idleThreshold the time to allow idle before firing an idle event
+     */
+    public ActivityPoller(long idleThreshold) {
+        this.idleThreshold = idleThreshold;
+        listeners = new ArrayList<ActivityListener>();
+        lastMouseMovement = System.currentTimeMillis();
+        event = new ActivityEvent(this);
+    }
+
+    /**
+     * @param l a listener for activity events
+     */
+    public void addActivityListener(ActivityListener l) {
+        listeners.add(l);
+    }
+
+    /**
+     * @param l a listener for activity events
+     */
+    public void removeActivityListener(ActivityListener l) {
+        listeners.remove(l);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void run() {
+        Point lastMousePosition = MouseInfo.getPointerInfo().getLocation();
+        while (true) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ie) {
+                break;
+            }
+            Point currentMousePosition = MouseInfo.getPointerInfo().getLocation();
+            if (!currentMousePosition.equals(lastMousePosition)) {
+                lastMouseMovement = System.currentTimeMillis();
+                lastMousePosition = currentMousePosition;
+                if (idle) {
+                    idle = false;
+                    fireMouseActive();
+                }
+            } else if (!idle && (System.currentTimeMillis() - lastMouseMovement > idleThreshold)) {
+                idle = true;
+                fireMouseIdle();
+            }
+        }
+    }
+
+    private void fireMouseIdle() {
+        for (ActivityListener l : listeners) {
+            l.mouseIdle(event);
+        }
+    }
+
+    private void fireMouseActive() {
+        for (ActivityListener l : listeners) {
+            l.mouseActive(event);
+        }
+    }
 }

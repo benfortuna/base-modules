@@ -28,30 +28,29 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * Preferences for JSplitPanes
- *
+ * 
  * @author Ben Fortuna
  */
-public class JSplitPaneTracker extends ComponentTracker
-		implements PropertyChangeListener {
+public class JSplitPaneTracker extends ComponentTracker implements PropertyChangeListener {
 
     private static final Log LOG = LogFactory.getLog(JSplitPaneTracker.class);
 
     private JSplitPane pane;
 
     /**
-     * Constructor made protected to ensure only instantiated
-     * by PrefsManager.
-     * @param pane
+     * Constructor made protected to ensure only instantiated by PrefsManager.
+     * 
+     * @param pane the split pane to track
      */
     protected JSplitPaneTracker(JSplitPane pane) {
         this(pane, null);
     }
 
     /**
-     * Constructor made protected to ensure only instantiated
-     * by PrefsManager.
-     * @param pane
-     * @param id
+     * Constructor made protected to ensure only instantiated by PrefsManager.
+     * 
+     * @param pane the split plane to track
+     * @param id an identifier for this tracker
      */
     protected JSplitPaneTracker(JSplitPane pane, String id) {
         super(pane, id);
@@ -61,26 +60,22 @@ public class JSplitPaneTracker extends ComponentTracker
         pane.addPropertyChangeListener(this);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+    /**
+     * {@inheritDoc}
      */
     public void propertyChange(PropertyChangeEvent e) {
 
         LOG.debug("Property changed: " + e.getPropertyName());
 
         if ("dividerLocation".equals(e.getPropertyName())) {
-            getPreferences().putInt(getUniqueId() + "." + e.getPropertyName(),
-            		pane.getDividerLocation());
+            getPreferences().putInt(getUniqueId() + "." + e.getPropertyName(), pane.getDividerLocation());
         }
     }
 
     /**
-     * @return
+     * @return the last known divider location for the split pane
      */
     public int getDividerLocation() {
-        return getPreferences().getInt(getUniqueId() + ".dividerLocation",
-                pane.getDividerLocation());
+        return getPreferences().getInt(getUniqueId() + ".dividerLocation", pane.getDividerLocation());
     }
 }

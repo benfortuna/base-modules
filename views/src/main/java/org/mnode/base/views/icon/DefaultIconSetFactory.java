@@ -78,8 +78,8 @@ public final class DefaultIconSetFactory extends AbstractIconSetFactory {
 //        }
     }
 
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.AbstractIconSetFactory#getIconSet(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     public IconSet getIconSet(String id) {
         return (IconSet) iconSets.get(id);
@@ -91,16 +91,12 @@ public final class DefaultIconSetFactory extends AbstractIconSetFactory {
      * @return an icon set, or null if the default icon set
      * is not found
      */
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.AbstractIconSetFactory#getDefaultIconSet()
-     */
     public IconSet getDefaultIconSet() {
         return defaultIconSet;
     }
 
-
-    /* (non-Javadoc)
-     * @see net.modularity.desktop.icon.AbstractIconSetFactory#getAvailableIds()
+    /**
+     * {@inheritDoc}
      */
     public String[] getAvailableIds() {
         return (String[]) iconSets.keySet().toArray(new String[iconSets.size()]);

@@ -28,10 +28,16 @@ import org.jdesktop.swingx.action.AbstractActionExt;
 import org.mnode.base.views.AbstractTabbedView;
 
 /**
+ * @param <T>
+ *            the view type for this action
+ * @param <K>
+ *            the key for views in the tab view
+ * 
  * @author Ben
- *
+ * 
  */
-public abstract class AbstractTabAction<T extends AbstractTabbedView<K, ?>, K> extends AbstractActionExt implements ChangeListener {
+public abstract class AbstractTabAction<T extends AbstractTabbedView<K, ?>, K> extends AbstractActionExt implements
+        ChangeListener {
 
     /**
      * 
@@ -39,12 +45,12 @@ public abstract class AbstractTabAction<T extends AbstractTabbedView<K, ?>, K> e
     private static final long serialVersionUID = -3076365063730027079L;
 
     private T view;
-    
+
     private K tabKey;
 
     /**
-     * @param name
-     * @param command
+     * @param name the action name
+     * @param command the action command string
      */
     public AbstractTabAction(String name, String command) {
         super(name, command);
@@ -58,7 +64,8 @@ public abstract class AbstractTabAction<T extends AbstractTabbedView<K, ?>, K> e
     }
 
     /**
-     * @param view the view to set
+     * @param view
+     *            the view to set
      */
     public final void setView(final T view) {
         // remove old view listener..
@@ -79,7 +86,10 @@ public abstract class AbstractTabAction<T extends AbstractTabbedView<K, ?>, K> e
     public final K getTabKey() {
         return tabKey;
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void stateChanged(ChangeEvent e) {
         tabKey = view.getCurrentKey();

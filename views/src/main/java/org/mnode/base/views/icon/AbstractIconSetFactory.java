@@ -36,7 +36,7 @@ public abstract class AbstractIconSetFactory {
 
     private static Log log = LogFactory.getLog(AbstractIconSetFactory.class);
     
-    private static Map instances = new HashMap();
+    private static Map<String, AbstractIconSetFactory> instances = new HashMap<String, AbstractIconSetFactory>();
     
     /**
      * Constructor made protected to enforce singleton rules.
@@ -78,7 +78,7 @@ public abstract class AbstractIconSetFactory {
     
     /**
      * Returns the icon set with the specified id.
-     * @param id
+     * @param id the identifier of the returned icon set
      * @return an icon set, or null if icon set not found
      */
     public abstract IconSet getIconSet(String id);

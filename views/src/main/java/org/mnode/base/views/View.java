@@ -29,82 +29,81 @@ import org.jdesktop.swingx.JXStatusBar;
 
 /**
  * Implementors provide a frame-embeddable UI.
+ * 
  * @author Ben
- *
+ * 
  */
 public interface View {
 
-	/**
-	 * @return a unique identifier for the view implementation
-	 */
-	String getId();
-	
-	/**
-	 * @return a displayable title for the view, or null if no title is specified
-	 */
-	String getTitle();
-	
-	/**
-	 * @return an icon for the view, or null if no icon is specified
-	 */
-	ImageIcon getIcon();
-	
-	/**
-	 * @return a menu bar for the view, or null if no menu bar is specified
-	 */
-	JMenuBar getMenuBar();
-	
-	/**
-	 * @return a status bar component
-	 */
-	JXStatusBar getStatusBar();
-	
-	/**
-	 * @return
-	 */
-	String getStatusMessage();
-	
-	/**
-	 * @return
-	 */
-	int getProgress();
-	
-	/**
-	 * @return
-	 */
-	Dimension getMaximumSize();
-	
-	/**
-	 * @return the frame-embeddable view component
-	 */
-	Component getViewComponent();
-	
-	/**
-	 * Close the view and release any resources.
-	 */
-	void close();
-	
-	/**
-	 * @param property
-	 * @param l
-	 */
-	void addPropertyChangeListener(PropertyChangeListener l);
-	
-	/**
-	 * @param property
-	 * @param l
-	 */
-	void removePropertyChangeListener(PropertyChangeListener l);
-	
-	/**
-	 * @param property
-	 * @param l
-	 */
-	void addPropertyChangeListener(String property, PropertyChangeListener l);
-	
-	/**
-	 * @param property
-	 * @param l
-	 */
-	void removePropertyChangeListener(String property, PropertyChangeListener l);
+    /**
+     * @return a unique identifier for the view implementation
+     */
+    String getId();
+
+    /**
+     * @return a displayable title for the view, or null if no title is specified
+     */
+    String getTitle();
+
+    /**
+     * @return an icon for the view, or null if no icon is specified
+     */
+    ImageIcon getIcon();
+
+    /**
+     * @return a menu bar for the view, or null if no menu bar is specified
+     */
+    JMenuBar getMenuBar();
+
+    /**
+     * @return a status bar component
+     */
+    JXStatusBar getStatusBar();
+
+    /**
+     * @return the current status message
+     */
+    String getStatusMessage();
+
+    /**
+     * @return the current progress value in the range of 1-100
+     */
+    int getProgress();
+
+    /**
+     * @return the maximum dimensions of the view
+     */
+    Dimension getMaximumSize();
+
+    /**
+     * @return the frame-embeddable view component
+     */
+    Component getViewComponent();
+
+    /**
+     * Close the view and release any resources.
+     */
+    void close();
+
+    /**
+     * @param l a listener for property changes
+     */
+    void addPropertyChangeListener(PropertyChangeListener l);
+
+    /**
+     * @param l a listener for property changes
+     */
+    void removePropertyChangeListener(PropertyChangeListener l);
+
+    /**
+     * @param property the property the listener is interested in
+     * @param l a listener for property changes
+     */
+    void addPropertyChangeListener(String property, PropertyChangeListener l);
+
+    /**
+     * @param property the property the listener is interested in
+     * @param l a listener for property changes
+     */
+    void removePropertyChangeListener(String property, PropertyChangeListener l);
 }

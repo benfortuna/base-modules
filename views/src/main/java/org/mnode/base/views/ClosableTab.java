@@ -51,66 +51,69 @@ import org.jdesktop.swingx.JXPanel;
 
 /**
  * @author fortuna
- *
+ * 
  */
 public abstract class ClosableTab extends JXPanel {
 
-	/**
+    /**
      * 
      */
     private static final long serialVersionUID = -2298055637594055908L;
 
     private JXLabel titleLabel;
-	
-	private JXButton closeButton;
-	
-	private JPopupMenu contextMenu;
-	
-	private JTabbedPane parent;
-	
-	/**
-	 * @param title
-	 */
-	public ClosableTab(String title, JTabbedPane parent) {
-	    this(title, null, parent);
-	}
-	
+
+    private JXButton closeButton;
+
+    private JPopupMenu contextMenu;
+
+    private JTabbedPane parent;
+
     /**
-     * @param title
-     * @param icon
+     * @param title the tab title
+     * @param parent the parent tab container
      */
+    public ClosableTab(String title, JTabbedPane parent) {
+        this(title, null, parent);
+    }
+
+    /**
+     * @param title the tab title
+     * @param icon the tab icon
+     * @param parent the parent tab container
+     */
+    @SuppressWarnings("serial")
     public ClosableTab(String title, Icon icon, final JTabbedPane parent) {
-		super(new BorderLayout());
-		setOpaque(false);
-		
-		this.parent = parent;
-		
-		setToolTipText(title);
-		
-		titleLabel = new JXLabel(StringUtils.abbreviate(title, 20));
-		titleLabel.setIcon(icon);
-		titleLabel.setOpaque(false);
-		add(titleLabel, BorderLayout.WEST);
-		
-		closeButton = new JXButton("x");
-		closeButton.setOpaque(false);
-//		closeButton.setPreferredSize(new Dimension(10, 10));
-		closeButton.setBorder(BorderFactory.createEmptyBorder(1, 3, 1, 3));
-		closeButton.setBorderPainted(false);
-		closeButton.setMargin(null);
-		closeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				onClose();
-			}
-		});
-		add(closeButton, BorderLayout.EAST);
-		
-		contextMenu = new JPopupMenu();
-		contextMenu.add(new AbstractAction("Close") {
-		    public void actionPerformed(ActionEvent e) {
-		        onClose();
-		    }
-		});
+        super(new BorderLayout());
+        setOpaque(false);
+
+        this.parent = parent;
+
+        setToolTipText(title);
+
+        titleLabel = new JXLabel(StringUtils.abbreviate(title, 20));
+        titleLabel.setIcon(icon);
+        titleLabel.setOpaque(false);
+        add(titleLabel, BorderLayout.WEST);
+
+        closeButton = new JXButton("x");
+        closeButton.setOpaque(false);
+        // closeButton.setPreferredSize(new Dimension(10, 10));
+        closeButton.setBorder(BorderFactory.createEmptyBorder(1, 3, 1, 3));
+        closeButton.setBorderPainted(false);
+        closeButton.setMargin(null);
+        closeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onClose();
+            }
+        });
+        add(closeButton, BorderLayout.EAST);
+
+        contextMenu = new JPopupMenu();
+        contextMenu.add(new AbstractAction("Close") {
+            public void actionPerformed(ActionEvent e) {
+                onClose();
+            }
+        });
         contextMenu.add(new AbstractAction("Close Others") {
             public void actionPerformed(ActionEvent e) {
                 onCloseOthers();
@@ -122,83 +125,68 @@ public abstract class ClosableTab extends JXPanel {
             }
         });
         setComponentPopupMenu(contextMenu);
-        
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                parent.dispatchEvent(SwingUtilities.convertMouseEvent(ClosableTab.this, e, parent));
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                parent.dispatchEvent(SwingUtilities.convertMouseEvent(ClosableTab.this, e, parent));
-            }
-            @Override
-            public void mousePressed(MouseEvent e) {
-//            	if (MouseInfo.getNumberOfButtons() == 3 && e.getButton() == MouseEvent.BUTTON2) {
-                if (e.getButton() == MouseEvent.BUTTON2) {
-            		onClose();
-            	}
-            	else {
-                    parent.dispatchEvent(SwingUtilities.convertMouseEvent(ClosableTab.this, e, parent));
-            	}
-            }
-        });
-        
-//        JXLayer<JXLabel> l = new JXLayer<JXLabel>(titleLabel);
-//        l.setUI(new ContextMenuUI<JXLabel>(contextMenu));
-//        add(l, BorderLayout.WEST);
-        
-        /*
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if (e.isPopupTrigger()) {
-                    contextMenu.show(ClosableTab.this, e.getX(), e.getY());
-                }
-                
-            }
-            
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                if (e.isPopupTrigger()) {
-                    contextMenu.show(ClosableTab.this, e.getX(), e.getY());
-                }
-            }
-            
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                closeButton.setVisible(true);
-            }
-            
-            @Override
-            public void mouseExited(MouseEvent e) {
-                closeButton.setVisible(false);
-            }
-        });
-        */
-	}
 
-	/**
-	 * 
-	 */
-	public abstract void onClose();
-	
-	/**
-	 * 
-	 */
-	public abstract void onCloseOthers();
-	
-	/**
-	 * 
-	 */
-	public abstract void onCloseAll();
-	
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                parent.dispatchEvent(SwingUtilities.convertMouseEvent(ClosableTab.this, e, parent));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                parent.dispatchEvent(SwingUtilities.convertMouseEvent(ClosableTab.this, e, parent));
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // if (MouseInfo.getNumberOfButtons() == 3 && e.getButton() == MouseEvent.BUTTON2) {
+                if (e.getButton() == MouseEvent.BUTTON2) {
+                    onClose();
+                } else {
+                    parent.dispatchEvent(SwingUtilities.convertMouseEvent(ClosableTab.this, e, parent));
+                }
+            }
+        });
+
+        // JXLayer<JXLabel> l = new JXLayer<JXLabel>(titleLabel);
+        // l.setUI(new ContextMenuUI<JXLabel>(contextMenu));
+        // add(l, BorderLayout.WEST);
+
+        /*
+         * addMouseListener(new MouseAdapter() {
+         * @Override public void mousePressed(MouseEvent e) { if (e.isPopupTrigger()) {
+         * contextMenu.show(ClosableTab.this, e.getX(), e.getY()); } }
+         * @Override public void mouseReleased(MouseEvent e) { if (e.isPopupTrigger()) {
+         * contextMenu.show(ClosableTab.this, e.getX(), e.getY()); } }
+         * @Override public void mouseEntered(MouseEvent e) { closeButton.setVisible(true); }
+         * @Override public void mouseExited(MouseEvent e) { closeButton.setVisible(false); } });
+         */
+    }
+
+    /**
+     * Called on tab close.
+     */
+    public abstract void onClose();
+
+    /**
+     * Called on close other tabs.
+     */
+    public abstract void onCloseOthers();
+
+    /**
+     * Called on close all tabs.
+     */
+    public abstract void onCloseAll();
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JToolTip createToolTip() {
         int tabIndex = parent.indexAtLocation(parent.getMousePosition().x, parent.getMousePosition().y);
         if (tabIndex >= 0 && tabIndex != parent.getSelectedIndex()) {
             Component c = parent.getComponentAt(tabIndex);
-            
+
             final BufferedImage image = new BufferedImage(c.getWidth(), c.getHeight(), BufferedImage.TYPE_INT_RGB);
             Graphics graphics = image.getGraphics();
             graphics.setColor(c.getBackground());
@@ -208,8 +196,8 @@ public abstract class ClosableTab extends JXPanel {
 
             final int thumbnailWidth = image.getWidth() / 2;
             final int thumbnailHeight = image.getHeight() / 2;
-            
-//            Icon thumbnail = new ImageIcon(image.getScaledInstance(image.getWidth() / 2, -1, Image.SCALE_FAST));
+
+            // Icon thumbnail = new ImageIcon(image.getScaledInstance(image.getWidth() / 2, -1, Image.SCALE_FAST));
             JToolTip toolTip = new JToolTip() {
                 @Override
                 public void paint(Graphics g) {
@@ -225,7 +213,7 @@ public abstract class ClosableTab extends JXPanel {
                             thumbnailHeight - (insets.top + insets.bottom), null);
                 }
             };
-//            toolTip.setComponent(new JXLabel(thumbnail));
+            // toolTip.setComponent(new JXLabel(thumbnail));
             toolTip.setPreferredSize(new Dimension(thumbnailWidth, thumbnailHeight));
             toolTip.setBorder(BorderFactory.createLineBorder(UIManager.getColor("PopupMenu.border")));
 
@@ -233,36 +221,38 @@ public abstract class ClosableTab extends JXPanel {
         }
         return super.createToolTip();
     }
-	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		final JTabbedPane tabs = new JTabbedPane();
-		
-		final JXPanel p = new JXPanel();
-		tabs.addTab(null, p);
-		tabs.setTabComponentAt(0, new ClosableTab("Tab", tabs) {
-			@Override
-			public void onClose() {
-				tabs.removeTabAt(tabs.indexOfComponent(p));
-			}
-			@Override
-			public void onCloseAll() {
-				// TODO Auto-generated method stub
-				
-			}
-			@Override
-			public void onCloseOthers() {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
-		JXFrame f = new JXFrame(ClosableTab.class.getSimpleName());
-		f.add(tabs);
-		f.setDefaultCloseOperation(JXFrame.EXIT_ON_CLOSE);
-		f.pack();
-		f.setVisible(true);
-	}
+
+    /**
+     * @param args command-line arguments
+     */
+    public static void main(String[] args) {
+        final JTabbedPane tabs = new JTabbedPane();
+
+        final JXPanel p = new JXPanel();
+        tabs.addTab(null, p);
+        tabs.setTabComponentAt(0, new ClosableTab("Tab", tabs) {
+            @Override
+            public void onClose() {
+                tabs.removeTabAt(tabs.indexOfComponent(p));
+            }
+
+            @Override
+            public void onCloseAll() {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onCloseOthers() {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+        JXFrame f = new JXFrame(ClosableTab.class.getSimpleName());
+        f.add(tabs);
+        f.setDefaultCloseOperation(JXFrame.EXIT_ON_CLOSE);
+        f.pack();
+        f.setVisible(true);
+    }
 }
