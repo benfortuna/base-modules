@@ -25,54 +25,61 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 
+/**
+ * Provides dynamic scheduling/unscheduling of jobs.
+ * 
+ * @author fortuna
+ *
+ */
 public class DynamicSchedulerAccessor {
 
-	private Scheduler scheduler;
+    private Scheduler scheduler;
 
-	/**
-	 * @param scheduler the scheduler to set
-	 */
-	public void setScheduler(Scheduler scheduler) {
-		this.scheduler = scheduler;
-	}
-	
-	/**
-	 * @param jobDetail
-	 * @param props
-	 * @throws SchedulerException
-	 */
-	public void addJob(JobDetail jobDetail, Map<?, ?> props) throws SchedulerException {
-		scheduler.addJob(jobDetail, Boolean.TRUE.equals(props.get("replace")));
-	}
-	
-	/**
-	 * @param jobDetail
-	 * @param props
-	 * @throws SchedulerException
-	 */
-	public void removeJob(JobDetail jobDetail, Map<?, ?> props) throws SchedulerException {
-		if (!scheduler.isShutdown()) {
-			scheduler.deleteJob(jobDetail.getName(), jobDetail.getGroup());
-		}
-	}
-	
-	/**
-	 * @param trigger
-	 * @param props
-	 * @throws SchedulerException
-	 */
-	public void scheduleJob(Trigger trigger, Map<?, ?> props) throws SchedulerException {
-		scheduler.scheduleJob(trigger);
-	}
-	
-	/**
-	 * @param trigger
-	 * @param props
-	 * @throws SchedulerException
-	 */
-	public void unscheduleJob(Trigger trigger, Map<?, ?> props) throws SchedulerException {
-		if (!scheduler.isShutdown()) {
-			scheduler.unscheduleJob(trigger.getName(), trigger.getGroup());
-		}
-	}
+    /**
+     * @param scheduler
+     *            the scheduler to set
+     */
+    public void setScheduler(Scheduler scheduler) {
+        this.scheduler = scheduler;
+    }
+
+    /**
+     * @param jobDetail a job detail to be scheduled
+     * @param props additional scheduling properties
+     * @throws SchedulerException when unable to add the specified job
+     */
+    public void addJob(JobDetail jobDetail, Map<?, ?> props) throws SchedulerException {
+        scheduler.addJob(jobDetail, Boolean.TRUE.equals(props.get("replace")));
+    }
+
+    /**
+     * @param jobDetail a job detail to be unscheduled
+     * @param props additional unscheduling properties
+     * @throws SchedulerException when unable to remove the specified job
+     */
+    public void removeJob(JobDetail jobDetail, Map<?, ?> props) throws SchedulerException {
+        if (!scheduler.isShutdown()) {
+            scheduler.deleteJob(jobDetail.getName(), jobDetail.getGroup());
+        }
+    }
+
+    /**
+     * @param trigger a scheduling trigger
+     * @param props additional scheduling properties
+     * @throws SchedulerException when unable to schedule the job
+     */
+    public void scheduleJob(Trigger trigger, Map<?, ?> props) throws SchedulerException {
+        scheduler.scheduleJob(trigger);
+    }
+
+    /**
+     * @param trigger a scheduling trigger
+     * @param props additional unscheduling properties
+     * @throws SchedulerException when unable to unschedule the job
+     */
+    public void unscheduleJob(Trigger trigger, Map<?, ?> props) throws SchedulerException {
+        if (!scheduler.isShutdown()) {
+            scheduler.unscheduleJob(trigger.getName(), trigger.getGroup());
+        }
+    }
 }
