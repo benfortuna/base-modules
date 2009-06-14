@@ -25,7 +25,7 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.service.log.LogService;
 import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
 
-public class LogCacheManagerTest extends AbstractConfigurableBundleCreatorTests {
+public class LogCacheManagerIntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	
 	public void testGetDebugCache() throws InvalidSyntaxException {
 		ServiceReference[] refs = bundleContext.getServiceReferences(Cache.class.getName(), "(cacheId=debugLog)");
