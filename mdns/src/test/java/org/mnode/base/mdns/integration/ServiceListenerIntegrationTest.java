@@ -36,9 +36,9 @@ import org.springframework.osgi.test.platform.Platforms;
  * @author fortuna
  *
  */
-public class ServiceListenerTest extends AbstractConfigurableBundleCreatorTests {
+public class ServiceListenerIntegrationTest extends AbstractConfigurableBundleCreatorTests {
 
-	private static final Log LOG = LogFactory.getLog(ServiceListenerTest.class);
+	private static final Log LOG = LogFactory.getLog(ServiceListenerIntegrationTest.class);
 	
 	public void testGetServiceBrowser() {
 //		ServiceReference reference = bundleContext.getServiceReference(ServiceBrowser.class.getName());
