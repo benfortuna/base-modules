@@ -35,9 +35,9 @@ import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
  * @author fortuna
  *
  */
-public class DeviceBrowserTest extends AbstractConfigurableBundleCreatorTests {
+public class DeviceBrowserIntegrationTest extends AbstractConfigurableBundleCreatorTests {
 
-	private static final Log LOG = LogFactory.getLog(DeviceBrowserTest.class);
+	private static final Log LOG = LogFactory.getLog(DeviceBrowserIntegrationTest.class);
 	
 	public void testGetServiceBrowser() throws IOException {
 		ServiceReference reference = bundleContext.getServiceReference(DeviceBrowser.class.getName());
