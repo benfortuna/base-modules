@@ -30,10 +30,10 @@ import org.quartz.Trigger;
 import org.quartz.TriggerUtils;
 import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
 
-public class DynamicSchedulerAccessorTest extends
+public class DynamicSchedulerAccessorIntegrationTest extends
 		AbstractConfigurableBundleCreatorTests {
 
-	private static final Log LOG = LogFactory.getLog(DynamicSchedulerAccessorTest.class);
+	private static final Log LOG = LogFactory.getLog(DynamicSchedulerAccessorIntegrationTest.class);
 	
 	public void testScheduleJob() throws ParseException, InterruptedException {
 		JobDetail jobDetail = new JobDetail("TestJob", "Test", TestJob.class);
