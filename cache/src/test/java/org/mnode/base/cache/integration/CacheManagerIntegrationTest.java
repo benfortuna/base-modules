@@ -23,7 +23,7 @@ import net.sf.ehcache.CacheManager;
 import org.osgi.framework.ServiceReference;
 import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
 
-public class CacheManagerTest extends AbstractConfigurableBundleCreatorTests {
+public class CacheManagerIntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	
 	public void testGetCacheManager() throws InterruptedException {
 //		CacheDescriptor descriptor = new CacheDescriptor();
