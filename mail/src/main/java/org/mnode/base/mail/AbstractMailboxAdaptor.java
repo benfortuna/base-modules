@@ -20,24 +20,24 @@ package org.mnode.base.mail;
 
 /**
  * @author Ben
- *
+ * 
  */
 public abstract class AbstractMailboxAdaptor implements MailboxAdaptor {
 
-	private Mailbox mailbox;
+    private Mailbox mailbox;
 
-	/**
-	 * @param mailbox
-	 */
-	public AbstractMailboxAdaptor(Mailbox mailbox) {
-		this.mailbox = mailbox;
-	}
-	
-	/**
-	 * @return the mailbox
-	 */
-	public final Mailbox getMailbox() {
-		return mailbox;
-	}
+    /**
+     * @param mailbox a mailbox instance
+     */
+    public AbstractMailboxAdaptor(Mailbox mailbox) {
+        this.mailbox = mailbox;
+    }
+
+    /**
+     * @return the mailbox
+     */
+    public final Mailbox getMailbox() {
+        return mailbox;
+    }
 
 }

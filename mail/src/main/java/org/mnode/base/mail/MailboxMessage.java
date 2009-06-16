@@ -30,119 +30,116 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * @author Ben
- *
+ * 
  */
 public class MailboxMessage extends AbstractMailboxAdaptor {
-	
-	private static final Log LOG = LogFactory.getLog(MailboxMessage.class);
-	
-	private Message message;
-	
-	/**
-	 * @param mailbox
-	 * @param message
-	 */
-	public MailboxMessage(Mailbox mailbox, Message message) {
-		super(mailbox);
-		this.message = message;
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	public String getId() {
-		try {
-			if (message instanceof MimeMessage) {
-				return ((MimeMessage) message).getMessageID();
-			}
-			return message.getSubject();
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
+
+    private static final Log LOG = LogFactory.getLog(MailboxMessage.class);
+
+    private Message message;
+
+    /**
+     * @param mailbox the parent mailbox
+     * @param message a message delegate
+     */
+    public MailboxMessage(Mailbox mailbox, Message message) {
+        super(mailbox);
+        this.message = message;
+    }
 
     /**
      * {@inheritDoc}
      */
-	public String getTitle() {
-		StringBuilder b = new StringBuilder();
-		try {
-			String subject = message.getSubject();
-			if (StringUtils.isNotEmpty(subject)) {
-				b.append(subject);
-			}
-			else {
-				b.append("<No subject>");
-			}
-			b.append(" - ");
-			
-			String sender = getSender();
-			if (sender != null) {
-				b.append(sender);
-			}
-			else {
-				b.append("<Unknown sender>");
-			}
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return b.toString();
-	}
+    public String getId() {
+        try {
+            if (message instanceof MimeMessage) {
+                return ((MimeMessage) message).getMessageID();
+            }
+            return message.getSubject();
+        } catch (MessagingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**
      * {@inheritDoc}
      */
-	public int getMessageCount() throws MessagingException {
-		return 1;
-	}
-	
-    /**
-     * {@inheritDoc}
-     */
-	public Message getMessage(int index) throws MessagingException {
-		if (index > 0) {
-			throw new IndexOutOfBoundsException("Index [" + index + "] out of bounds");
-		}
-		if (index < 0) {
-			return null;
-		}
-		return message;
-	}
-	
-    /**
-     * {@inheritDoc}
-     */
-	public Message[] getMessages() throws MessagingException {
-		return new Message[] {message};
-	}
-	
-	/**
-	 * @return the message
-	 */
-	public final Message getMessage() {
-		return message;
-	}
+    public String getTitle() {
+        StringBuilder b = new StringBuilder();
+        try {
+            String subject = message.getSubject();
+            if (StringUtils.isNotEmpty(subject)) {
+                b.append(subject);
+            } else {
+                b.append("<No subject>");
+            }
+            b.append(" - ");
 
-	/**
-	 * @return
-	 */
-	public String getSender() {
-		try {
-			Address[] senders = message.getFrom();
-			if (senders != null && senders.length > 0) {
-				InternetAddress from = (InternetAddress) senders[0];
-				if (from.getPersonal() != null) {
-					return from.getPersonal();
-				}
-				return from.getAddress();
-			}
-		}
-		catch (MessagingException me) {
-			LOG.error("Error retrieving message sender", me);
-		}
-		return null;
-	}
+            String sender = getSender();
+            if (sender != null) {
+                b.append(sender);
+            } else {
+                b.append("<Unknown sender>");
+            }
+        } catch (MessagingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return b.toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int getMessageCount() throws MessagingException {
+        return 1;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Message getMessage(int index) throws MessagingException {
+        if (index > 0) {
+            throw new IndexOutOfBoundsException("Index [" + index + "] out of bounds");
+        }
+        if (index < 0) {
+            return null;
+        }
+        return message;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Message[] getMessages() throws MessagingException {
+        return new Message[] { message };
+    }
+
+    /**
+     * @return the message
+     */
+    public final Message getMessage() {
+        return message;
+    }
+
+    /**
+     * @return the sender of the message
+     */
+    public String getSender() {
+        try {
+            Address[] senders = message.getFrom();
+            if (senders != null && senders.length > 0) {
+                InternetAddress from = (InternetAddress) senders[0];
+                if (from.getPersonal() != null) {
+                    return from.getPersonal();
+                }
+                return from.getAddress();
+            }
+        } catch (MessagingException me) {
+            LOG.error("Error retrieving message sender", me);
+        }
+        return null;
+    }
 }

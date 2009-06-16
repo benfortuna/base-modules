@@ -24,54 +24,69 @@ import javax.mail.MessagingException;
 
 /**
  * @author Ben
- *
+ * 
  */
 public class MailboxFolder extends AbstractMailboxAdaptor implements Comparable<MailboxFolder> {
 
-	private static final FolderComparator FOLDER_COMPARATOR = new FolderComparator();
-	
-	private Folder folder;
-	
-	/**
-	 * @param mailbox
-	 * @param folder
-	 */
-	public MailboxFolder(Mailbox mailbox, Folder folder) {
-		super(mailbox);
-		this.folder = folder;
-	}
+    private static final FolderComparator FOLDER_COMPARATOR = new FolderComparator();
 
-	public String getId() {
-		return folder.getFullName();
-	}
-	
-	/**
-	 * @return
-	 */
-	public String getTitle() {
-		return folder.getName() + " - " + getMailbox().getName();
-	}
+    private Folder folder;
 
-	public int getMessageCount() throws MessagingException {
-		return folder.getMessageCount();
-	}
-	
-	public Message getMessage(int index) throws MessagingException {
-		return folder.getMessage(index + 1);
-	}
-	
-	public Message[] getMessages() throws MessagingException {
-		return folder.getMessages();
-	}
-	
-	/**
-	 * @return the folder
-	 */
-	public final Folder getFolder() {
-		return folder;
-	}
-	
-	public int compareTo(MailboxFolder o) {
-		return FOLDER_COMPARATOR.compare(getFolder(), o.getFolder());
-	}
+    /**
+     * @param mailbox the parent mailbox
+     * @param folder the folder delegate
+     */
+    public MailboxFolder(Mailbox mailbox, Folder folder) {
+        super(mailbox);
+        this.folder = folder;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getId() {
+        return folder.getFullName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getTitle() {
+        return folder.getName() + " - " + getMailbox().getName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int getMessageCount() throws MessagingException {
+        return folder.getMessageCount();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Message getMessage(int index) throws MessagingException {
+        return folder.getMessage(index + 1);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Message[] getMessages() throws MessagingException {
+        return folder.getMessages();
+    }
+
+    /**
+     * @return the folder
+     */
+    public final Folder getFolder() {
+        return folder;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int compareTo(MailboxFolder o) {
+        return FOLDER_COMPARATOR.compare(getFolder(), o.getFolder());
+    }
 }

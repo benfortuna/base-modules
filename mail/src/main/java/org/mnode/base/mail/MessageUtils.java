@@ -39,32 +39,35 @@ import javax.mail.search.SearchTerm;
 
 /**
  * Utility methods for working with message content.
+ * 
  * @author Ben Fortuna
  */
 public final class MessageUtils {
 
-	/**
-	 * Constructor made private to enforce static nature.
-	 */
-	private MessageUtils() {
-	}
-    
+    /**
+     * Constructor made private to enforce static nature.
+     */
+    private MessageUtils() {
+    }
+
     /**
      * Returns the default part for the specified message
      * 
-     * @param message
+     * @param message a message instance
      * @return Part the default part
+     * @throws MessagingException where an error occurs retrieving the part
+     * @throws IOException where an error occurs reading the part
      */
     public static Part getDefaultPart(Message message) throws MessagingException, IOException {
 
         Part part = message;
-        
+
         // ensure part is not an embedded multipart..
         while (part.isMimeType("multipart/*")) {
             Multipart multi = (Multipart) part.getContent();
-            
+
             int partIndex = 0;
-            for (int i = 0; i<multi.getCount(); i++) {
+            for (int i = 0; i < multi.getCount(); i++) {
                 // display html by default..
                 if (multi.getBodyPart(i).isMimeType("text/html")) {
                     partIndex = i;
@@ -72,24 +75,23 @@ public final class MessageUtils {
             }
             part = multi.getBodyPart(partIndex);
         }
-                        
+
         // if we found an embedded message, display!
         if (part.isMimeType("message/*")) {
-            return getDefaultPart((Message)part);
+            return getDefaultPart((Message) part);
         }
         return part;
     }
 
     /**
-     * @param message
-     * @return
+     * @param message a message instance
+     * @return true if the message contains attachments
      */
     public static boolean hasAttachments(Message message) {
         try {
             if (message.getFileName() != null) {
                 return true;
-            }
-            else if (message.isMimeType("multipart/*")) {
+            } else if (message.isMimeType("multipart/*")) {
                 Multipart parts = (Multipart) message.getContent();
                 for (int i = 0; i < parts.getCount(); i++) {
                     Part part = parts.getBodyPart(i);
@@ -98,19 +100,17 @@ public final class MessageUtils {
                     }
                 }
             }
-        }
-        catch (MessagingException me) {
+        } catch (MessagingException me) {
             me.printStackTrace();
-        }
-        catch (IOException ioe) {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
         return false;
     }
-    
+
     /**
-     * @param message
-     * @return
+     * @param message a message instance
+     * @return the message subject
      */
     public static String getSubject(Message message) {
         try {
@@ -119,10 +119,10 @@ public final class MessageUtils {
         }
         return "<No Subject>";
     }
-    
+
     /**
-     * @param message
-     * @return
+     * @param message a message instance
+     * @return the message sender
      */
     public static String getSender(Message message) {
         try {
@@ -133,10 +133,10 @@ public final class MessageUtils {
         }
         return "<Unknown>";
     }
-    
+
     /**
-     * @param message
-     * @return
+     * @param message a message instance
+     * @return the message received date if it is supported, otherwise the message sent date
      */
     public static String getDate(Message message) {
         try {
@@ -148,94 +148,92 @@ public final class MessageUtils {
         }
         return "";
     }
-    
-	/**
-	 * Converts a given string to an HTML string. This method is useful
-	 * for displaying plain text in a browser - by converting to HTML,
-	 * word-wrapping is introduced, and hypertext links are activated.
-	 *
-	 */
-	public static String toHtml(String content) {
 
-		StringBuffer buffer = new StringBuffer();
-
-		// initialise html..
-		buffer.append("<html><body>");
-
-		StringTokenizer tokenizer = new StringTokenizer(content,"\n\t\r <>",true);
-		String token;
-
-		while (tokenizer.hasMoreTokens()) {
-
-			token = tokenizer.nextToken();
-
-			// if hyperlink, activate..
-			if (token.indexOf("://") >= 0) {
-				buffer.append("<a href=\"");
-				buffer.append(token);
-				buffer.append("\" target=\"_blank\">");
-				buffer.append(token);
-				buffer.append("</a>");
-			}
-			// if mailing address, activate..
-			else if (token.indexOf("@") >= 0) {
-				//buffer.append("<a href=\"mail?action=compose&to=");
-
-				if (token.startsWith("mailto:")) {
-
-					buffer.append("<a href=\"");
-				}
-				else {
-
-					buffer.append("<a href=\"mailto:");
-				}
-
-				buffer.append(token);
-				//buffer.append("\" target=\"_blank\">");
-				buffer.append("\">");
-				buffer.append(token);
-				buffer.append("</a>");
-			}
-			// convert newline to line break..
-			else if ("\n".equals(token)) {
-				buffer.append("<br>");
-			}
-			// convert special characters..
-			else if ("<".equals(token)) {
-				buffer.append("&lt;");
-			}
-			else if (">".equals(token)) {
-				buffer.append("&gt;");
-			}
-			else {
-				buffer.append(token);
-			}
-		}
-
-		// finalise html..
-		buffer.append("</body></html>");
-
-		return buffer.toString();
-	}
-
-	/**
-	 * @param message
-	 * @return
-	 * @throws MessagingException
-	 */
-	public static MailboxMessage[] findRelatedMessages(MailboxMessage message) throws MessagingException {
-	    return findRelatedMessages(message, true);
-	}
-	
-	/**
-     * @param message
-     * @param includeReplies
-     * @return
-     * @throws MessagingException
+    /**
+     * Converts a given string to an HTML string. This method is useful for displaying plain text in a browser - by
+     * converting to HTML, word-wrapping is introduced, and hypertext links are activated.
+     * @param content message content
+     * @return the specified content formatted as HTML
      */
-    public static MailboxMessage[] findRelatedMessages(MailboxMessage message, boolean includeReplies) throws MessagingException {
+    public static String toHtml(String content) {
+
+        StringBuffer buffer = new StringBuffer();
+
+        // initialise html..
+        buffer.append("<html><body>");
+
+        StringTokenizer tokenizer = new StringTokenizer(content, "\n\t\r <>", true);
+        String token;
+
+        while (tokenizer.hasMoreTokens()) {
+
+            token = tokenizer.nextToken();
+
+            // if hyperlink, activate..
+            if (token.indexOf("://") >= 0) {
+                buffer.append("<a href=\"");
+                buffer.append(token);
+                buffer.append("\" target=\"_blank\">");
+                buffer.append(token);
+                buffer.append("</a>");
+            }
+            // if mailing address, activate..
+            else if (token.indexOf("@") >= 0) {
+                // buffer.append("<a href=\"mail?action=compose&to=");
+
+                if (token.startsWith("mailto:")) {
+
+                    buffer.append("<a href=\"");
+                } else {
+
+                    buffer.append("<a href=\"mailto:");
+                }
+
+                buffer.append(token);
+                // buffer.append("\" target=\"_blank\">");
+                buffer.append("\">");
+                buffer.append(token);
+                buffer.append("</a>");
+            }
+            // convert newline to line break..
+            else if ("\n".equals(token)) {
+                buffer.append("<br>");
+            }
+            // convert special characters..
+            else if ("<".equals(token)) {
+                buffer.append("&lt;");
+            } else if (">".equals(token)) {
+                buffer.append("&gt;");
+            } else {
+                buffer.append(token);
+            }
+        }
+
+        // finalise html..
+        buffer.append("</body></html>");
+
+        return buffer.toString();
+    }
+
+    /**
+     * @param message a message instance
+     * @return an array of messages related to the specified message
+     * @throws MessagingException where an error occurs retrieving messages
+     */
+    public static MailboxMessage[] findRelatedMessages(MailboxMessage message) throws MessagingException {
+        return findRelatedMessages(message, true);
+    }
+
+    /**
+     * @param message a message instance
+     * @param includeReplies specifies whether to include replies to the specified message in the results
+     * @return an array of messages related to the specified message
+     * @throws MessagingException where an error occurs retrieving messages
+     */
+    public static MailboxMessage[] findRelatedMessages(MailboxMessage message, boolean includeReplies)
+            throws MessagingException {
         List<MailboxMessage> relatedMessages = new ArrayList<MailboxMessage>();
-        
+
         if (message.getMessage() instanceof MimeMessage) {
             MimeMessage mimeMessage = (MimeMessage) message.getMessage();
             SearchTerm inReplyToTerm = null;
@@ -250,22 +248,19 @@ public final class MessageUtils {
                 }
                 if (messageIdTerms.size() == 1) {
                     messageIdTerm = messageIdTerms.get(0);
-                }
-                else {
+                } else {
                     messageIdTerm = new OrTerm(messageIdTerms.toArray(new SearchTerm[messageIdTerms.size()]));
                 }
             }
             SearchTerm findRelatedTerm = null;
             if (messageIdTerm == null) {
                 findRelatedTerm = inReplyToTerm;
-            }
-            else if (inReplyToTerm == null) {
+            } else if (inReplyToTerm == null) {
                 findRelatedTerm = messageIdTerm;
-            }
-            else {
+            } else {
                 findRelatedTerm = new OrTerm(inReplyToTerm, messageIdTerm);
             }
-            
+
             if (findRelatedTerm != null) {
                 Message[] matches = mimeMessage.getFolder().search(findRelatedTerm);
                 for (Message m : matches) {
@@ -275,7 +270,7 @@ public final class MessageUtils {
                 }
             }
         }
-	    
-	    return relatedMessages.toArray(new MailboxMessage[relatedMessages.size()]);
-	}
+
+        return relatedMessages.toArray(new MailboxMessage[relatedMessages.size()]);
+    }
 }

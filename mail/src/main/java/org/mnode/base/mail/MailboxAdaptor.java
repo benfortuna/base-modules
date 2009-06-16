@@ -23,41 +23,43 @@ import javax.mail.MessagingException;
 
 /**
  * @author Ben
- *
+ * 
  */
 public interface MailboxAdaptor {
 
-	/**
-	 * @return a unique identifier for the adaptor
-	 */
-	String getId();
-	
-	/**
-	 * @return the title of the adaptor
-	 */
-	String getTitle();
-	
-	/**
-	 * @return the mailbox associated with the adaptor
-	 */
-	Mailbox getMailbox();
-	
-	/**
-	 * Allows for retrieval of message count without necessarily
-	 * constructing all messages
-	 * @return a count of messages applicable to the adaptor
-	 */
-	int getMessageCount() throws MessagingException;
-	
-	/**
-	 * @param index
-	 * @return
-	 * @throws MessagingException
-	 */
-	Message getMessage(int index) throws MessagingException;
-	
-	/**
-	 * @return messages applicable to the adaptor
-	 */
-	Message[] getMessages() throws MessagingException;
+    /**
+     * @return a unique identifier for the adaptor
+     */
+    String getId();
+
+    /**
+     * @return the title of the adaptor
+     */
+    String getTitle();
+
+    /**
+     * @return the mailbox associated with the adaptor
+     */
+    Mailbox getMailbox();
+
+    /**
+     * Allows for retrieval of message count without necessarily constructing all messages
+     * 
+     * @return a count of messages applicable to the adaptor
+     * @throws MessagingException where an error occurs retrieving the message count
+     */
+    int getMessageCount() throws MessagingException;
+
+    /**
+     * @param index a message index
+     * @return the message at the specified index
+     * @throws MessagingException where an error occurs retrieving the message
+     */
+    Message getMessage(int index) throws MessagingException;
+
+    /**
+     * @return messages applicable to the adaptor
+     * @throws MessagingException where an error occurs retrieving the messages
+     */
+    Message[] getMessages() throws MessagingException;
 }

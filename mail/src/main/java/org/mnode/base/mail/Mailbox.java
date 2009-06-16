@@ -35,67 +35,70 @@ import javax.mail.Store;
 
 /**
  * @author fortuna
- *
+ * 
  */
 public class Mailbox {
 
-	private static final FolderComparator FOLDER_SORTER = new FolderComparator();
-	
-	private String name;
-	
-	private Store localStore;
-	
-	private MailboxFolder[] folders;
-	
-	/**
-	 * @param protocol
-	 * @param host
-	 * @throws NoSuchProviderException
-	 */
-	public Mailbox(String name, Properties props, Authenticator auth) throws NoSuchProviderException {
-		this.name = name;
+    private static final FolderComparator FOLDER_SORTER = new FolderComparator();
+
+    private String name;
+
+    private Store localStore;
+
+    private MailboxFolder[] folders;
+
+    /**
+     * @param name a mailbox name
+     * @param props session properties
+     * @param auth session authenticator
+     * @throws NoSuchProviderException if the provider for the mailbox isn't found
+     */
+    public Mailbox(String name, Properties props, Authenticator auth) throws NoSuchProviderException {
+        this.name = name;
         Session session = Session.getInstance(props, auth);
         localStore = session.getStore();
-	}
+    }
 
-	/**
-	 * @return the name
-	 */
-	public final String getName() {
-		return name;
-	}
-	
-	/**
-	 * @param name
-	 * @param type
-	 * @throws MessagingException
-	 */
-	public void addFolder(String name, int type) throws MessagingException {
-		Folder folder = localStore.getFolder(name);
-		folder.create(type);
-		folders = null;
-	}
-	
-	/**
-	 * @return
-	 * @throws MessagingException 
-	 */
-	public MailboxFolder[] getFolders() throws MessagingException {
-		if (folders == null) {
-			if (!localStore.isConnected()) {
-				localStore.connect();
-			}
-			List<MailboxFolder> folderList = new ArrayList<MailboxFolder>();
-			for (Folder folder : localStore.getDefaultFolder().list()) {
-				folderList.add(new MailboxFolder(this, folder));
-			}
-			Collections.sort(folderList);
-			folders = folderList.toArray(new MailboxFolder[folderList.size()]);
-			
-//			if (folders.length == 0) {
-//				folders = getDefaultFolders();
-//			}
-		}
-		return folders;
-	}
+    /**
+     * @return the name
+     */
+    public final String getName() {
+        return name;
+    }
+
+    /**
+     * @param name a folder name
+     * @param type a folder type
+     * @throws MessagingException where an error occurs retrieving the folder
+     * @see Folder#HOLDS_FOLDERS
+     * @see Folder#HOLDS_MESSAGES
+     */
+    public void addFolder(String name, int type) throws MessagingException {
+        Folder folder = localStore.getFolder(name);
+        folder.create(type);
+        folders = null;
+    }
+
+    /**
+     * @return an array of folders in the mailbox
+     * @throws MessagingException where an error occurs retrieving the folders
+     */
+    public MailboxFolder[] getFolders() throws MessagingException {
+        if (folders == null) {
+            if (!localStore.isConnected()) {
+                localStore.connect();
+            }
+            List<MailboxFolder> folderList = new ArrayList<MailboxFolder>();
+            for (Folder folder : localStore.getDefaultFolder().list()) {
+                folderList.add(new MailboxFolder(this, folder));
+            }
+            Collections.sort(folderList);
+            folders = folderList.toArray(new MailboxFolder[folderList.size()]);
+
+            // if (folders.length == 0) {
+            // folders = getDefaultFolders();
+            // }
+        }
+        return folders;
+    }
 }
