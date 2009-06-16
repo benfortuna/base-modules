@@ -35,6 +35,7 @@
 		<module>xmpp</module>
 		<module>views</module>
 		<module>mail</module>
+        <module>commons</module>
 	</modules>
 	<dependencies>
 		<dependency>
