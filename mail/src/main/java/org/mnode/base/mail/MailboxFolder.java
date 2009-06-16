@@ -1,0 +1,81 @@
+/*
+ * $Id: MailboxFolder.java $
+ *
+ * Created: [04/09/2008]
+ *
+ * Copyright (c) 2008, Ben Fortuna
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+
+package org.mnode.base.mail;
+
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+
+/**
+ * @author Ben
+ *
+ */
+public class MailboxFolder extends AbstractMailboxAdaptor implements Comparable<MailboxFolder> {
+
+	private static final FolderComparator FOLDER_COMPARATOR = new FolderComparator();
+	
+	private Folder folder;
+	
+	/**
+	 * @param mailbox
+	 * @param folder
+	 */
+	public MailboxFolder(Mailbox mailbox, Folder folder) {
+		super(mailbox);
+		this.folder = folder;
+	}
+
+	public String getId() {
+		return folder.getFullName();
+	}
+	
+	/**
+	 * @return
+	 */
+	public String getTitle() {
+		return folder.getName() + " - " + getMailbox().getName();
+	}
+
+	public int getMessageCount() throws MessagingException {
+		return folder.getMessageCount();
+	}
+	
+	public Message getMessage(int index) throws MessagingException {
+		return folder.getMessage(index + 1);
+	}
+	
+	public Message[] getMessages() throws MessagingException {
+		return folder.getMessages();
+	}
+	
+	/**
+	 * @return the folder
+	 */
+	public final Folder getFolder() {
+		return folder;
+	}
+	
+	public int compareTo(MailboxFolder o) {
+		return FOLDER_COMPARATOR.compare(getFolder(), o.getFolder());
+	}
+}
