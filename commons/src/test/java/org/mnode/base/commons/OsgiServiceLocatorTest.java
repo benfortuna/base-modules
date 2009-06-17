@@ -26,6 +26,7 @@ import org.jmock.Mockery;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceListener;
@@ -42,6 +43,8 @@ public class OsgiServiceLocatorTest {
     
     private BundleContext bundleContext;
     
+    private Bundle bundle;
+    
     private ServiceReference serviceReference;
     
     private String service;
@@ -53,6 +56,8 @@ public class OsgiServiceLocatorTest {
         mockContext = new Mockery();
         
         bundleContext = mockContext.mock(BundleContext.class);
+        
+        bundle = mockContext.mock(Bundle.class);
         
         serviceReference = mockContext.mock(ServiceReference.class);
         
@@ -75,8 +80,10 @@ public class OsgiServiceLocatorTest {
                         with(any(String.class)));
                 one(bundleContext).getServiceReferences(with(any(String.class)), with(any(String.class)));
                     will(returnValue(new ServiceReference[] { serviceReference }));
-                one(bundleContext).getService(serviceReference);
+                allowing(bundleContext).getService(serviceReference);
                     will(returnValue(service));
+                allowing(serviceReference).getBundle();
+                    will(returnValue(bundle));
             }
         });
         
