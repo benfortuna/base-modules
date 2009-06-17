@@ -22,17 +22,17 @@ import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
 import org.springframework.osgi.test.platform.Platforms;
 
 public abstract class AbstractXmppIntegrationTest extends AbstractConfigurableBundleCreatorTests {
-	
-	@Override
-	protected final String[] getTestBundlesNames() {
-		return new String[] { "org.mnode.base, base-xmpp, 0.0.1-SNAPSHOT",
-		        "org.mnode.base, base-commons, 0.0.1-SNAPSHOT",
-			    "net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3"};
-	}
 
-	@Override
-	protected String getPlatformName() {
-		return Platforms.FELIX;
-	}
+    @Override
+    protected final String[] getTestBundlesNames() {
+        return new String[] { "org.mnode.base, base-xmpp, 0.0.1-SNAPSHOT",
+                "org.mnode.base, base-commons, 0.0.1-SNAPSHOT",
+                "net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3" };
+    }
+
+    @Override
+    protected String getPlatformName() {
+        return Platforms.FELIX;
+    }
 
 }
