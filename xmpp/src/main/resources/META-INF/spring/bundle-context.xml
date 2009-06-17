@@ -28,8 +28,8 @@
 		configuration file so that this file can easily be used for
 		integration testing outside of an OSGi environment
 	-->
-	<bean id="connectionListenerRegistry" class="org.mnode.base.xmpp.internal.ConnectionListenerRegistry"/>
-	<bean id="chatManagerListenerRegistry" class="org.mnode.base.xmpp.internal.ChatManagerListenerRegistry"/>
-	<bean id="fileTransferListenerRegistry" class="org.mnode.base.xmpp.internal.FileTransferListenerRegistry"/>
+	<bean id="connectionListenerRegistry" class="org.mnode.base.xmpp.internal.ConnectionListenerRegistry" destroy-method="unregisterAll"/>
+	<bean id="chatManagerListenerRegistry" class="org.mnode.base.xmpp.internal.ChatManagerListenerRegistry" destroy-method="unregisterAll"/>
+	<bean id="fileTransferListenerRegistry" class="org.mnode.base.xmpp.internal.FileTransferListenerRegistry" destroy-method="unregisterAll"/>
 	<bean id="chatContextManager" class="org.mnode.base.xmpp.internal.ChatContextManagerImpl" />
 </beans>

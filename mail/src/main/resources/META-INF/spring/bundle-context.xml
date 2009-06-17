@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This file is part of Base Modules.
+
+    Copyright (c) 2009, Ben Fortuna [fortuna@micronode.com]
+
+    Base Modules is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Base Modules is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Base Modules.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="ConnectionListenerRegistry" class="org.mnode.base.mail.internal.ConnectionListenerRegistry" destroy-method="unregisterAll"/>
+    <bean id="FolderConnectionListenerRegistry" class="org.mnode.base.mail.internal.FolderConnectionListenerRegistry" destroy-method="unregisterAll"/>
+    <bean id="FolderListenerRegistry" class="org.mnode.base.mail.internal.FolderListenerRegistry" destroy-method="unregisterAll"/>
+    <bean id="MessageChangedListenerRegistry" class="org.mnode.base.mail.internal.MessageChangedListenerRegistry" destroy-method="unregisterAll"/>
+    <bean id="MessageCountListenerRegistry" class="org.mnode.base.mail.internal.MessageCountListenerRegistry" destroy-method="unregisterAll"/>
+    <bean id="StoreListenerRegistry" class="org.mnode.base.mail.internal.StoreListenerRegistry" destroy-method="unregisterAll"/>
+    <bean id="SubfolderListenerRegistry" class="org.mnode.base.mail.internal.SubfolderListenerRegistry" destroy-method="unregisterAll"/>
+</beans>
