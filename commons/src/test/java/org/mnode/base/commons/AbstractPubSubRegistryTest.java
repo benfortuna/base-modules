@@ -100,4 +100,17 @@ public class AbstractPubSubRegistryTest {
 
         Assert.assertNull(subscribed.get(publisher));
     }
+    
+    @Test
+    public void testUnregisterAll() {
+        String publisher = "pub";
+        String subscriber = "sub";
+        Map<String, String> props = new HashMap<String, String>();
+        registry.registerPublisher(publisher, props);
+        registry.registerSubscriber(subscriber, props);
+        Assert.assertEquals(subscriber, subscribed.get(publisher));
+
+        registry.unregisterAll();
+        Assert.assertNull(subscribed.get(publisher));
+    }
 }

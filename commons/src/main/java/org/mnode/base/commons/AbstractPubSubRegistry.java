@@ -94,6 +94,15 @@ public abstract class AbstractPubSubRegistry<P, S> {
     }
 
     /**
+     * Unregister all subscribers.
+     */
+    public final void unregisterAll() {
+        for (S subscriber : subscribers.keySet()) {
+            unregisterSubscriber(subscriber, subscribers.get(subscriber));
+        }
+    }
+    
+    /**
      * @param publisher the source
      * @param subscriber the destination
      * @param properties additional subscription properties
