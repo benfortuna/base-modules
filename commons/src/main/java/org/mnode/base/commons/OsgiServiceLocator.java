@@ -62,4 +62,13 @@ public class OsgiServiceLocator implements ServiceLocator {
         return (T) tracker.getService();
     }
 
+    /**
+     * Clean up resources.
+     */
+    public void reset() {
+        for (ServiceTracker tracker : serviceTrackers.values()) {
+            tracker.close();
+        }
+        serviceTrackers.clear();
+    }
 }

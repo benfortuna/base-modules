@@ -99,4 +99,26 @@ public class OsgiServiceLocatorTest {
         Integer foundService = serviceLocator.findService(Integer.class);
         Assert.assertNull(foundService);
     }
+    
+    @Test
+    public void testReset() throws InvalidSyntaxException {
+        testFindService();
+        
+        mockContext.checking(new Expectations() {
+            {
+                one(bundleContext).removeServiceListener(with(any(ServiceListener.class)));
+                one(bundleContext).ungetService(serviceReference);
+            }
+        });
+        serviceLocator.reset();
+        
+        testFindServiceNotAvailable();
+        
+        mockContext.checking(new Expectations() {
+            {
+                one(bundleContext).removeServiceListener(with(any(ServiceListener.class)));
+            }
+        });
+        serviceLocator.reset();
+    }
 }
