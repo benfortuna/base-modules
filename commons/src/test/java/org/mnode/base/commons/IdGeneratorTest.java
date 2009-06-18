@@ -33,7 +33,7 @@ public class IdGeneratorTest {
 
     private IdGenerator generator;
     
-    private String prefix = "Test";
+    private final String prefix = "Test";
     
     @Before
     public void runBeforeEachTest() {

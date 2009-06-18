@@ -36,9 +36,9 @@ import java.util.Map;
  */
 public abstract class AbstractPubSubRegistry<P, S> {
 
-    private List<P> publishers;
+    private final List<P> publishers;
 
-    private Map<S, Map<String, ?>> subscribers;
+    private final Map<S, Map<String, ?>> subscribers;
 
     /**
      * 
