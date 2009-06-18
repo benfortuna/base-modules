@@ -33,15 +33,16 @@
 		<module>fix</module>
 		<module>repository</module>
 		 -->
-		<module>bluetooth</module>
-		<module>cache</module>
-		<module>log</module>
-		<module>mdns</module>
-		<module>scheduler</module>
-		<module>xmpp</module>
-		<module>views</module>
-		<module>mail</module>
+        <module>bluetooth</module>
+        <module>cache</module>
+        <module>log</module>
+        <module>mdns</module>
+        <module>scheduler</module>
+        <module>xmpp</module>
+        <module>views</module>
+        <module>mail</module>
         <module>commons</module>
+        <module>desktop</module>
 	</modules>
 	<dependencies>
 		<dependency>

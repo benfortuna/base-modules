@@ -12,6 +12,11 @@
 		<groupId>org.mnode.base</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<scm>
+		<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/desktop</connection>
+		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/desktop</developerConnection>
+		<url>http://svn.mnode.org/base/modules/trunk/desktop</url>
+	</scm>
 	<build>
 		<plugins>
 			<plugin>
