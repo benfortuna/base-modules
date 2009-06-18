@@ -8,6 +8,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Parent POM for Base Modules</description>
 	<url>http://mnode.org/base</url>
+	<licenses>
+	   <license>
+	       <name>GNU General Public License</name>
+	       <url>http://www.gnu.org/copyleft/gpl.html</url>
+	   </license>
+	</licenses>
 	<parent>
 		<artifactId>base-parent</artifactId>
 		<groupId>org.mnode.base</groupId>
@@ -134,20 +140,9 @@
 	<properties>
 		<slf4j.version>1.5.0</slf4j.version>
 		<spring.osgi.version>1.1.2</spring.osgi.version>
-		<test.sourceDir>src/test/java</test.sourceDir>
 	</properties>
 	
-	<profiles>
-		<profile>
-    	  <id>integration-test</id>
-    	  <properties>
-			<test.sourceDir>src/it/java</test.sourceDir>
-    	  </properties>
-	    </profile>
-	</profiles>
-	
 	<build>
-		<testSourceDirectory>${test.sourceDir}</testSourceDirectory>
 		<plugins>
             <!-- generate manifest automatically once the classes are processed -->
 			<plugin>
