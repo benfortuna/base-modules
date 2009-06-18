@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.mnode.base</groupId>
+	<artifactId>base-desktop</artifactId>
+	<packaging>bundle</packaging>
+	<name>Base Desktop</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>Rich client framework</description>
+	<parent>
+		<artifactId>base-modules</artifactId>
+		<groupId>org.mnode.base</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<version>1.4.0</version>
+				<configuration>
+					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
+					<instructions>
+						<Export-Package>org.mnode.base.desktop</Export-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
