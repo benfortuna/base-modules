@@ -21,6 +21,8 @@ package org.mnode.base.commons;
 
 import junit.framework.Assert;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.After;
@@ -39,6 +41,8 @@ import org.osgi.framework.ServiceReference;
  */
 public class OsgiServiceLocatorTest {
 
+    private static final Log LOG = LogFactory.getLog(OsgiServiceLocatorTest.class);
+    
     private OsgiServiceLocator serviceLocator;
     
     private BundleContext bundleContext;
@@ -72,7 +76,7 @@ public class OsgiServiceLocatorTest {
     }
     
     @Test
-    public void testFindService() throws InvalidSyntaxException {
+    public void testFindService() throws InvalidSyntaxException, ServiceNotAvailableException {
         mockContext.checking(new Expectations() {
             {
                 one(bundleContext).createFilter(with(any(String.class)));
@@ -103,12 +107,18 @@ public class OsgiServiceLocatorTest {
             }
         });
         
-        Integer foundService = serviceLocator.findService(Integer.class);
-        Assert.assertNull(foundService);
+//        Integer foundService;
+        try {
+            serviceLocator.findService(Integer.class);
+            Assert.fail("Should throw " + ServiceNotAvailableException.class.getSimpleName());
+        } catch (ServiceNotAvailableException e) {
+            LOG.info("Caught exception: " + e);
+        }
+//        Assert.assertNull(foundService);
     }
     
     @Test
-    public void testReset() throws InvalidSyntaxException {
+    public void testReset() throws InvalidSyntaxException, ServiceNotAvailableException {
         testFindService();
         
         mockContext.checking(new Expectations() {

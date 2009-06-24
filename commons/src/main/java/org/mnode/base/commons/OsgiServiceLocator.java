@@ -47,7 +47,7 @@ public class OsgiServiceLocator implements ServiceLocator {
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    public <T> T findService(Class<T> type) {
+    public <T> T findService(Class<T> type) throws ServiceNotAvailableException {
         ServiceTracker tracker = serviceTrackers.get(type);
         if (tracker == null) {
             synchronized (serviceTrackers) {
@@ -59,7 +59,11 @@ public class OsgiServiceLocator implements ServiceLocator {
                 }
             }
         }
-        return (T) tracker.getService();
+        T service = (T) tracker.getService();
+        if (service == null) {
+            throw new ServiceNotAvailableException("Service of type [" + type + "] not found.");
+        }
+        return service;
     }
 
     /**

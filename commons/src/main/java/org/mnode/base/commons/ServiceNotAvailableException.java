@@ -23,13 +23,21 @@ package org.mnode.base.commons;
  * @author fortuna
  *
  */
-public interface ServiceLocator {
+public class ServiceNotAvailableException extends Exception {
+
+    private static final long serialVersionUID = -7533375748964485427L;
 
     /**
-     * @param <T> the service type
-     * @param type the service type
-     * @return a service with the specified name
-     * @throws ServiceNotAvailableException where the requested service is not available
+     * Default constructor.
      */
-    <T> T findService(Class<T> type) throws ServiceNotAvailableException;
+    public ServiceNotAvailableException() {
+        super();
+    }
+
+    /**
+     * @param message error message
+     */
+    public ServiceNotAvailableException(String message) {
+        super(message);
+    }
 }
