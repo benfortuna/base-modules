@@ -24,12 +24,13 @@ import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.mnode.base.commons.OsgiServiceLocator;
 import org.mnode.base.commons.ServiceLocator;
+import org.mnode.base.commons.ServiceNotAvailableException;
 import org.mnode.base.xmpp.ChatContext;
 import org.mnode.base.xmpp.ChatContextManager;
 
 public class ChatContextManagerImplIntegrationTest extends AbstractXmppIntegrationTest {
 
-    public void testGetChatContext() throws XMPPException {
+    public void testGetChatContext() throws XMPPException, ServiceNotAvailableException {
 
 //        ServiceTracker tracker = new ServiceTracker(bundleContext, ChatContextManager.class.getName(), null);
 //        tracker.open();
