@@ -18,6 +18,8 @@
  */
 package org.mnode.base.xmpp.integration;
 
+import java.io.IOException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jivesoftware.smack.XMPPConnection;
@@ -30,7 +32,7 @@ public class FileTransferListenerIntegrationTest extends AbstractXmppIntegration
     private static final Log LOG = LogFactory
             .getLog(FileTransferListenerIntegrationTest.class);
 
-    public void testRegisterFileTransferListener() throws XMPPException {
+    public void testRegisterFileTransferListener() throws XMPPException, IOException {
         FileTransferListener listener = new FileTransferListener() {
             @Override
             public void fileTransferRequest(FileTransferRequest request) {
@@ -42,9 +44,7 @@ public class FileTransferListenerIntegrationTest extends AbstractXmppIntegration
         bundleContext.registerService(FileTransferListener.class.getName(),
                 listener, null);
 
-        XMPPConnection connection = new XMPPConnection("basepatterns.org");
-        connection.connect();
-        connection.login("test", "!password");
+        XMPPConnection connection = newConnection();
 
         connection.disconnect();
     }

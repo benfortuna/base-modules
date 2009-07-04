@@ -18,6 +18,8 @@
  */
 package org.mnode.base.xmpp.integration;
 
+import java.io.IOException;
+
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ChatManagerListener;
 import org.jivesoftware.smack.XMPPConnection;
@@ -30,7 +32,7 @@ import org.mnode.base.xmpp.ChatContextManager;
 
 public class ChatContextManagerImplIntegrationTest extends AbstractXmppIntegrationTest {
 
-    public void testGetChatContext() throws XMPPException, ServiceNotAvailableException {
+    public void testGetChatContext() throws XMPPException, ServiceNotAvailableException, IOException {
 
 //        ServiceTracker tracker = new ServiceTracker(bundleContext, ChatContextManager.class.getName(), null);
 //        tracker.open();
@@ -40,9 +42,7 @@ public class ChatContextManagerImplIntegrationTest extends AbstractXmppIntegrati
         final ChatContextManager contextManager = serviceLocator.findService(ChatContextManager.class);
         assertNotNull(contextManager);
 
-        final XMPPConnection connection = new XMPPConnection("basepatterns.org");
-        connection.connect();
-        connection.login("test", "!password");
+        final XMPPConnection connection = newConnection();
 
         ChatManagerListener listener = new ChatManagerListener() {
             @Override

@@ -18,16 +18,36 @@
  */
 package org.mnode.base.xmpp.integration;
 
+import java.io.IOException;
+import java.util.Properties;
+
+import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.XMPPException;
+import org.mnode.base.xmpp.XmppPropertyName;
 import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
 import org.springframework.osgi.test.platform.Platforms;
 
 public abstract class AbstractXmppIntegrationTest extends AbstractConfigurableBundleCreatorTests {
-
+    
+    protected XMPPConnection newConnection() throws XMPPException, IOException {
+        Properties props = new Properties();
+        props.load(getClass().getResourceAsStream("/connection.properties"));
+        
+        XMPPConnection connection = new XMPPConnection(props.getProperty(XmppPropertyName.ServiceName.getKey()));
+        connection.connect();
+        connection.login(props.getProperty(XmppPropertyName.Username.getKey()),
+                props.getProperty(XmppPropertyName.Password.getKey()));
+        return connection;
+    }
+    
     @Override
     protected final String[] getTestBundlesNames() {
         return new String[] { "org.mnode.base, base-xmpp, 0.0.1-SNAPSHOT",
                 "org.mnode.base, base-commons, 0.0.1-SNAPSHOT",
-                "net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3" };
+                "net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3",
+                "commons-lang, commons-lang, 2.4", 
+                "org.slf4j, com.springsource.slf4j.api, 1.5.0", 
+                "org.slf4j, com.springsource.slf4j.log4j, 1.5.0", };
     }
 
     @Override

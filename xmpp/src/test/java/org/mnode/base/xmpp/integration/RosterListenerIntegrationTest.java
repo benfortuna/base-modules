@@ -21,6 +21,7 @@
  */
 package org.mnode.base.xmpp.integration;
 
+import java.io.IOException;
 import java.util.Collection;
 
 import org.apache.commons.logging.Log;
@@ -32,38 +33,39 @@ import org.jivesoftware.smack.packet.Presence;
 
 /**
  * @author fortuna
- *
+ * 
  */
 public class RosterListenerIntegrationTest extends AbstractXmppIntegrationTest {
 
-	private static final Log LOG = LogFactory.getLog(RosterListenerIntegrationTest.class);
-	
-	public void testRegisterRosterListener() throws XMPPException {
+    private static final Log LOG = LogFactory.getLog(RosterListenerIntegrationTest.class);
 
-		RosterListener listener = new RosterListener() {
-			@Override
-			public void entriesAdded(Collection<String> arg0) {
-				LOG.info("Roster entries added: " + arg0);
-			}
-			@Override
-			public void entriesDeleted(Collection<String> arg0) {
-				LOG.info("Roster entries deleted: " + arg0);
-			}
-			@Override
-			public void entriesUpdated(Collection<String> arg0) {
-				LOG.info("Roster entries updated: " + arg0);
-			}
-			@Override
-			public void presenceChanged(Presence arg0) {
-				LOG.info("Presence changed: " + arg0.getFrom() + ", " + arg0.getStatus());
-			}
-		};
-		bundleContext.registerService(RosterListener.class.getName(), listener, null);
+    public void testRegisterRosterListener() throws XMPPException, IOException {
 
-		XMPPConnection connection = new XMPPConnection("basepatterns.org");
-		connection.connect();
-		connection.login("test", "!password");
-		connection.disconnect();
-	}
+        RosterListener listener = new RosterListener() {
+            @Override
+            public void entriesAdded(Collection<String> arg0) {
+                LOG.info("Roster entries added: " + arg0);
+            }
+
+            @Override
+            public void entriesDeleted(Collection<String> arg0) {
+                LOG.info("Roster entries deleted: " + arg0);
+            }
+
+            @Override
+            public void entriesUpdated(Collection<String> arg0) {
+                LOG.info("Roster entries updated: " + arg0);
+            }
+
+            @Override
+            public void presenceChanged(Presence arg0) {
+                LOG.info("Presence changed: " + arg0.getFrom() + ", " + arg0.getStatus());
+            }
+        };
+        bundleContext.registerService(RosterListener.class.getName(), listener, null);
+
+        XMPPConnection connection = newConnection();
+        connection.disconnect();
+    }
 
 }
