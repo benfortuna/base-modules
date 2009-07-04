@@ -28,7 +28,7 @@ import org.jivesoftware.smack.XMPPConnection;
  */
 public class ChatContext {
 
-    private XMPPConnection connection;
+    private final XMPPConnection connection;
 
     /**
      * @param conn the connection from which the chat originated

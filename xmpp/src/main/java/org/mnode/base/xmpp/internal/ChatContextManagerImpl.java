@@ -37,7 +37,7 @@ import org.mnode.base.xmpp.ChatContextManager;
 public class ChatContextManagerImpl implements ChatContextManager,
         ConnectionCreationListener {
 
-    private Map<Chat, ChatContext> contexts;
+    private final Map<Chat, ChatContext> contexts;
 
     /**
      * 
