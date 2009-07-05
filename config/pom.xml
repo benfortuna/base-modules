@@ -16,4 +16,18 @@
   	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/config</developerConnection>
   	<url>http://svn.mnode.org/base/modules/trunk/config</url>
   </scm>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Export-Package>org.mnode.base.commons.*</Export-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
