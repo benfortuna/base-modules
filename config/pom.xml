@@ -11,4 +11,9 @@
   	<groupId>org.mnode.base</groupId>
   	<version>0.0.1-SNAPSHOT</version>
   </parent>
+  <scm>
+  	<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/config</connection>
+  	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/config</developerConnection>
+  	<url>http://svn.mnode.org/base/modules/trunk/config</url>
+  </scm>
 </project>
