@@ -26,13 +26,14 @@ import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smackx.filetransfer.FileTransferListener;
 import org.jivesoftware.smackx.filetransfer.FileTransferRequest;
+import org.mnode.base.config.UnsupportedValueConversionException;
 
 public class FileTransferListenerIntegrationTest extends AbstractXmppIntegrationTest {
 
     private static final Log LOG = LogFactory
             .getLog(FileTransferListenerIntegrationTest.class);
 
-    public void testRegisterFileTransferListener() throws XMPPException, IOException {
+    public void testRegisterFileTransferListener() throws XMPPException, IOException, UnsupportedValueConversionException {
         FileTransferListener listener = new FileTransferListener() {
             @Override
             public void fileTransferRequest(FileTransferRequest request) {

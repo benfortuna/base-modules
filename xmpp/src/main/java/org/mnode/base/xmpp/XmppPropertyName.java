@@ -19,40 +19,53 @@
 
 package org.mnode.base.xmpp;
 
+import org.mnode.base.config.PropertyName;
+
 /**
  * @author fortuna
  *
  */
-public enum XmppPropertyName {
+public enum XmppPropertyName implements PropertyName {
 
     /**
      * The service name (i.e. host) for an XMPP connection.
      */
-    ServiceName("connection.serviceName"),
+    ServiceName("connection.serviceName", String.class),
     
     /**
      * The username for an XMPP connection.
      */
-    Username("connection.username"),
+    Username("connection.username", String.class),
     
     /**
      * The password for an XMPP connection.
      */
-    Password("connection.password");
+    Password("connection.password", String.class);
     
     private final String key;
+    
+    private final Class<?> type;
     
     /**
      * @param key
      */
-    private XmppPropertyName(String key) {
+    private XmppPropertyName(String key, Class<?> type) {
         this.key = key;
+        this.type = type;
     }
 
     /**
-     * @return the key
+     * {@inheritDoc}
      */
     public String getKey() {
         return key;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+    public <T> Class<T> getType() {
+        return (Class<T>) type;
     }
 }

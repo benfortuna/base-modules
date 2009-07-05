@@ -31,6 +31,7 @@ import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smackx.ChatState;
 import org.jivesoftware.smackx.ChatStateListener;
+import org.mnode.base.config.UnsupportedValueConversionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +43,7 @@ public class ChatManagerListenerIntegrationTest extends AbstractXmppIntegrationT
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatManagerListenerIntegrationTest.class);
 
-    public void testRegisterChatManagerListener() throws XMPPException, IOException {
+    public void testRegisterChatManagerListener() throws XMPPException, IOException, UnsupportedValueConversionException {
 
         final MessageListener messageListener = new MessageListenerImpl();
 

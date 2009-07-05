@@ -25,12 +25,13 @@ import org.apache.commons.logging.LogFactory;
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
+import org.mnode.base.config.UnsupportedValueConversionException;
 
 public class ConnectionListenerIntegrationTest extends AbstractXmppIntegrationTest {
 
     private static final Log LOG = LogFactory.getLog(ConnectionListenerIntegrationTest.class);
 
-    public void testRegisterConnectionListener() throws XMPPException, IOException {
+    public void testRegisterConnectionListener() throws XMPPException, IOException, UnsupportedValueConversionException {
         ConnectionListener listener = new ConnectionListener() {
             @Override
             public void connectionClosed() {

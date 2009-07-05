@@ -30,6 +30,7 @@ import org.jivesoftware.smack.RosterListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Presence;
+import org.mnode.base.config.UnsupportedValueConversionException;
 
 /**
  * @author fortuna
@@ -39,7 +40,7 @@ public class RosterListenerIntegrationTest extends AbstractXmppIntegrationTest {
 
     private static final Log LOG = LogFactory.getLog(RosterListenerIntegrationTest.class);
 
-    public void testRegisterRosterListener() throws XMPPException, IOException {
+    public void testRegisterRosterListener() throws XMPPException, IOException, UnsupportedValueConversionException {
 
         RosterListener listener = new RosterListener() {
             @Override

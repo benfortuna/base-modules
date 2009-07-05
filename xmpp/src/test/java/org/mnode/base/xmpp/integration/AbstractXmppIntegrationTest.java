@@ -23,20 +23,26 @@ import java.util.Properties;
 
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
+import org.mnode.base.config.PropertiesConfiguration;
+import org.mnode.base.config.UnsupportedValueConversionException;
 import org.mnode.base.xmpp.XmppPropertyName;
 import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
 import org.springframework.osgi.test.platform.Platforms;
 
 public abstract class AbstractXmppIntegrationTest extends AbstractConfigurableBundleCreatorTests {
     
-    protected XMPPConnection newConnection() throws XMPPException, IOException {
+    protected XMPPConnection newConnection() throws XMPPException, IOException, UnsupportedValueConversionException {
         Properties props = new Properties();
         props.load(getClass().getResourceAsStream("/connection.properties"));
         
-        XMPPConnection connection = new XMPPConnection(props.getProperty(XmppPropertyName.ServiceName.getKey()));
+        PropertiesConfiguration config = new PropertiesConfiguration(props);
+        String serviceName = config.get(XmppPropertyName.ServiceName);
+        String username = config.get(XmppPropertyName.Username);
+        String password = config.get(XmppPropertyName.Password);
+        
+        XMPPConnection connection = new XMPPConnection(serviceName);
         connection.connect();
-        connection.login(props.getProperty(XmppPropertyName.Username.getKey()),
-                props.getProperty(XmppPropertyName.Password.getKey()));
+        connection.login(username, password);
         return connection;
     }
     
