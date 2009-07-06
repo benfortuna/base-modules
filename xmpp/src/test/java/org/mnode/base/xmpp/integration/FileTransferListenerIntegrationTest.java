@@ -33,7 +33,9 @@ public class FileTransferListenerIntegrationTest extends AbstractXmppIntegration
     private static final Log LOG = LogFactory
             .getLog(FileTransferListenerIntegrationTest.class);
 
-    public void testRegisterFileTransferListener() throws XMPPException, IOException, UnsupportedValueConversionException {
+    public void testRegisterFileTransferListener() throws XMPPException, IOException,
+        UnsupportedValueConversionException {
+        
         FileTransferListener listener = new FileTransferListener() {
             @Override
             public void fileTransferRequest(FileTransferRequest request) {

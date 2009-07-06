@@ -31,7 +31,9 @@ public class ConnectionListenerIntegrationTest extends AbstractXmppIntegrationTe
 
     private static final Log LOG = LogFactory.getLog(ConnectionListenerIntegrationTest.class);
 
-    public void testRegisterConnectionListener() throws XMPPException, IOException, UnsupportedValueConversionException {
+    public void testRegisterConnectionListener() throws XMPPException, IOException,
+        UnsupportedValueConversionException {
+        
         ConnectionListener listener = new ConnectionListener() {
             @Override
             public void connectionClosed() {

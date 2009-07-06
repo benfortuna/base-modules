@@ -43,7 +43,8 @@ public class ChatManagerListenerIntegrationTest extends AbstractXmppIntegrationT
 
     private static final Logger LOG = LoggerFactory.getLogger(ChatManagerListenerIntegrationTest.class);
 
-    public void testRegisterChatManagerListener() throws XMPPException, IOException, UnsupportedValueConversionException {
+    public void testRegisterChatManagerListener() throws XMPPException, IOException,
+        UnsupportedValueConversionException {
 
         final MessageListener messageListener = new MessageListenerImpl();
 
