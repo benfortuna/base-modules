@@ -39,9 +39,11 @@ public abstract class AbstractConfiguration implements Configuration {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     @Override
     public final <T> T get(PropertyName name) throws UnsupportedValueConversionException {
-        return get(name, null);
+        T value = (T) get(name, null);
+        return value;
     }
 
     protected final <T> T convert(String value, Class<? extends T> returnType) throws UnsupportedValueConversionException {

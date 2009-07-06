@@ -34,16 +34,17 @@ public class PropertiesConfiguration extends AbstractConfiguration {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     @Override
     public <T> List<T> getAll(PropertyName name) throws UnsupportedValueConversionException {
         List<T> values = new ArrayList<T>();
-        T value = get(name);
+        T value = (T) get(name);
         if (value != null) {
             values.add(value);
         }
         else {
             for (int i = 0;; i++) {
-                value = getMultiValue(name, i);
+                value = (T) getMultiValue(name, i);
                 if (value != null) {
                     values.add(value);
                 }
