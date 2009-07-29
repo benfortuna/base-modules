@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This file is part of Base Modules.
+
+    Copyright (c) 2009, Ben Fortuna [fortuna@micronode.com]
+
+    Base Modules is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Base Modules is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Base Modules.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:osgi="http://www.springframework.org/schema/osgi"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                      http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
+	osgi:default-cardinality="0..X">
+
+	<osgi:reference id="connection"
+		interface="org.mnode.base.irc.ConnectionDescriptor">
+		<osgi:listener ref="connectionManager" bind-method="addConnection"
+			unbind-method="removeConnection" />
+	</osgi:reference>
+	
+	<osgi:reference id="messageHandlers" interface="org.mnode.base.irc.MessageHandler">
+        <osgi:listener ref="messageHandlerRegistry"
+            bind-method="registerSubscriber" unbind-method="unregisterSubscriber" />
+	</osgi:reference>
+    
+    <osgi:reference id="chatHandlers" interface="org.mnode.base.irc.ChatHandler">
+        <osgi:listener ref="chatHandlerRegistry"
+            bind-method="registerSubscriber" unbind-method="unregisterSubscriber" />
+    </osgi:reference>
+    
+    <osgi:reference id="fileTransferHandlers" interface="org.mnode.base.irc.FileTransferHandler">
+        <osgi:listener ref="fileTransferHandlerRegistry"
+            bind-method="registerSubscriber" unbind-method="unregisterSubscriber" />
+    </osgi:reference>
+</beans>
