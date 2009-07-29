@@ -59,7 +59,7 @@ public class RetryInvocationHandlerTest {
         }, retryHandler);
         
         proxy = (ExceptionGenerator) Proxy.newProxyInstance(ExceptionGenerator.class.getClassLoader(),
-                new Class<?>[] { ExceptionGenerator.class}, handler);
+                new Class<?>[] {ExceptionGenerator.class}, handler);
     }
     
     @Test
