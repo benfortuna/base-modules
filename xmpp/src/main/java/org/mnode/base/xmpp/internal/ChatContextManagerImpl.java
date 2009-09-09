@@ -18,8 +18,8 @@
  */
 package org.mnode.base.xmpp.internal;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ChatManagerListener;
@@ -43,7 +43,7 @@ public class ChatContextManagerImpl implements ChatContextManager,
      * 
      */
     public ChatContextManagerImpl() {
-        contexts = new HashMap<Chat, ChatContext>();
+        contexts = new ConcurrentHashMap<Chat, ChatContext>();
         XMPPConnection.addConnectionCreationListener(this);
     }
 
