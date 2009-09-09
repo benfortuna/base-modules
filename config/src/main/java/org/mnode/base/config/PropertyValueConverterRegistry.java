@@ -21,6 +21,7 @@ package org.mnode.base.config;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.mnode.base.config.converter.IntegerValueConverter;
 import org.mnode.base.config.converter.StringValueConverter;
@@ -39,7 +40,7 @@ public class PropertyValueConverterRegistry {
         defaultConverters = new HashMap<Class<?>, PropertyValueConverter<?>>();
         defaultConverters.put(Integer.class, new IntegerValueConverter());
         defaultConverters.put(String.class, new StringValueConverter());
-        extendedConverters = new HashMap<Class<?>, PropertyValueConverter<?>>();
+        extendedConverters = new ConcurrentHashMap<Class<?>, PropertyValueConverter<?>>();
     }
     
     /**
