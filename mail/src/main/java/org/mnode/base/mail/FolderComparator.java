@@ -19,6 +19,7 @@
 package org.mnode.base.mail;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -33,36 +34,44 @@ public class FolderComparator implements Comparator<Folder> {
     /**
      * A list of names of inbox folders.
      */
-    public static final List<String> INBOX_NAMES = new ArrayList<String>();
+    public static final List<String> INBOX_NAMES ;
     static {
-        INBOX_NAMES.add("inbox");
+        List<String> names = new ArrayList<String>();
+        names.add("inbox");
+        INBOX_NAMES = Collections.unmodifiableList(names);
     }
 
     /**
      * A list of names of outbox folders.
      */
-    public static final List<String> OUTBOX_NAMES = new ArrayList<String>();
+    public static final List<String> OUTBOX_NAMES;
     static {
-        OUTBOX_NAMES.add("outbox");
+        List<String> names = new ArrayList<String>();
+        names.add("outbox");
+        OUTBOX_NAMES = Collections.unmodifiableList(names);
     }
 
     /**
      * A list of names of sent message folders.
      */
-    public static final List<String> SENT_NAMES = new ArrayList<String>();
+    public static final List<String> SENT_NAMES;
     static {
-        SENT_NAMES.add("sent");
-        SENT_NAMES.add("sent items");
-        SENT_NAMES.add("sent mail");
+        List<String> names = new ArrayList<String>();
+        names.add("sent");
+        names.add("sent items");
+        names.add("sent mail");
+        SENT_NAMES = Collections.unmodifiableList(names);
     }
 
     /**
      * A list of names of deleted message folders.
      */
-    public static final List<String> DELETED_NAMES = new ArrayList<String>();
+    public static final List<String> DELETED_NAMES;
     static {
-        DELETED_NAMES.add("deleted");
-        DELETED_NAMES.add("trash");
+        List<String> names = new ArrayList<String>();
+        names.add("deleted");
+        names.add("trash");
+        DELETED_NAMES = Collections.unmodifiableList(names);
     }
 
     /**

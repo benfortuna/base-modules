@@ -18,8 +18,8 @@
  */
 package org.mnode.base.mail;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.mail.Folder;
 import javax.mail.MessagingException;
@@ -44,9 +44,9 @@ public class FolderCache implements FolderListener, MessageCountListener {
 	 * 
 	 */
     public FolderCache() {
-        folderNames = new HashMap<Folder, String>();
-        folderUnreadCount = new HashMap<Folder, Integer>();
-        folderExists = new HashMap<Folder, Boolean>();
+        folderNames = new ConcurrentHashMap<Folder, String>();
+        folderUnreadCount = new ConcurrentHashMap<Folder, Integer>();
+        folderExists = new ConcurrentHashMap<Folder, Boolean>();
     }
 
     /**

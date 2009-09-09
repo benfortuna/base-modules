@@ -20,27 +20,28 @@ package org.mnode.base.mail;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author fortuna
- *
+ * 
  */
 public class MailboxManager {
 
-	private List<Mailbox> mailboxes;
+    private List<Mailbox> mailboxes;
 
-	/**
+    /**
 	 * 
 	 */
-	public MailboxManager() {
-		mailboxes = new ArrayList<Mailbox>();
-	}
-	
-	/**
-	 * @return the mailboxes
-	 */
-	public final List<Mailbox> getMailboxes() {
-		return mailboxes;
-	}
-	
+    public MailboxManager() {
+        mailboxes = new CopyOnWriteArrayList<Mailbox>();
+    }
+
+    /**
+     * @return the mailboxes
+     */
+    public final List<Mailbox> getMailboxes() {
+        return mailboxes;
+    }
+
 }
