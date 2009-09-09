@@ -18,10 +18,10 @@
  */
 package org.mnode.base.commons;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Base class for registry implementations to assist implementation of the
@@ -44,8 +44,8 @@ public abstract class AbstractPubSubRegistry<P, S> {
      * 
      */
     public AbstractPubSubRegistry() {
-        publishers = new ArrayList<P>();
-        subscribers = new HashMap<S, Map<String, ?>>();
+        publishers = new CopyOnWriteArrayList<P>();
+        subscribers = new ConcurrentHashMap<S, Map<String, ?>>();
     }
 
     /**
