@@ -26,21 +26,23 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 /**
  * Enhance the default combo box renderer by adding support for separators.
+ * 
  * @author Ben Fortuna
  */
 public class EnhancedComboBoxRenderer extends BasicComboBoxRenderer {
-	
-	private static final long serialVersionUID = 1768975539253158314L;
 
-	/* (non-Javadoc)
-	 * @see javax.swing.plaf.basic.BasicComboBoxRenderer#getListCellRendererComponent(javax.swing.JList, java.lang.Object, int, boolean, boolean)
-	 */
-	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-		Component defaultRenderer = super.getListCellRendererComponent(list, value, index, isSelected,
-				cellHasFocus);
-		if (value instanceof JSeparator) {
-			return (Component) value;
-		}
-		return defaultRenderer;
-	}
+    private static final long serialVersionUID = 1768975539253158314L;
+
+    /**
+     * {@inheritDoc}
+     */
+    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
+            boolean cellHasFocus) {
+        final Component defaultRenderer = super.getListCellRendererComponent(list,
+                value, index, isSelected, cellHasFocus);
+        if (value instanceof JSeparator) {
+            return (Component) value;
+        }
+        return defaultRenderer;
+    }
 }

@@ -31,48 +31,49 @@ import javax.swing.tree.TreePath;
 
 /**
  * An abstract tree model implementation.
+ * 
  * @author Ben Fortuna
  */
 public abstract class AbstractTreeModel implements TreeModel {
 
-	private List<TreeModelListener> listeners;
+    private final List<TreeModelListener> listeners;
 
-	/**
-	 * Default constructor.
-	 */
-	public AbstractTreeModel() {
-		listeners = new ArrayList<TreeModelListener>();
-	}
+    /**
+     * Default constructor.
+     */
+    public AbstractTreeModel() {
+        listeners = new ArrayList<TreeModelListener>();
+    }
 
-	/* (non-Javadoc)
-	 * @see javax.swing.tree.TreeModel#valueForPathChanged(javax.swing.tree.TreePath, java.lang.Object)
-	 */
-	public void valueForPathChanged(TreePath path, Object newValue) {
-		// TODO Auto-generated method stub
+    /**
+     * {@inheritDoc}
+     */
+    public void valueForPathChanged(TreePath path, Object newValue) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	/* (non-Javadoc)
-	 * @see javax.swing.tree.TreeModel#addTreeModelListener(javax.swing.event.TreeModelListener)
-	 */
-	public void addTreeModelListener(TreeModelListener listener) {
-		listeners.add(listener);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public void addTreeModelListener(TreeModelListener listener) {
+        listeners.add(listener);
+    }
 
-	/* (non-Javadoc)
-	 * @see javax.swing.tree.TreeModel#removeTreeModelListener(javax.swing.event.TreeModelListener)
-	 */
-	public void removeTreeModelListener(TreeModelListener listener) {
-		listeners.remove(listener);
-	}
-	
-	/**
-	 * @param path
-	 */
-	protected void fireTreeStructureChanged(TreePath path) {
-		TreeModelEvent e = new TreeModelEvent(this, path);
-		for (TreeModelListener l : listeners) {
-			l.treeStructureChanged(e);
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public void removeTreeModelListener(TreeModelListener listener) {
+        listeners.remove(listener);
+    }
+
+    /**
+     * @param path the changed path
+     */
+    protected void fireTreeStructureChanged(TreePath path) {
+        final TreeModelEvent e = new TreeModelEvent(this, path);
+        for (TreeModelListener l : listeners) {
+            l.treeStructureChanged(e);
+        }
+    }
 }
