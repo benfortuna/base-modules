@@ -58,7 +58,7 @@ public class ServiceProxy {
          * {@inheritDoc}
          */
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            Object service = tracker.getService();
+            final Object service = tracker.getService();
             if (service == null) {
                 throw new ServiceNotAvailableException();
             }

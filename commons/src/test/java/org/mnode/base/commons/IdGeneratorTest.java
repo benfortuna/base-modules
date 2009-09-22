@@ -42,10 +42,10 @@ public class IdGeneratorTest {
     
     @Test
     public void testGenerateId() {
-        String id = generator.generateId();
+        final String id = generator.generateId();
         Assert.assertTrue(id.startsWith(prefix));
         
-        String anotherId = generator.generateId();
+        final String anotherId = generator.generateId();
         Assert.assertNotSame(id, anotherId);
     }
 }

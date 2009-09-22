@@ -91,7 +91,7 @@ public class OsgiServiceLocatorTest {
             }
         });
         
-        String foundService = serviceLocator.findService(String.class);
+        final String foundService = serviceLocator.findService(String.class);
         Assert.assertEquals(service, foundService);
     }
     

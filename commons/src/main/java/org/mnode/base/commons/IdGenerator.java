@@ -51,7 +51,7 @@ public class IdGenerator {
      * @return an identifier guaranteed to be unique across processes
      */
     public String generateId() {
-        StringBuilder b = new StringBuilder();
+        final StringBuilder b = new StringBuilder();
         if (StringUtils.isNotEmpty(prefix)) {
             b.append(prefix).append('-');
         }

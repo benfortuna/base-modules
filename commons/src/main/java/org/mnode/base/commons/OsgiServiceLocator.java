@@ -59,7 +59,7 @@ public class OsgiServiceLocator implements ServiceLocator {
                 }
             }
         }
-        T service = (T) tracker.getService();
+        final T service = (T) tracker.getService();
         if (service == null) {
             throw new ServiceNotAvailableException("Service of type [" + type + "] not found.");
         }

@@ -31,6 +31,10 @@ public class AbstractPubSubRegistryTest {
 
     private Map<String, String> subscribed;
 
+    private final String publisher = "pub";
+    
+    private final String subscriber = "sub";
+
     @Before
     public void runBeforeEachTest() {
         subscribed = new HashMap<String, String>();
@@ -52,9 +56,7 @@ public class AbstractPubSubRegistryTest {
 
     @Test
     public void testSubscribeAfterPublisher() {
-        String publisher = "pub";
-        String subscriber = "sub";
-        Map<String, String> props = new HashMap<String, String>();
+        final Map<String, String> props = new HashMap<String, String>();
         registry.registerPublisher(publisher, props);
         registry.registerSubscriber(subscriber, props);
 
@@ -63,9 +65,7 @@ public class AbstractPubSubRegistryTest {
 
     @Test
     public void testSubscribeBeforePublisher() {
-        String publisher = "pub";
-        String subscriber = "sub";
-        Map<String, String> props = new HashMap<String, String>();
+        final Map<String, String> props = new HashMap<String, String>();
         registry.registerSubscriber(subscriber, props);
         registry.registerPublisher(publisher, props);
 
@@ -74,9 +74,7 @@ public class AbstractPubSubRegistryTest {
 
     @Test
     public void testUnsubscribeAfterPublisher() {
-        String publisher = "pub";
-        String subscriber = "sub";
-        Map<String, String> props = new HashMap<String, String>();
+        final Map<String, String> props = new HashMap<String, String>();
         registry.registerPublisher(publisher, props);
         registry.registerSubscriber(subscriber, props);
 
@@ -88,9 +86,7 @@ public class AbstractPubSubRegistryTest {
 
     @Test
     public void testUnsubscribeBeforePublisher() {
-        String publisher = "pub";
-        String subscriber = "sub";
-        Map<String, String> props = new HashMap<String, String>();
+        final Map<String, String> props = new HashMap<String, String>();
         registry.registerSubscriber(subscriber, props);
         registry.registerPublisher(publisher, props);
 
@@ -103,9 +99,7 @@ public class AbstractPubSubRegistryTest {
     
     @Test
     public void testUnregisterAll() {
-        String publisher = "pub";
-        String subscriber = "sub";
-        Map<String, String> props = new HashMap<String, String>();
+        final Map<String, String> props = new HashMap<String, String>();
         registry.registerPublisher(publisher, props);
         registry.registerSubscriber(subscriber, props);
         Assert.assertEquals(subscriber, subscribed.get(publisher));
