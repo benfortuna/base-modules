@@ -20,16 +20,18 @@
 package org.mnode.base.log;
 
 /**
- * Defines a structured log message.
- * 
  * @author fortuna
  *
  */
-public interface LogMessage {
+public interface LogAdapter {
+    
+    void log(LogEntry entry, Object...args);
+
+    void log(LogEntry entry, Throwable exception, Object...args);
 
     /**
-     * @param args optional arguments to include in the message
-     * @return a formatted log message
+     * @param entry
+     * @return
      */
-    String format(Object...args);
+    boolean isLoggable(LogEntry entry);
 }
