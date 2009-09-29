@@ -17,12 +17,13 @@
  * along with Base Modules.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.mnode.base.commons;
+package org.mnode.base.commons.osgi;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+import org.mnode.base.commons.ServiceNotAvailableException;
 import org.osgi.framework.BundleContext;
 import org.osgi.util.tracker.ServiceTracker;
 

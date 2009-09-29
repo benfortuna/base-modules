@@ -17,7 +17,7 @@
  * along with Base Modules.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.mnode.base.commons;
+package org.mnode.base.commons.osgi;
 
 import junit.framework.Assert;
 
@@ -28,6 +28,8 @@ import org.jmock.Mockery;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mnode.base.commons.ServiceNotAvailableException;
+import org.mnode.base.commons.osgi.OsgiServiceLocator;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
