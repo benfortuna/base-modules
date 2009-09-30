@@ -23,8 +23,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.mnode.base.commons.ServiceLocator;
+import org.mnode.base.commons.ServiceName;
 import org.mnode.base.commons.ServiceNotAvailableException;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.Filter;
+import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
@@ -35,35 +38,40 @@ public class OsgiServiceLocator implements ServiceLocator {
 
     private final BundleContext context;
     
-    private final Map<Class<?>, ServiceTracker> serviceTrackers;
+    private final Map<ServiceName, ServiceTracker> serviceTrackers;
     
     /**
      * @param context the bundle context in which to find services
      */
     public OsgiServiceLocator(BundleContext context) {
         this.context = context;
-        serviceTrackers = new HashMap<Class<?>, ServiceTracker>();
+        serviceTrackers = new HashMap<ServiceName, ServiceTracker>();
     }
     
     /**
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    public <T> T findService(Class<T> type) throws ServiceNotAvailableException {
-        ServiceTracker tracker = serviceTrackers.get(type);
+    public <T> T findService(ServiceName name) throws ServiceNotAvailableException {
+        ServiceTracker tracker = serviceTrackers.get(name);
         if (tracker == null) {
             synchronized (serviceTrackers) {
-                tracker = serviceTrackers.get(type);
+                tracker = serviceTrackers.get(name);
                 if (tracker == null) {
-                    tracker = new ServiceTracker(context, type.getName(), null);
-                    tracker.open();
-                    serviceTrackers.put(type, tracker);
+                    try {
+                        final Filter filter = context.createFilter(name.getFilter());
+                        tracker = new ServiceTracker(context, filter, null);
+                        tracker.open();
+                        serviceTrackers.put(name, tracker);
+                    } catch (InvalidSyntaxException e) {
+                        throw new IllegalArgumentException(e);
+                    }
                 }
             }
         }
         final T service = (T) tracker.getService();
         if (service == null) {
-            throw new ServiceNotAvailableException("Service of type [" + type + "] not found.");
+            throw new ServiceNotAvailableException("Service matching [" + name.getFilter() + "] not found.");
         }
         return service;
     }

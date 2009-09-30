@@ -23,13 +23,10 @@ package org.mnode.base.commons;
  * @author fortuna
  *
  */
-public interface ServiceLocator {
+public interface ServiceName {
 
     /**
-     * @param <T> the service type
-     * @param name the service name
-     * @return a service with the specified name
-     * @throws ServiceNotAvailableException where the requested service is not available
+     * @return a filter string specifying the service classification/location
      */
-    <T> T findService(ServiceName name) throws ServiceNotAvailableException;
+    String getFilter();
 }
