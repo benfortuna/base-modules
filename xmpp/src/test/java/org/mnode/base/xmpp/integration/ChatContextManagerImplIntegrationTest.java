@@ -24,7 +24,7 @@ import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ChatManagerListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-import org.mnode.base.commons.OsgiServiceLocator;
+import org.mnode.base.commons.osgi.OsgiServiceLocator;
 import org.mnode.base.commons.ServiceLocator;
 import org.mnode.base.commons.ServiceNotAvailableException;
 import org.mnode.base.config.UnsupportedValueConversionException;
