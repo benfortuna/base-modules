@@ -77,21 +77,33 @@ public abstract class AbstractTreeModel implements TreeModel {
         }
     }
     
-    protected final void fireTreeNodesInserted(Object[] path, int[] childIndices, Object[] children) {
+    protected final void fireTreeNodesInserted(Object[] path, int[] childIndices) {
+        final Object[] children = new Object[childIndices.length];
+        for (int i = 0; i < childIndices.length; i++) {
+            children[i] = getChild(path[path.length - 1], childIndices[i]);
+        }
         final TreeModelEvent e = new TreeModelEvent(this, path, childIndices, children);
         for (TreeModelListener l : listeners) {
             l.treeNodesInserted(e);
         }
     }
     
-    protected final void fireTreeNodesRemoved(Object[] path, int[] childIndices, Object[] children) {
+    protected final void fireTreeNodesRemoved(Object[] path, int[] childIndices) {
+        final Object[] children = new Object[childIndices.length];
+        for (int i = 0; i < childIndices.length; i++) {
+            children[i] = getChild(path[path.length - 1], childIndices[i]);
+        }
         final TreeModelEvent e = new TreeModelEvent(this, path, childIndices, children);
         for (TreeModelListener l : listeners) {
             l.treeNodesRemoved(e);
         }
     }
     
-    protected final void fireTreeNodesChanges(Object[] path, int[] childIndices, Object[] children) {
+    protected final void fireTreeNodesChanged(Object[] path, int[] childIndices) {
+        final Object[] children = new Object[childIndices.length];
+        for (int i = 0; i < childIndices.length; i++) {
+            children[i] = getChild(path[path.length - 1], childIndices[i]);
+        }
         final TreeModelEvent e = new TreeModelEvent(this, path, childIndices, children);
         for (TreeModelListener l : listeners) {
             l.treeNodesChanged(e);
