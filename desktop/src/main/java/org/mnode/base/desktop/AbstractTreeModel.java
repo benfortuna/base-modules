@@ -70,10 +70,31 @@ public abstract class AbstractTreeModel implements TreeModel {
     /**
      * @param path the changed path
      */
-    protected void fireTreeStructureChanged(TreePath path) {
+    protected final void fireTreeStructureChanged(Object[] path) {
         final TreeModelEvent e = new TreeModelEvent(this, path);
         for (TreeModelListener l : listeners) {
             l.treeStructureChanged(e);
+        }
+    }
+    
+    protected final void fireTreeNodesInserted(Object[] path, int[] childIndices, Object[] children) {
+        final TreeModelEvent e = new TreeModelEvent(this, path, childIndices, children);
+        for (TreeModelListener l : listeners) {
+            l.treeNodesInserted(e);
+        }
+    }
+    
+    protected final void fireTreeNodesRemoved(Object[] path, int[] childIndices, Object[] children) {
+        final TreeModelEvent e = new TreeModelEvent(this, path, childIndices, children);
+        for (TreeModelListener l : listeners) {
+            l.treeNodesRemoved(e);
+        }
+    }
+    
+    protected final void fireTreeNodesChanges(Object[] path, int[] childIndices, Object[] children) {
+        final TreeModelEvent e = new TreeModelEvent(this, path, childIndices, children);
+        for (TreeModelListener l : listeners) {
+            l.treeNodesChanged(e);
         }
     }
 }
