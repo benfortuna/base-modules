@@ -129,5 +129,11 @@
 			<artifactId>jxlayer</artifactId>
 			<version>3.0.3</version>
 		</dependency>
+		<dependency>
+			<groupId>mrj</groupId>
+			<artifactId>MRJToolkitStubs</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
