@@ -26,7 +26,7 @@
 				<version>1.4.0</version>
 				<configuration>
 					<instructions>
-						<Export-Package>org.mnode.base.desktop</Export-Package>
+						<Export-Package>org.mnode.base.desktop*</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>
