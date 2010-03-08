@@ -185,25 +185,8 @@
 				<configuration>
 					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
 					<instructions>
-						<!-- Conflict with spring dm integrating with logging frameworks -->
-						<!-- 
-						<Export-Package>
-							org.mnode.base.log,net.sf.ehcache*,org.apache.commons.logging,org.apache.log4j;version="1.2.15"
-						</Export-Package>
-						 -->
-						<Export-Package>
-							org.mnode.base.log*,net.sf.ehcache*
-						</Export-Package>
+						<Export-Package>org.mnode.base.log*</Export-Package>
 						<Private-Package>org.mnode.base.log.internal*</Private-Package>
-						<!-- embed all compile and runtime scope dependencies -->
-						<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
-						<Embed-Transitive>true</Embed-Transitive>
-						<!--
-							add ,plugin.xml if it's present i.e.
-							src/main/resources,plugin.xml
-						-->
-						<Include-Resource>src/main/resources</Include-Resource>
-						<Import-Package>!org.hibernate.cache,!com.sun.jdmk.comm,!javax.jms,!javax.mail,!javax.mail.internet,!javax.servlet,!org.apache.avalon.framework.logger,!org.apache.log,org.springframework.cache.ehcache,*</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
