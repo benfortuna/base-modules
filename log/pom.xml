@@ -192,7 +192,7 @@
 						</Export-Package>
 						 -->
 						<Export-Package>
-							org.mnode.base.log,net.sf.ehcache*
+							org.mnode.base.log*,net.sf.ehcache*
 						</Export-Package>
 						<Private-Package>org.mnode.base.log.internal*</Private-Package>
 						<!-- embed all compile and runtime scope dependencies -->
