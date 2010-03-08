@@ -28,6 +28,7 @@ import org.mnode.base.log.FormattedLogEntry;
 import org.mnode.base.log.LogAdapter;
 import org.mnode.base.log.LogEntry;
 import org.mnode.base.log.LogEntry.Level;
+import org.mnode.base.log.adapter.AsyncLogAdapter;
 import org.mnode.base.log.adapter.JclAdapter;
 
 /**
@@ -37,7 +38,7 @@ import org.mnode.base.log.adapter.JclAdapter;
  */
 public class JSplitPaneTracker extends ComponentTracker implements PropertyChangeListener {
 
-    private static final LogAdapter LOG = new JclAdapter(LogFactory.getLog(JSplitPaneTracker.class));
+    private static final LogAdapter LOG = new AsyncLogAdapter(new JclAdapter(LogFactory.getLog(JSplitPaneTracker.class)));
 
     private static final LogEntry PROPERTY_CHANGED_LOG = new FormattedLogEntry(Level.Debug, "Property changed: %s");
     
