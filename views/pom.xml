@@ -125,6 +125,11 @@
 			<artifactId>layer</artifactId>
 			<version>20080814</version>
 		</dependency>
+		<dependency>
+			<groupId>org.mnode.base</groupId>
+			<artifactId>base-desktop</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<scm>
 		<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/views</connection>

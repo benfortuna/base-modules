@@ -26,7 +26,7 @@ import javax.swing.ImageIcon;
 import javax.swing.WindowConstants;
 
 import org.jdesktop.swingx.JXFrame;
-import org.mnode.base.views.tracker.TrackerRegistry;
+import org.mnode.base.desktop.tracker.TrackerRegistry;
 
 /**
  * @param <V> the view type embedded by this frame

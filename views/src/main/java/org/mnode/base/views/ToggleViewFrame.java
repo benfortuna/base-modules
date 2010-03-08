@@ -35,7 +35,7 @@ import javax.swing.JToggleButton;
 import org.jdesktop.swingx.JXButton;
 import org.jdesktop.swingx.JXFrame;
 import org.jdesktop.swingx.JXPanel;
-import org.mnode.base.views.tracker.TrackerRegistry;
+import org.mnode.base.desktop.tracker.TrackerRegistry;
 
 /**
  * @author Ben

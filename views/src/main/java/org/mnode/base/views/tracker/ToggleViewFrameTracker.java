@@ -22,6 +22,7 @@ import java.awt.Frame;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import org.mnode.base.desktop.tracker.FrameTracker;
 import org.mnode.base.views.ToggleViewFrame;
 import org.mnode.base.views.ToggleViewFrame.Mode;
 

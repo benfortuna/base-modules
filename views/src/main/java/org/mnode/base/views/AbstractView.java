@@ -32,7 +32,7 @@ import javax.swing.SwingUtilities;
 
 import org.jdesktop.swingx.JXPanel;
 import org.mnode.base.views.action.CloseViewAction;
-import org.mnode.base.views.tracker.TrackerRegistry;
+import org.mnode.base.desktop.tracker.TrackerRegistry;
 
 /**
  * Abstract base implementation for views. Default view layout is a {@link BorderLayout}.
