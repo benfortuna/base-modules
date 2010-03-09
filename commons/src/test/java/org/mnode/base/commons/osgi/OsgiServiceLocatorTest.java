@@ -28,8 +28,8 @@ import org.jmock.Mockery;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mnode.base.commons.ServiceName;
 import org.mnode.base.commons.ServiceNotAvailableException;
-import org.mnode.base.commons.osgi.OsgiServiceLocator;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
@@ -57,6 +57,25 @@ public class OsgiServiceLocatorTest {
     
     private Mockery mockContext;
     
+    private enum ServiceNameImpl implements ServiceName {
+        TestService("TestServiceFilter"),
+        
+        IntegerService("IntegerServiceFilter");
+        
+        private String filter;
+        
+        private ServiceNameImpl(String filter) {
+            this.filter = filter;
+        }
+        
+        /**
+         * {@inheritDoc}
+         */
+        public String getFilter() {
+            return filter;
+        };
+    }
+    
     @Before
     public void runBeforeEachTest() {
         mockContext = new Mockery();
@@ -81,19 +100,23 @@ public class OsgiServiceLocatorTest {
     public void testFindService() throws InvalidSyntaxException, ServiceNotAvailableException {
         mockContext.checking(new Expectations() {
             {
-                one(bundleContext).createFilter(with(any(String.class)));
+                one(bundleContext).createFilter(with(ServiceNameImpl.TestService.getFilter()));
+                
                 one(bundleContext).addServiceListener(with(any(ServiceListener.class)),
                         with(any(String.class)));
+                
                 one(bundleContext).getServiceReferences(with(any(String.class)), with(any(String.class)));
-                    will(returnValue(new ServiceReference[] { serviceReference }));
+                will(returnValue(new ServiceReference[] { serviceReference }));
+                
                 allowing(bundleContext).getService(serviceReference);
-                    will(returnValue(service));
+                will(returnValue(service));
+                
                 allowing(serviceReference).getBundle();
-                    will(returnValue(bundle));
+                will(returnValue(bundle));
             }
         });
         
-        final String foundService = serviceLocator.findService(String.class);
+        final String foundService = serviceLocator.findService(ServiceNameImpl.TestService);
         Assert.assertEquals(service, foundService);
     }
     
@@ -111,7 +134,7 @@ public class OsgiServiceLocatorTest {
         
 //        Integer foundService;
         try {
-            serviceLocator.findService(Integer.class);
+            serviceLocator.findService(ServiceNameImpl.IntegerService);
             Assert.fail("Should throw " + ServiceNotAvailableException.class.getSimpleName());
         } catch (ServiceNotAvailableException e) {
             LOG.info("Caught exception: " + e);
