@@ -26,10 +26,12 @@ import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.mnode.base.commons.osgi.OsgiServiceLocator;
 import org.mnode.base.commons.ServiceLocator;
+import org.mnode.base.commons.ServiceName;
 import org.mnode.base.commons.ServiceNotAvailableException;
 import org.mnode.base.config.UnsupportedValueConversionException;
 import org.mnode.base.xmpp.ChatContext;
 import org.mnode.base.xmpp.ChatContextManager;
+import org.osgi.framework.Constants;
 
 public class ChatContextManagerImplIntegrationTest extends AbstractXmppIntegrationTest {
 
@@ -41,7 +43,12 @@ public class ChatContextManagerImplIntegrationTest extends AbstractXmppIntegrati
         ServiceLocator serviceLocator = new OsgiServiceLocator(bundleContext);
         
 //        final ChatContextManager contextManager = (ChatContextManager) tracker.getService();
-        final ChatContextManager contextManager = serviceLocator.findService(ChatContextManager.class);
+        final ChatContextManager contextManager = serviceLocator.findService(new ServiceName() {
+            @Override
+            public String getFilter() {
+                return String.format("(%s=%s)", Constants.OBJECTCLASS, ChatContextManager.class.getName());
+            }
+        });
         assertNotNull(contextManager);
 
         final XMPPConnection connection = newConnection();
