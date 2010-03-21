@@ -30,9 +30,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.text.JTextComponent;
 
 import org.jdesktop.jxlayer.JXLayer;
@@ -70,11 +68,19 @@ public class UnicodeTextLayerUI extends AbstractLayerUI<JTextComponent> {
         System.out.println("Show unicode input.." + e.getKeyCode());
         List<Character> charMap = characterMap.get(e.getKeyCode());
         if (charMap != null) {
+            /*
             JPanel charMapPanel = new JPanel();
             for (Character character : charMap) {
                 charMapPanel.add(new JButton(String.valueOf(character)));
             }
             JOptionPane.showInputDialog(c, charMapPanel, "Character Map", JOptionPane.QUESTION_MESSAGE);
+            */
+            Object selection = JOptionPane.showInputDialog(c, "Select Character", "Character Map",
+                    JOptionPane.QUESTION_MESSAGE, null, charMap.toArray(), charMap.toArray()[0]);
+            if (selection != null) {
+                c.setText(c.getText().substring(0, c.getText().length() - 1) + selection);
+                c.setCaretPosition(c.getText().length());
+            }
         }
     }
     
