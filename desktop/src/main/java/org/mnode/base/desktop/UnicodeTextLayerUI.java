@@ -52,11 +52,38 @@ public class UnicodeTextLayerUI extends AbstractLayerUI<JTextComponent> {
         executor = Executors.newSingleThreadScheduledExecutor();
         characterMap = new HashMap<Integer, List<Character>>();
         
+        characterMap.put(KeyEvent.VK_A, new ArrayList<Character>());
+        characterMap.get(KeyEvent.VK_A).add('\u00E0');
+        characterMap.get(KeyEvent.VK_A).add('\u00E1');
+        characterMap.get(KeyEvent.VK_A).add('\u00E2');
+        characterMap.get(KeyEvent.VK_A).add('\u00E3');
+        characterMap.get(KeyEvent.VK_A).add('\u00E4');
+        characterMap.get(KeyEvent.VK_A).add('\u00E5');
+        
         characterMap.put(KeyEvent.VK_E, new ArrayList<Character>());
         characterMap.get(KeyEvent.VK_E).add('\u00E8');
         characterMap.get(KeyEvent.VK_E).add('\u00E9');
         characterMap.get(KeyEvent.VK_E).add('\u00EA');
         characterMap.get(KeyEvent.VK_E).add('\u00EB');
+        
+        characterMap.put(KeyEvent.VK_I, new ArrayList<Character>());
+        characterMap.get(KeyEvent.VK_I).add('\u00EC');
+        characterMap.get(KeyEvent.VK_I).add('\u00ED');
+        characterMap.get(KeyEvent.VK_I).add('\u00EE');
+        characterMap.get(KeyEvent.VK_I).add('\u00EF');
+        
+        characterMap.put(KeyEvent.VK_O, new ArrayList<Character>());
+        characterMap.get(KeyEvent.VK_O).add('\u00F2');
+        characterMap.get(KeyEvent.VK_O).add('\u00F3');
+        characterMap.get(KeyEvent.VK_O).add('\u00F4');
+        characterMap.get(KeyEvent.VK_O).add('\u00F5');
+        characterMap.get(KeyEvent.VK_O).add('\u00F6');
+        
+        characterMap.put(KeyEvent.VK_U, new ArrayList<Character>());
+        characterMap.get(KeyEvent.VK_U).add('\u00F9');
+        characterMap.get(KeyEvent.VK_U).add('\u00FA');
+        characterMap.get(KeyEvent.VK_U).add('\u00FB');
+        characterMap.get(KeyEvent.VK_U).add('\u00FC');
     }
     
     @Override
