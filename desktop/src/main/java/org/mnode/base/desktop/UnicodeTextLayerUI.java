@@ -87,7 +87,7 @@ public class UnicodeTextLayerUI extends AbstractLayerUI<JTextComponent> {
     }
     
     @Override
-    protected void paintLayer(Graphics2D arg0, JXLayer<? extends JTextComponent> arg1) {
+    protected void paintLayer(Graphics2D arg0, JXLayer<JTextComponent> arg1) {
         super.paintLayer(arg0, arg1);
     }
     
@@ -112,7 +112,7 @@ public class UnicodeTextLayerUI extends AbstractLayerUI<JTextComponent> {
     }
     
     @Override
-    protected void processKeyEvent(KeyEvent e, JXLayer<? extends JTextComponent> layer) {
+    protected void processKeyEvent(KeyEvent e, JXLayer<JTextComponent> layer) {
         super.processKeyEvent(e, layer);
         if (e.getID() == KeyEvent.KEY_PRESSED && future == null) {
             future = executor.schedule(new ShowUnicodeInputCommand(e, layer.getView()), 200, TimeUnit.MILLISECONDS);            
