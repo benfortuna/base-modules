@@ -26,7 +26,7 @@
 				<version>1.4.0</version>
 				<configuration>
 					<instructions>
-						<Export-Package>org.mnode.base.desktop.*,org.jdesktop.*,groovy.swing.*</Export-Package>
+						<Export-Package>org.mnode.base.desktop.*,org.jdesktop.*,groovy.swing.*,!net.miginfocom.demo,!net.miginfocom.examples,net.miginfocom.*;version=3.7.2</Export-Package>
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!MRJToolkitStubs|commons-logging|base-log|groovy-all</Embed-Dependency>
 					</instructions>
 				</configuration>
@@ -124,6 +124,12 @@
 			<groupId>org.codehaus.griffon.swingxbuilder</groupId>
 			<artifactId>swingxbuilder</artifactId>
 			<version>0.1.6</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.miglayout</groupId>
+			<artifactId>miglayout</artifactId>
+			<version>3.7.2</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
