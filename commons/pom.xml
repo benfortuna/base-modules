@@ -25,7 +25,7 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Export-Package>org.mnode.base.commons.*</Export-Package>
+						<Export-Package>org.mnode.base.commons.*,com.ocpsoft.pretty.time.*</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -139,6 +139,12 @@
 			<groupId>org.osgi</groupId>
 			<artifactId>osgi_R4_compendium</artifactId>
 			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ocpsoft</groupId>
+			<artifactId>ocpsoft-pretty-time</artifactId>
+			<version>1.0.5</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
