@@ -45,7 +45,6 @@ public class PaddedIcon implements Icon {
     /**
      * {@inheritDoc}
      */
-    @Override
     public int getIconHeight() {
         return height;
     }
@@ -53,7 +52,6 @@ public class PaddedIcon implements Icon {
     /**
      * {@inheritDoc}
      */
-    @Override
     public int getIconWidth() {
         return width;
     }
@@ -61,7 +59,6 @@ public class PaddedIcon implements Icon {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
         icon.paintIcon(c, g, (int) (x + (width - icon.getIconWidth()) / 2),
                 (int) (y + (height - icon.getIconHeight()) / 2));

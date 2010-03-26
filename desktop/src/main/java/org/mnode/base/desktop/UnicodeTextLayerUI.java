@@ -134,7 +134,6 @@ public class UnicodeTextLayerUI extends AbstractLayerUI<JTextComponent> {
             this.c = c;
         }
         
-        @Override
         public void run() {
             showUnicodeInput(e, c);
         }
