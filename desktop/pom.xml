@@ -26,7 +26,7 @@
 				<version>1.4.0</version>
 				<configuration>
 					<instructions>
-						<Export-Package>org.mnode.base.desktop.*,org.jdesktop.*,groovy.swing.*,!net.miginfocom.demo,!net.miginfocom.examples,net.miginfocom.*;version=3.7.2,org.netbeans.api.wizard,org.netbeans.spi.wizard</Export-Package>
+						<Export-Package>org.mnode.base.desktop.*,org.jdesktop.*,groovy.swing.*,!net.miginfocom.demo,!net.miginfocom.examples,net.miginfocom.*;version=3.7.2,org.netbeans.api.wizard,org.netbeans.spi.wizard,com.xduke.xswing</Export-Package>
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!MRJToolkitStubs|commons-logging|base-log|groovy-all</Embed-Dependency>
 					</instructions>
 				</configuration>
@@ -142,6 +142,12 @@
 			<groupId>org.netbeans.wizard</groupId>
 			<artifactId>wizard</artifactId>
 			<version>0.998.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.datatips</groupId>
+			<artifactId>datatips</artifactId>
+			<version>20091219</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
