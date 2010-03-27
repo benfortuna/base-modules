@@ -6,16 +6,56 @@
   <name>Base Feed</name>
   <version>0.0.1-SNAPSHOT</version>
   <description>Support for RSS/Atom feeds</description>
+  <inceptionYear>2010</inceptionYear>
+  <parent>
+  	<artifactId>base-modules</artifactId>
+  	<groupId>org.mnode.base</groupId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <scm>
+  	<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/feed</connection>
+  	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/feed</developerConnection>
+  	<url>http://svn.mnode.org/base/modules/trunk/feed</url>
+  </scm>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Export-Package>org.jvnet.*</Export-Package>
+						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!junit|commons-logging|commons-logging-api|xercesImpl</Embed-Dependency>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+  <repositories>
+  	<repository>
+  		<id>jvnet-releases</id>
+  		<name>Java.net Releases</name>
+  		<url>http://download.java.net/maven/2/</url>
+  		<snapshots>
+  			<enabled>false</enabled>
+  		</snapshots>
+  	</repository>
+  </repositories>
   <dependencies>
     <dependency>
       <groupId>rome</groupId>
       <artifactId>rome</artifactId>
-      <version>0.9</version>
+      <version>1.0</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>rome</groupId>
       <artifactId>rome-fetcher</artifactId>
-      <version>0.3</version>
+      <version>1.0</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>
