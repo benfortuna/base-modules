@@ -26,8 +26,9 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Export-Package>groovyx.net.ws.*,com.sun.tools.xjc.*,com.sun.xml.*,org.apache.xml.*,org.apache.ws.*,org.apache.cxf.*</Export-Package>
+						<Export-Package>groovyx.net.ws.*,org.apache.xml.*,org.apache.ws.*,org.apache.cxf.*</Export-Package>
 						<Embed-Dependency>*;scope=provided;inline=true</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
 					</instructions>
 				</configuration>
 			</plugin>

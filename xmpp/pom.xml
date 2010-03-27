@@ -155,16 +155,9 @@
 					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
 					<instructions>
 						<Export-Package>org.mnode.base.xmpp,org.jivesoftware.smack*;version="3.1.0"</Export-Package>
-						<Private-Package>org.mnode.base.xmpp.internal,org.xmlpull.mxp1,org.xmlpull.v1</Private-Package>
-						<!-- 
-						<Embed-Transitive>true</Embed-Transitive>
-						 -->
+						<Private-Package>org.mnode.base.xmpp.internal</Private-Package>
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!base-commons|base-config|commons-logging</Embed-Dependency>
-						<!--
-							add ,plugin.xml if it's present i.e.
-							src/main/resources,plugin.xml
-						<Include-Resource>src/main/resources</Include-Resource>
-						-->
+						<Embed-Transitive>true</Embed-Transitive>
 					</instructions>
 				</configuration>
 			</plugin>

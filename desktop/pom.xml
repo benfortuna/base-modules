@@ -23,11 +23,11 @@
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
-				<version>1.4.0</version>
 				<configuration>
 					<instructions>
-						<Export-Package>org.mnode.base.desktop.*,org.jdesktop.*,groovy.swing.*,!net.miginfocom.demo,!net.miginfocom.examples,net.miginfocom.*;version=3.7.2,org.netbeans.api.wizard,org.netbeans.spi.wizard,com.xduke.xswing</Export-Package>
+						<Export-Package>org.mnode.base.desktop.*,org.jdesktop.*,groovy.swing.*,net.miginfocom.*;version=3.7.2,org.netbeans.api.wizard,org.netbeans.spi.wizard,com.xduke.xswing</Export-Package>
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!MRJToolkitStubs|commons-logging|base-log|groovy-all</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
 					</instructions>
 				</configuration>
 			</plugin>

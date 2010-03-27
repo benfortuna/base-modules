@@ -132,20 +132,12 @@
 					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
 					<instructions>
 						<Export-Package>
-							org.mnode.base.cache,net.sf.ehcache.*
+							org.mnode.base.cache.*,net.sf.ehcache.*
 						</Export-Package>
 						<Private-Package>org.mnode.base.cache.internal</Private-Package>
-						<!-- embed all compile and runtime scope dependencies -->
-						<!-- 
-						<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
-						 -->
-						<Embed-Transitive>true</Embed-Transitive>
-						<!--
-							add ,plugin.xml if it's present i.e.
-							src/main/resources,plugin.xml
-						-->
-						<Include-Resource>src/main/resources</Include-Resource>
 						<Import-Package>!org.hibernate.cache,org.springframework.cache.ehcache,*</Import-Package>
+						<Embed-Dependency>*;scope=provided;inline=true</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
 					</instructions>
 				</configuration>
 			</plugin>
