@@ -27,7 +27,7 @@
 				<configuration>
 					<instructions>
 						<Export-Package>org.jvnet.*</Export-Package>
-						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!xml-apis</Embed-Dependency>
+						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!xml-apis|xalan|fop</Embed-Dependency>
 					</instructions>
 				</configuration>
 			</plugin>
