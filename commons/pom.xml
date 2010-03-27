@@ -26,7 +26,7 @@
 				<configuration>
 					<instructions>
 						<Export-Package>org.mnode.base.commons.*,com.ocpsoft.pretty.time.*</Export-Package>
-						<Import-Package>!javax.faces.component,*</Import-Package>
+						<Import-Package>!javax.faces.component*,*</Import-Package>
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!com.springsource.net.sf.cglib|commons-lang|osgi_R4_core|osgi_R4_compendium|com.springsource.slf4j.org.apache.commons.logging</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
 					</instructions>
