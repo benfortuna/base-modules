@@ -173,6 +173,12 @@
 			<version>2.5</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.mnode.base</groupId>
+			<artifactId>base-cache</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<scm>
 		<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/log</connection>
@@ -189,7 +195,7 @@
 				<configuration>
 					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
 					<instructions>
-						<Export-Package>org.mnode.base.log*</Export-Package>
+						<Export-Package>org.mnode.base.log.*,org.apache.commons.logging.*,org.slf4j.*</Export-Package>
 						<Private-Package>org.mnode.base.log.internal*</Private-Package>
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!ehcache</Embed-Dependency>
 					</instructions>
