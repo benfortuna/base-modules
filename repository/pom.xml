@@ -245,38 +245,10 @@
 			<version>1.3.2</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.jackrabbit</groupId>
-			<artifactId>jackrabbit-jcr-commons</artifactId>
-			<version>1.5.3</version>
-		</dependency>
-		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 			<version>3.2.1</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.sling</groupId>
-			<artifactId>org.apache.sling.jcr.api</artifactId>
-			<version>2.0.2-incubator</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.sling</groupId>
-			<artifactId>org.apache.sling.jcr.base</artifactId>
-			<version>2.0.2-incubator</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.sling</groupId>
-			<artifactId>org.apache.sling.jcr.jackrabbit.server</artifactId>
-			<version>2.0.2-incubator</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.jackrabbit</groupId>
-			<artifactId>jackrabbit-api</artifactId>
-			<version>1.5.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.felix</groupId>
@@ -297,23 +269,25 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.jackrabbit</groupId>
-			<artifactId>jackrabbit-core</artifactId>
-			<version>1.5.3</version>
-		</dependency>
-		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.5.3</version>
 		</dependency>
 		<dependency>
+			<groupId>javax.jcr</groupId>
+			<artifactId>jcr</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.jackrabbit</groupId>
-			<artifactId>jackrabbit-text-extractors</artifactId>
-			<version>1.5.0</version>
+			<artifactId>jackrabbit-core</artifactId>
+			<version>2.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 	<parent>
-		<artifactId>base-parent</artifactId>
+		<artifactId>base-modules</artifactId>
 		<groupId>org.mnode.base</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -348,11 +322,12 @@
 					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
 					<instructions>
 						<Export-Package>
-							!org.mnode.base.repository.internal,net.sf.cglib.*,org.mnode.base.repository*,org.jcrom*,javax.jcr*
+							org.mnode.base.repository.*,org.jcrom*,javax.jcr.*,org.apache.jackrabbit.*,net.sf.cglib.*
 						</Export-Package>
 						<Private-Package>
 							org.mnode.base.repository.internal 
 						</Private-Package>
+						<!-- 
 						<Import-Package>
 							!org.apache.tools.ant,!org.apache.tools.ant.types,!org.codehaus.aspectwerkz.hook,
 							!org.objectweb.asm.attrs,!org.objectweb.asm.util,!com.sun.jdmk.comm,!javax.jms,!javax.mail.*,
@@ -361,19 +336,23 @@
 							!org.apache.xpath*,!org.textmining.text.extraction,!sun.io,!org.slf4j,!org.bouncycastle*,!bsh,
 							!com.caucho*,*
 						</Import-Package>
+						 -->
 						<!-- embed all compile and runtime scope dependencies -->
-						<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+						<Embed-Dependency>*;scope=provided;inline=true</Embed-Dependency>
+						<!-- 
 						<Embed-Transitive>true</Embed-Transitive>
+						 -->
 						<!--
 							add ,plugin.xml if it's present i.e.
 							src/main/resources,plugin.xml
-						-->
 						<Include-Resource>src/main/resources</Include-Resource>
+						-->
 					</instructions>
 				</configuration>
 			</plugin>
 
             <!-- generate manifest automatically once the classes are processed -->
+            <!-- 
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
@@ -387,8 +366,10 @@
 					</execution>
 				</executions>
 			</plugin>
+			 -->
 			
 			<!-- Install bundle in local sling instance -->
+			<!-- 
 			<plugin>
 				<groupId>org.apache.sling</groupId>
 				<artifactId>maven-sling-plugin</artifactId>
@@ -396,13 +377,14 @@
 					<execution>
 						<id>install-bundle</id>
 						<goals>
-							<!-- 
+							<!- 
 							<goal>install</goal>
-							 -->
+							 ->
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
+			 -->
 		</plugins>
 	</build>
 
