@@ -26,7 +26,7 @@
 				<version>1.4.0</version>
 				<configuration>
 					<instructions>
-						<Export-Package>org.mnode.base.desktop.*,org.jdesktop.*,groovy.swing.*,!net.miginfocom.demo,!net.miginfocom.examples,net.miginfocom.*;version=3.7.2</Export-Package>
+						<Export-Package>org.mnode.base.desktop.*,org.jdesktop.*,groovy.swing.*,!net.miginfocom.demo,!net.miginfocom.examples,net.miginfocom.*;version=3.7.2,org.netbeans.api.wizard,org.netbeans.spi.wizard</Export-Package>
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!MRJToolkitStubs|commons-logging|base-log|groovy-all</Embed-Dependency>
 					</instructions>
 				</configuration>
@@ -92,9 +92,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.swinglabs</groupId>
+			<groupId>net.java.dev.substance</groupId>
 			<artifactId>swingx</artifactId>
-			<version>0.9.2</version>
+			<version>5.3</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -136,6 +136,12 @@
 			<groupId>net.java.dev.glazedlists</groupId>
 			<artifactId>glazedlists_java15</artifactId>
 			<version>1.8.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.netbeans.wizard</groupId>
+			<artifactId>wizard</artifactId>
+			<version>0.998.1</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
