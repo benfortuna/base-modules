@@ -26,7 +26,7 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Export-Package>org.jvnet.*,org.apache.batik.*,org.w3c.dom.svg.*</Export-Package>
+						<Export-Package>org.jvnet.*,org.apache.batik.*,org.apache.xmlgraphics.*,org.w3c.dom.svg.*</Export-Package>
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!xml-apis|xalan|fop</Embed-Dependency>
 					</instructions>
 				</configuration>
