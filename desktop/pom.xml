@@ -132,5 +132,11 @@
 			<version>3.7.2</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>net.java.dev.glazedlists</groupId>
+			<artifactId>glazedlists_java15</artifactId>
+			<version>1.8.0</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
