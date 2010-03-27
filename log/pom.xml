@@ -198,6 +198,7 @@
 						<Export-Package>org.mnode.base.log.*,org.apache.commons.logging.*,org.slf4j.*</Export-Package>
 						<Private-Package>org.mnode.base.log.internal*</Private-Package>
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!base-cache|org.osgi.compendium</Embed-Dependency>
+						<Import-Package>!com.sun.jdmk.comm|javax.jms|javax.mail*|javax.servlet|org.apache.log|org.apache.avalon*,org.springframework.cache.ehcache,*</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>

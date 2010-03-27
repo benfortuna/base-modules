@@ -65,6 +65,7 @@ public class LogCacheManagerIntegrationTest extends AbstractConfigurableBundleCr
 	@Override
 	protected String[] getTestBundlesNames() {
 		return new String[] { "org.mnode.base, base-log, 0.0.1-SNAPSHOT",
+		        "org.mnode.base, base-cache, 0.0.1-SNAPSHOT",
 				"org.springframework, spring-context-support, 2.5.5",
 				"net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3",
 				"org.apache.felix, org.osgi.compendium, 1.2.0",
