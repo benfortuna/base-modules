@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mnode.base</groupId>
+  <artifactId>base-ws</artifactId>
+  <packaging>bundle</packaging>
+  <name>Base Web Services</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <description>Support for web services</description>
+  <inceptionYear>2010</inceptionYear>
+  <parent>
+  	<artifactId>base-modules</artifactId>
+  	<groupId>org.mnode.base</groupId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <scm>
+  	<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/ws</connection>
+  	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/ws</developerConnection>
+  	<url>http://svn.mnode.org/base/modules/trunk/ws</url>
+  </scm>
+  
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Export-Package>groovyx.net.ws.*,com.sun.tools.xjc.*,com.sun.xml.*,org.apache.xml.*,org.apache.ws.*,org.apache.cxf.*</Export-Package>
+						<Embed-Dependency>*;scope=provided;inline=true</Embed-Dependency>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>org.codehaus.groovy.modules</groupId>
+  		<artifactId>groovyws</artifactId>
+  		<version>0.5.1</version>
+  		<scope>provided</scope>
+  	</dependency>
+  </dependencies>
+</project>
