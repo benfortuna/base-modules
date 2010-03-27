@@ -24,6 +24,7 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -48,6 +49,7 @@ public class ChatContextManagerImplTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testGetContext() {
 		final XMPPConnection connection = context.mock(XMPPConnection.class);
 		final ChatManager chatManager = context.mock(ChatManager.class);
