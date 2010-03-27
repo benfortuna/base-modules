@@ -80,7 +80,7 @@ public class ServiceIntegrationTest extends AbstractConfigurableBundleCreatorTes
 //				 "org.apache.sling, org.apache.sling.jcr.api, 2.0.2-incubator",
 //				 "org.apache.sling, org.apache.sling.jcr.base, 2.0.2-incubator",
 //				 "org.apache.sling, org.apache.sling.jcr.jackrabbit.server, 2.0.2-incubator",
-				 "org.mnode.base, org.mnode.base.repository, 0.0.1-SNAPSHOT"};
+				 "org.mnode.base, base-repository, 0.0.1-SNAPSHOT"};
 	}
 	
 //	@Override
