@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mnode.base</groupId>
+  <artifactId>base-substance</artifactId>
+  <packaging>bundle</packaging>
+  <name>Base Substance</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <description>Substance Look and Feel</description>
+  <inceptionYear>2010</inceptionYear>
+  <parent>
+  	<artifactId>base-modules</artifactId>
+  	<groupId>org.mnode.base</groupId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <scm>
+  	<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/substance</connection>
+  	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/substance</developerConnection>
+  	<url>http://svn.mnode.org/base/modules/trunk/substance</url>
+  </scm>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Export-Package>org.jvnet.*</Export-Package>
+						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!xml-apis</Embed-Dependency>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>net.java.dev.substance</groupId>
+  		<artifactId>substance</artifactId>
+  		<version>5.3</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>net.java.dev.substance</groupId>
+  		<artifactId>substance-swingx</artifactId>
+  		<version>5.3</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.xmlgraphics</groupId>
+  		<artifactId>batik-awt-util</artifactId>
+  		<version>1.7</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.xmlgraphics</groupId>
+  		<artifactId>batik-swing</artifactId>
+  		<version>1.7</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.xmlgraphics</groupId>
+  		<artifactId>batik-transcoder</artifactId>
+  		<version>1.7</version>
+  		<scope>provided</scope>
+  	</dependency>
+  </dependencies>
+</project>
