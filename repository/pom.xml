@@ -338,7 +338,7 @@
 							org.mnode.base.repository.internal 
 						</Private-Package>
 						<Import-Package>
-							!com.ibm.icu.text,!com.jamonapi,*
+							!com.ibm.icu.text,!com.jamonapi,!com.sun.*,*
 						</Import-Package>
 						<!-- 
 						<Import-Package>
