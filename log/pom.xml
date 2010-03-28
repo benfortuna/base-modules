@@ -80,12 +80,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.osgi</groupId>
 			<artifactId>spring-osgi-annotation</artifactId>
 			<version>${spring.osgi.version}</version>
@@ -159,7 +153,6 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.5.6</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -177,7 +170,6 @@
 			<groupId>org.mnode.base</groupId>
 			<artifactId>base-cache</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 	<scm>
@@ -195,10 +187,20 @@
 				<configuration>
 					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
 					<instructions>
-						<Export-Package>org.mnode.base.log.*,org.apache.commons.logging.*,org.slf4j.*</Export-Package>
+						<Export-Package>org.mnode.base.log.*,org.apache.commons.logging.*</Export-Package>
 						<Private-Package>org.mnode.base.log.internal*</Private-Package>
+						<!-- 
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!base-cache|org.osgi.compendium</Embed-Dependency>
 						<Import-Package>!com.sun.jdmk.comm|javax.jms|javax.mail*|javax.servlet|org.apache.log|org.apache.avalon*,org.springframework.cache.ehcache,*</Import-Package>
+						 -->
+						<Import-Package>
+							javax.servlet;version="2.1";resolution:=optional,net.sf.ehcache;resolution:=optional,
+							org.apache.avalon.framework.logger;resolution:=optional,
+							org.apache.log;resolution:=optional,org.apache.log4j;resolution:=optional,
+							org.apache.log4j.spi;resolution:=optional,org.osgi.framework;version="1.4";resolution:=optional,
+							org.osgi.service.log;version="1.3";resolution:=optional,
+							org.slf4j;version="1.5";resolution:=optional,org.springframework.cache.ehcache;resolution:=optional,*
+						</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
