@@ -25,6 +25,9 @@
                 <configuration>
                     <instructions>
                         <Export-Package>org.mnode.base.config.*</Export-Package>
+                       	<Import-Package>
+							org.slf4j;resolution:=optional;version="1.5",org.springframework.beans.factory.config;resolution:=optional;version="3.0"
+                       	</Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
@@ -126,7 +129,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 			<version>3.0.1.RELEASE</version>
-			<scope>provided</scope>
 		</dependency>
     </dependencies>
 </project>
