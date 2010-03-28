@@ -26,8 +26,23 @@
 				<configuration>
 					<instructions>
 						<Export-Package>org.mnode.base.desktop.*,org.jdesktop.*,groovy.swing.*,net.miginfocom.*;version=3.7.2,org.netbeans.api.wizard,org.netbeans.spi.wizard,com.xduke.xswing</Export-Package>
+						<!-- 
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!MRJToolkitStubs|commons-logging|base-log|groovy-all</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
+						 -->
+						<Import-Package>
+							groovy.lang;resolution:=optional,groovy.swing;resolution:=optional,groovy.swing.binding;resolution:=optional,groovy.swing.factory;resolution:=optional,
+							groovy.swing.impl;resolution:=optional,groovy.util;resolution:=optional,org.apache.batik.ext.awt;resolution:=optional,
+							org.apache.commons.logging;resolution:=optional,org.codehaus.groovy.binding;resolution:=optional,
+							org.codehaus.groovy.reflection;resolution:=optional,org.codehaus.groovy.runtime;resolution:=optional,
+							org.codehaus.groovy.runtime.callsite;resolution:=optional,org.codehaus.groovy.runtime.typehandling;resolution:=optional,
+							org.codehaus.groovy.runtime.wrappers;resolution:=optional,org.eclipse.swt.custom;resolution:=optional,
+							org.eclipse.swt.events;resolution:=optional,org.eclipse.swt.graphics;resolution:=optional,org.eclipse.swt.layout;resolution:=optional,
+							org.eclipse.swt.widgets;resolution:=optional,org.jdesktop.animation.timing;resolution:=optional,
+							org.jdesktop.animation.timing.interpolation;resolution:=optional,org.jdesktop.swingworker;resolution:=optional,
+							org.jvnet.substance;resolution:=optional,org.jvnet.substance.fonts;resolution:=optional,org.jvnet.substance.skin;resolution:=optional,
+							sun.awt;resolution:=optional,sun.awt.dnd;resolution:=optional,sun.swing;resolution:=optional,sun.swing.plaf.synth;resolution:=optional,*
+						</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
