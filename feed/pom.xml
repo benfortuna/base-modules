@@ -27,8 +27,17 @@
 				<configuration>
 					<instructions>
 						<Export-Package>com.sun.syndication.*</Export-Package>
+						<!-- 
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!junit|commons-logging|commons-logging-api|xercesImpl</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
+						 -->
+						<Private-Package>org.jdom,org.jdom.input,org.jdom.output,org.jdom.adapters,org.jdom.filter</Private-Package>
+						<Import-Package>
+							oracle.xml.parser.v2;resolution:=optional,org.apache.commons.httpclient;resolution:=optional,
+							org.apache.commons.httpclient.methods;resolution:=optional,
+							org.apache.commons.httpclient.params;resolution:=optional,
+							org.apache.xerces.dom;resolution:=optional,org.apache.xerces.parsers;resolution:=optional,*
+						</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
