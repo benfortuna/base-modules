@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.mnode.base</groupId>
+	<artifactId>base-svg</artifactId>
+	<packaging>bundle</packaging>
+	<name>Base SVG</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>Support for Scalable Vector Graphics</description>
+	<inceptionYear>2010</inceptionYear>
+	<parent>
+		<artifactId>base-modules</artifactId>
+		<groupId>org.mnode.base</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<scm>
+		<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/svg</connection>
+		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/svg</developerConnection>
+		<url>http://svn.mnode.org/base/modules/trunk/svg</url>
+	</scm>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Export-Package>org.apache.batik.*,org.apache.xmlgraphics.*,org.w3c.dom.svg.*
+						</Export-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-awt-util</artifactId>
+			<version>1.7</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-swing</artifactId>
+			<version>1.7</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-transcoder</artifactId>
+			<version>1.7</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+</project>
