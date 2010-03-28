@@ -26,11 +26,10 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Export-Package>groovyx.net.ws.*,org.apache.xml.*,org.apache.ws.*,org.apache.cxf.*</Export-Package>
-						<!-- 
-						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!jaxb-xjc|icu4j|bcprov-jdk15|groovy-all</Embed-Dependency>
+						<Export-Package>groovyx.net.ws.*</Export-Package>
+						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!cxf-bundle|jaxb-xjc|icu4j|bcprov-jdk15|groovy-all</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
-						 -->
+						<!-- 
 						<Private-Package>
 							antlr.*,com.ibm.wsdl.*,com.sun.codemodel.*,com.sun.tools.xjc.*,
 							com.sun.xml.*,org.apache.xmlbeans.*,org.apache.xpath.*
@@ -107,6 +106,7 @@
 							org.springframework.util;resolution:=optional;version="2.5",
 							repackage;resolution:=optional,sun.io;resolution:=optional,*
 						</Import-Package>
+						 -->
 					</instructions>
 				</configuration>
 			</plugin>
@@ -119,6 +119,11 @@
   		<artifactId>groovyws</artifactId>
   		<version>0.5.1</version>
   		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.cxf</groupId>
+  		<artifactId>cxf-bundle</artifactId>
+  		<version>2.2.4</version>
   	</dependency>
   </dependencies>
 </project>
