@@ -27,8 +27,10 @@
 				<configuration>
 					<instructions>
 						<Export-Package>org.jvnet.*,org.apache.batik.*,org.apache.xmlgraphics.*,org.w3c.dom.svg.*</Export-Package>
+						<!-- 
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!xml-apis|xalan|fop</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
+						 -->
 					</instructions>
 				</configuration>
 			</plugin>

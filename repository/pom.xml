@@ -249,7 +249,7 @@
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 			<version>3.2.1</version>
-			<scope>test</scope>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.felix</groupId>
@@ -279,7 +279,30 @@
 			<groupId>javax.jcr</groupId>
 			<artifactId>jcr</artifactId>
 			<version>2.0</version>
-			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.jackrabbit</groupId>
+			<artifactId>jackrabbit-api</artifactId>
+			<version>2.0.0</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.jackrabbit</groupId>
+			<artifactId>jackrabbit-jcr-commons</artifactId>
+			<version>2.0.0</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.jackrabbit</groupId>
+			<artifactId>jackrabbit-spi</artifactId>
+			<version>2.0.0</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.jackrabbit</groupId>
+			<artifactId>jackrabbit-spi-commons</artifactId>
+			<version>2.0.0</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.jackrabbit</groupId>
@@ -332,14 +355,17 @@
 					 -->
 					<instructions>
 						<Export-Package>
-							org.mnode.base.repository.*,org.jcrom.*,javax.jcr.*;version=2.0,org.apache.jackrabbit.*
+							org.mnode.base.repository.*,org.jcrom.*,org.apache.jackrabbit.core.*;version=2.0.0
 						</Export-Package>
 						<Private-Package>
-							org.mnode.base.repository.internal 
+							org.mnode.base.repository.internal,EDU.oswego.cs.dl.util.concurrent.*,
+							org.apache.lucene.*,org.apache.commons.dbcp
 						</Private-Package>
+						<!-- 
 						<Import-Package>
-							!com.ibm.icu.text,!com.jamonapi,!com.sun.*,*
+							!com.ibm.icu.text,!com.jamonapi,!com.sun.*,!org.apache.derby.impl.drda,!org.apache.jackrabbit.rmi.client,!org.apache.jackrabbit.rmi.server,!org.apache.jackrabbit.test,!org.apache.lucene.demo,!org.apache.tools.ant.*,!org.apache.xalan.serialize,*
 						</Import-Package>
+						 -->
 						<!-- 
 						<Import-Package>
 							!org.apache.tools.ant,!org.apache.tools.ant.types,!org.codehaus.aspectwerkz.hook,
@@ -351,8 +377,10 @@
 						</Import-Package>
 						 -->
 						<!-- embed all compile and runtime scope dependencies -->
-						<Embed-Dependency>*;scope=provided;inline=true;!spring-osgi-core|org.osgi.compendium</Embed-Dependency>
+						<!-- 
+						<Embed-Dependency>*;scope=!compile,provided;inline=true;!jcr|jackrabbit-api|jackrabbit-jcr-commons|jackrabbit-spi|jackrabbit-spi-commons|spring-osgi-core|org.osgi.compendium</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
+						 -->
 					</instructions>
 				</configuration>
 			</plugin>

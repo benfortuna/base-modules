@@ -27,8 +27,86 @@
 				<configuration>
 					<instructions>
 						<Export-Package>groovyx.net.ws.*,org.apache.xml.*,org.apache.ws.*,org.apache.cxf.*</Export-Package>
+						<!-- 
 						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!jaxb-xjc|icu4j|bcprov-jdk15|groovy-all</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
+						 -->
+						<Private-Package>
+							antlr.*,com.ibm.wsdl.*,com.sun.codemodel.*,com.sun.tools.xjc.*,
+							com.sun.xml.*,org.apache.xmlbeans.*,org.apache.xpath.*
+						</Private-Package>
+						<Import-Package>
+							groovy.lang;version="1.6";resolution:=optional,javax.activation;resolution:=optional;version="1.1",
+							javax.jms;resolution:=optional;version="1.1",javax.jws;resolution:=optional;version="2.0",
+							javax.jws.soap;resolution:=optional;version="2.0",javax.mail;resolution:=optional;version="1.4",
+							javax.mail.internet;resolution:=optional;version="1.4",
+							javax.mail.util;resolution:=optional;version="1.4",javax.servlet;resolution:=optional;version="2.5",
+							javax.servlet.http;resolution:=optional;version="2.5",
+							javax.transaction.xa;resolution:=optional,javax.ws.rs;resolution:=optional;version="1.0",
+							javax.ws.rs.core;resolution:=optional;version="1.0",javax.ws.rs.ext;resolution:=optional;version="1.0",
+							javax.wsdl;resolution:=optional,javax.wsdl.extensions;resolution:=optional,
+							javax.wsdl.extensions.http;resolution:=optional,javax.wsdl.extensions.mime;resolution:=optional,
+							javax.wsdl.extensions.schema;resolution:=optional,javax.wsdl.extensions.soap;resolution:=optional,
+							javax.wsdl.extensions.soap12;resolution:=optional,javax.wsdl.factory;resolution:=optional,
+							javax.wsdl.xml;resolution:=optional,junit.framework;resolution:=optional,
+							net.sf.cglib.proxy;resolution:=optional,org.apache.abdera;resolution:=optional,
+							org.apache.abdera.model;resolution:=optional,org.apache.abdera.parser;resolution:=optional,
+							org.apache.abdera.writer;resolution:=optional,org.apache.commons.lang;resolution:=optional;version="2.4",
+							org.apache.commons.lang.builder;resolution:=optional;version="2.4",
+							org.apache.commons.logging;resolution:=optional,
+							org.apache.log4j;resolution:=optional,org.apache.log4j.spi;resolution:=optional,
+							org.apache.neethi;resolution:=optional,org.apache.velocity;resolution:=optional,
+							org.apache.velocity.app;resolution:=optional,org.apache.velocity.context;resolution:=optional,
+							org.apache.xerces.dom;resolution:=optional,org.apache.xerces.dom3;resolution:=optional,
+							org.apache.xerces.impl;resolution:=optional,org.apache.xerces.parsers;resolution:=optional,
+							org.apache.xerces.util;resolution:=optional,org.apache.xerces.xni;resolution:=optional,
+							org.bouncycastle.asn1.x509;resolution:=optional,org.codehaus.groovy.control;resolution:=optional;version="1.6",
+							org.codehaus.groovy.reflection;resolution:=optional;version="1.6",
+							org.codehaus.groovy.runtime;resolution:=optional;version="1.6",
+							org.codehaus.groovy.runtime.callsite;resolution:=optional;version="1.6",
+							org.codehaus.groovy.runtime.typehandling;resolution:=optional;version="1.6",
+							org.codehaus.groovy.runtime.wrappers;resolution:=optional;version="1.6",
+							org.codehaus.jettison;resolution:=optional;version="1.1",
+							org.codehaus.jettison.mapped;resolution:=optional;version="1.1",
+							org.codehaus.jra;resolution:=optional,org.jdom;resolution:=optional,
+							org.junit;resolution:=optional,org.mortbay.jetty;resolution:=optional;version="6.1",
+							org.mortbay.jetty.handler;resolution:=optional;version="6.1",
+							org.mortbay.jetty.nio;resolution:=optional;version="6.1",
+							org.mortbay.jetty.security;resolution:=optional;version="6.1",
+							org.mortbay.jetty.servlet;resolution:=optional;version="6.1",
+							org.mortbay.thread;resolution:=optional;version="6.1",
+							org.mortbay.util.ajax;resolution:=optional;version="6.1",
+							org.mozilla.javascript;resolution:=optional,org.mozilla.javascript.xml;resolution:=optional,
+							org.mozilla.javascript.xmlimpl;resolution:=optional,
+							org.objectweb.asm;resolution:=optional,org.opensaml;resolution:=optional,
+							org.springframework.aop;resolution:=optional,org.springframework.aop.framework;resolution:=optional,
+							org.springframework.aop.support;resolution:=optional,
+							org.springframework.beans;resolution:=optional;version="2.5",
+							org.springframework.beans.factory;resolution:=optional;version="2.5",
+							org.springframework.beans.factory.annotation;resolution:=optional;version="2.5",
+							org.springframework.beans.factory.config;resolution:=optional;version="2.5",
+							org.springframework.beans.factory.support;resolution:=optional;version="2.5",
+							org.springframework.beans.factory.wiring;resolution:=optional;version="2.5",
+							org.springframework.beans.factory.xml;resolution:=optional;version="2.5",
+							org.springframework.context;resolution:=optional;version="2.5",
+							org.springframework.context.event;resolution:=optional;version="2.5",
+							org.springframework.context.support;resolution:=optional;version="2.5",
+							org.springframework.core;resolution:=optional;version="2.5",
+							org.springframework.core.io;resolution:=optional;version="2.5",
+							org.springframework.core.io.support;resolution:=optional;version="2.5",
+							org.springframework.core.task;resolution:=optional;version="2.5",
+							org.springframework.jms;resolution:=optional;version="2.5",
+							org.springframework.jms.connection;resolution:=optional;version="2.5",
+							org.springframework.jms.core;resolution:=optional;version="2.5",
+							org.springframework.jms.listener;resolution:=optional;version="2.5",
+							org.springframework.jms.support;resolution:=optional;version="2.5",
+							org.springframework.jms.support.converter;resolution:=optional;version="2.5",
+							org.springframework.jms.support.destination;resolution:=optional;version="2.5",
+							org.springframework.jndi;resolution:=optional;version="2.5",
+							org.springframework.transaction;resolution:=optional;version="2.5",
+							org.springframework.util;resolution:=optional;version="2.5",
+							repackage;resolution:=optional,sun.io;resolution:=optional,*
+						</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
