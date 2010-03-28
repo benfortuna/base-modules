@@ -28,6 +28,10 @@
 				<configuration>
 					<instructions>
 						<Export-Package>org.jvnet.*</Export-Package>
+						<!-- 
+						<Private-Package>contrib.*,resource,</Private-Package>
+						 -->
+						<Embed-Dependency>*;scope=provided;inline=true</Embed-Dependency>
 					</instructions>
 				</configuration>
 			</plugin>
