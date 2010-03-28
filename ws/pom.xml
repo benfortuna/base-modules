@@ -126,7 +126,7 @@
   		<version>2.2.4</version>
 		<exclusions>
 			<exclusion>
-				<groupId>icu4j</groupId>
+				<groupId>com.ibm.icu</groupId>
 				<artifactId>icu4j</artifactId>
 			</exclusion>
 		</exclusions>
