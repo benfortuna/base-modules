@@ -359,10 +359,10 @@
 					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
 					 -->
 					<instructions>
-						<!-- 
 						<Export-Package>
 							org.mnode.base.repository.*,org.jcrom.*,org.apache.jackrabbit.core.*;version=2.0.0
 						</Export-Package>
+						<!-- 
 						<Private-Package>
 							org.mnode.base.repository.internal,EDU.oswego.cs.dl.util.concurrent.*,
 							org.apache.lucene.*,org.apache.commons.dbcp
@@ -383,6 +383,15 @@
 							!com.caucho*,*
 						</Import-Package>
 						 -->
+						<Import-Package>
+							com.ibm.icu.*;resolution:=optional,com.sun.*;resolution:=optional,org.apache.jackrabbit.rmi.*;resolution:=optional,org.apache.jackrabbit.test.*;resolution:=optional,org.apache.lucene.demo;resolution:=optional,org.apache.tools.ant.*;resolution:=optional,org.apache.xalan.serialize;resolution:=optional,org.apache.xml.resolver.*;resolution:=optional,org.apache.xmlbeans.impl.*;resolution:=optional,org.bouncycastle.*;resolution:=optional,
+							org.codehaus.aspectwerkz.hook;resolution:=optional,org.gjt.xpp;resolution:=optional,
+							org.jaxen.*;resolution:=optional,org.objectweb.asm.*;resolution:=optional,
+							org.relaxng.datatype;resolution:=optional,org.slf4j;resolution:=optional;version="1.5",
+							org.slf4j.spi;resolution:=optional;version="1.5",org.springframework.osgi.service.importer;resolution:=optional;version="1.1",
+							org.springframework.remoting.rmi;resolution:=optional,org.springmodules.jcr.jackrabbit;resolution:=optional,
+							org.xmlpull.v1;resolution:=optional,*
+						</Import-Package>
 						<!-- embed all compile and runtime scope dependencies -->
 						<Embed-Dependency>*;scope=provided;inline=true;!jcr|jackrabbit-api|jackrabbit-jcr-commons|jackrabbit-spi|jackrabbit-spi-commons|spring-osgi-core|derby|xml-apis|commons-collections</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
