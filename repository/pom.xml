@@ -255,7 +255,7 @@
 			<groupId>org.apache.felix</groupId>
 			<artifactId>org.osgi.compendium</artifactId>
 			<version>1.2.0</version>
-			<scope>provided</scope>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.felix</groupId>
@@ -314,7 +314,12 @@
 			<groupId>org.springframework.osgi</groupId>
 			<artifactId>spring-osgi-core</artifactId>
 			<version>${spring.osgi.version}</version>
-			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.5.3.0_1</version>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 	<parent>
@@ -354,6 +359,7 @@
 					<manifestLocation>${project.build.directory}/META-INF</manifestLocation>
 					 -->
 					<instructions>
+						<!-- 
 						<Export-Package>
 							org.mnode.base.repository.*,org.jcrom.*,org.apache.jackrabbit.core.*;version=2.0.0
 						</Export-Package>
@@ -361,6 +367,7 @@
 							org.mnode.base.repository.internal,EDU.oswego.cs.dl.util.concurrent.*,
 							org.apache.lucene.*,org.apache.commons.dbcp
 						</Private-Package>
+						 -->
 						<!-- 
 						<Import-Package>
 							!com.ibm.icu.text,!com.jamonapi,!com.sun.*,!org.apache.derby.impl.drda,!org.apache.jackrabbit.rmi.client,!org.apache.jackrabbit.rmi.server,!org.apache.jackrabbit.test,!org.apache.lucene.demo,!org.apache.tools.ant.*,!org.apache.xalan.serialize,*
@@ -377,10 +384,8 @@
 						</Import-Package>
 						 -->
 						<!-- embed all compile and runtime scope dependencies -->
-						<!-- 
-						<Embed-Dependency>*;scope=!compile,provided;inline=true;!jcr|jackrabbit-api|jackrabbit-jcr-commons|jackrabbit-spi|jackrabbit-spi-commons|spring-osgi-core|org.osgi.compendium</Embed-Dependency>
+						<Embed-Dependency>*;scope=provided;inline=true;!jcr|jackrabbit-api|jackrabbit-jcr-commons|jackrabbit-spi|jackrabbit-spi-commons|spring-osgi-core|derby|xml-apis|commons-collections</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
-						 -->
 					</instructions>
 				</configuration>
 			</plugin>
