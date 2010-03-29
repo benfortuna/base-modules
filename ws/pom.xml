@@ -27,7 +27,7 @@
 				<configuration>
 					<instructions>
 						<Export-Package>groovyx.net.ws.*</Export-Package>
-						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!cxf-bundle|jaxb-xjc|icu4j|bcprov-jdk15|groovy-all</Embed-Dependency>
+						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!cxf-bundle|jaxb-xjc|icu4j|bcprov-jdk15|groovy-all|xmlParserAPIs</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
 						<!-- 
 						<Private-Package>
