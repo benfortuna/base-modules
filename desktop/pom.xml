@@ -25,11 +25,8 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Export-Package>org.mnode.base.desktop.*,org.jdesktop.*,groovy.swing.*,net.miginfocom.*;version=3.7.2,org.netbeans.api.wizard,org.netbeans.spi.wizard,com.xduke.xswing</Export-Package>
 						<!-- 
-						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!MRJToolkitStubs|commons-logging|base-log|groovy-all</Embed-Dependency>
-						<Embed-Transitive>true</Embed-Transitive>
-						 -->
+						<Export-Package>org.mnode.base.desktop.*,org.jdesktop.*,groovy.swing.*,net.miginfocom.*;version=3.7.2,org.netbeans.api.wizard,org.netbeans.spi.wizard,com.xduke.xswing</Export-Package>
 						<Import-Package>
 							groovy.lang;resolution:=optional,groovy.swing;resolution:=optional,groovy.swing.binding;resolution:=optional,groovy.swing.factory;resolution:=optional,
 							groovy.swing.impl;resolution:=optional,groovy.util;resolution:=optional,org.apache.batik.ext.awt;resolution:=optional,
@@ -43,6 +40,9 @@
 							org.jvnet.substance;resolution:=optional,org.jvnet.substance.fonts;resolution:=optional,org.jvnet.substance.skin;resolution:=optional,
 							sun.awt;resolution:=optional,sun.awt.dnd;resolution:=optional,sun.swing;resolution:=optional,sun.swing.plaf.synth;resolution:=optional,*
 						</Import-Package>
+						 -->
+						<Embed-Dependency>*;scope=provided;inline=true;artifactId=!MRJToolkitStubs|commons-logging|base-log|base-cache|groovy-all</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
 					</instructions>
 				</configuration>
 			</plugin>
