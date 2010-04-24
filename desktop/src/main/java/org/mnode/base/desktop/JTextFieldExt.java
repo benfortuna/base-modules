@@ -106,7 +106,7 @@ public class JTextFieldExt extends JTextField {
      */
     public void setPromptText(String promptText) {
         this.promptText = promptText;
-        setText(promptText);
+        super.setText(promptText);
     }
 
     /**
@@ -140,6 +140,16 @@ public class JTextFieldExt extends JTextField {
     }
 
     @Override
+    public void setText(String t) {
+        if (t == null || t.isEmpty()) {
+            super.setText(promptText);
+        }
+        else {
+            super.setText(t);
+        }
+    }
+    
+    @Override
     public String getText() {
         if (promptText != null && promptText.equals(super.getText())) {
             return null;
@@ -164,7 +174,7 @@ public class JTextFieldExt extends JTextField {
         @Override
         public void focusGained(FocusEvent e) {
             if (promptText != null && promptText.equals(JTextFieldExt.super.getText())) {
-                setText(null);
+                JTextFieldExt.super.setText(null);
             }
             setFont(defaultFont);
             setForeground(defaultColour);
@@ -173,7 +183,7 @@ public class JTextFieldExt extends JTextField {
         @Override
         public void focusLost(FocusEvent e) {
             if (JTextFieldExt.super.getText() == null || JTextFieldExt.super.getText().isEmpty()) {
-                setText(promptText);
+                JTextFieldExt.super.setText(promptText);
                 setCaretPosition(0);
                 if (promptFontStyle >= 0) {
                     JTextFieldExt.super.setFont(getFont().deriveFont(promptFontStyle));
@@ -190,7 +200,7 @@ public class JTextFieldExt extends JTextField {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                setText(null);
+                JTextFieldExt.super.setText(null);
             }
         }
     }
