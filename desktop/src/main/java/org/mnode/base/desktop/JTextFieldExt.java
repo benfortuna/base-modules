@@ -143,6 +143,13 @@ public class JTextFieldExt extends JTextField {
     public void setText(String t) {
         if (t == null || t.isEmpty()) {
             super.setText(promptText);
+            setCaretPosition(0);
+            if (promptFontStyle >= 0) {
+                super.setFont(getFont().deriveFont(promptFontStyle));
+            }
+            if (promptColour != null) {
+                super.setForeground(promptColour);
+            }
         }
         else {
             super.setText(t);
