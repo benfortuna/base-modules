@@ -1,0 +1,75 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mnode.base</groupId>
+  <artifactId>base-wiki</artifactId>
+  <packaging>bundle</packaging>
+  <name>Base Wiki</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <description>Support for wiki text</description>
+  <inceptionYear>2010</inceptionYear>
+  <parent>
+  	<artifactId>base-modules</artifactId>
+  	<groupId>org.mnode.base</groupId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <scm>
+  	<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/wiki</connection>
+  	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/wiki</developerConnection>
+  	<url>http://svn.mnode.org/base/modules/trunk/wiki</url>
+  </scm>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Export-Package>org.eclipse.mylin.wikitext.*</Export-Package>
+						<Embed-Dependency>*;scope=provided;inline=true</Embed-Dependency>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>org.eclipse.mylin.wikitext</groupId>
+  		<artifactId>wikitext-core</artifactId>
+  		<version>1.3.0.I20100427</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.eclipse.mylin.wikitext</groupId>
+  		<artifactId>wikitext-confluence</artifactId>
+  		<version>1.3.0.I20100427</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.eclipse.mylin.wikitext</groupId>
+  		<artifactId>wikitext-mediawiki</artifactId>
+  		<version>1.3.0.I20100427</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.eclipse.mylin.wikitext</groupId>
+  		<artifactId>wikitext-textile</artifactId>
+  		<version>1.3.0.I20100427</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.eclipse.mylin.wikitext</groupId>
+  		<artifactId>wikitext-tracwiki</artifactId>
+  		<version>1.3.0.I20100427</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.eclipse.mylin.wikitext</groupId>
+  		<artifactId>wikitext-twiki</artifactId>
+  		<version>1.3.0.I20100427</version>
+  		<scope>provided</scope>
+  	</dependency>
+  </dependencies>
+</project>
