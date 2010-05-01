@@ -26,7 +26,6 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Export-Package>org.eclipse.mylin.wikitext.*</Export-Package>
 						<Embed-Dependency>*;scope=provided;inline=true</Embed-Dependency>
 					</instructions>
 				</configuration>
