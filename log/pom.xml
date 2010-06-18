@@ -6,11 +6,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.mnode.base</groupId>
 	<artifactId>base-log</artifactId>
 	<packaging>bundle</packaging>
 	<name>Base Log</name>
-	<version>0.0.1-SNAPSHOT</version>
 	<description>Provides log persistence and integration with
 		popular logging frameworks</description>
 	<repositories>
