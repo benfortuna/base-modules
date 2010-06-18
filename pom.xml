@@ -1,7 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.mnode.base</groupId>
+	<parent>
+		<artifactId>base-parent</artifactId>
+		<groupId>org.mnode.base</groupId>
+		<version>0.0.1</version>
+	</parent>
 	<artifactId>base-modules</artifactId>
 	<packaging>pom</packaging>
 	<name>Base Modules</name>
@@ -14,35 +18,32 @@
 	       <url>http://www.gnu.org/licenses/gpl-3.0-standalone.html</url>
 	   </license>
 	</licenses>
-	<parent>
-		<artifactId>base-parent</artifactId>
-		<groupId>org.mnode.base</groupId>
-		<version>0.0.1</version>
-	</parent>
 	<scm>
 		<connection>scm:svn:http://svn.mnode.org/base/modules/trunk</connection>
 		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk</developerConnection>
 		<url>http://svn.mnode.org/base/modules/trunk</url>
 	</scm>
 	<modules>
+        <module>commons</module>
+        <module>desktop</module>
+        <module>log</module>
+        <module>xmpp</module>
+        <module>svg</module>
+        <module>substance</module>
+		<module>feed</module>
+        <module>cache</module>
 		<!-- 
 		<module>contacts</module>
-		<module>feed</module>
 		<module>account</module>
 		<module>calendars</module>
 		<module>fix</module>
 		<module>repository</module>
-		 -->
         <module>bluetooth</module>
-        <module>cache</module>
-        <module>log</module>
         <module>mdns</module>
         <module>scheduler</module>
-        <module>xmpp</module>
         <module>views</module>
         <module>mail</module>
-        <module>commons</module>
-        <module>desktop</module>
+         -->
 	</modules>
 	
 	<properties>
@@ -169,6 +170,14 @@
 			<url>
 				https://springframework.svn.sourceforge.net/svnroot/springframework/repos/repo-ext/ 
 			</url>
+		</repository>
+		<repository>
+			<id>mnode-releases</id>
+			<name>Micronode Releases</name>
+			<url>http://build.mnode.org/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</repository>
 		<!--
 			Spring-DM snapshot repository - disabled by default <repository>
