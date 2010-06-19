@@ -87,6 +87,7 @@
                     </includes>
                     <forkMode>pertest</forkMode>
                 </configuration>
+                <!-- 
                 <executions>
                     <execution>
                         <id>integration-test</id>
@@ -101,6 +102,7 @@
                         </goals>
                     </execution>
                 </executions>
+                 -->
             </plugin>
 			
 			<plugin>
