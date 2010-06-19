@@ -37,11 +37,13 @@
 	</build>
 
 	<dependencies>
+		<!-- 
 		<dependency>
 			<groupId>org.mnode.base</groupId>
 			<artifactId>base-svg</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		 -->
 		<dependency>
 			<groupId>net.java.dev.substance</groupId>
 			<artifactId>substance</artifactId>

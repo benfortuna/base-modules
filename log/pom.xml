@@ -168,11 +168,13 @@
 			<version>2.5</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- 
 		<dependency>
 			<groupId>org.mnode.base</groupId>
 			<artifactId>base-cache</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		 -->
 	</dependencies>
 	<scm>
 		<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/log</connection>

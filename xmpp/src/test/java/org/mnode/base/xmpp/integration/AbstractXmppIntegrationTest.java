@@ -50,10 +50,14 @@ public abstract class AbstractXmppIntegrationTest extends AbstractConfigurableBu
     protected final String[] getTestBundlesNames() {
         return new String[] { "org.mnode.base, base-xmpp, 0.0.1-SNAPSHOT",
                 "org.mnode.base, base-commons, 0.0.1-SNAPSHOT",
+                "org.mnode.base, base-config, 0.0.1-SNAPSHOT",
+                "org.mnode.base, base-log, 0.0.1-SNAPSHOT",
                 "net.sourceforge.cglib, com.springsource.net.sf.cglib, 2.1.3",
                 "commons-lang, commons-lang, 2.4", 
                 "org.slf4j, com.springsource.slf4j.api, 1.5.0", 
-                "org.slf4j, com.springsource.slf4j.log4j, 1.5.0", };
+                "org.slf4j, com.springsource.slf4j.log4j, 1.5.0",
+                "org.apache.felix, org.osgi.compendium, 1.2.0",
+                "org.eclipse.equinox, log, 1.0.100-v20070226", };
     }
 
     @Override
