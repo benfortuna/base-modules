@@ -32,6 +32,7 @@
         <module>substance</module>
 		<module>feed</module>
         <module>cache</module>
+        <module>wiki</module>
 		<!-- 
 		<module>contacts</module>
 		<module>account</module>
