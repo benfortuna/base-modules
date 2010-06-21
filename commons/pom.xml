@@ -3,16 +3,17 @@
 	<parent>
 		<artifactId>base-modules</artifactId>
 		<groupId>org.mnode.base</groupId>
-		<version>0.0.1</version>
+		<version>0.0.2</version>
 	</parent>
 	<artifactId>base-commons</artifactId>
+  <version>0.0.1</version>
 	<packaging>bundle</packaging>
 	<name>Base Commons</name>
 	<description>Common functionality for Base projects</description>
 	<scm>
-		<connection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/commons</connection>
-		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/commons</developerConnection>
-		<url>http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/commons</url>
+		<connection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.2/commons</connection>
+		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.2/commons</developerConnection>
+		<url>http://svn.mnode.org/base/modules/tags/base-modules-0.0.2/commons</url>
 	</scm>
 	<build>
 		<plugins>

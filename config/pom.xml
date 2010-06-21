@@ -1,18 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>base-config</artifactId>
+  <version>0.0.1</version>
   <packaging>bundle</packaging>
   <name>Base Config</name>
   <description>Application configuration</description>
   <parent>
   	<artifactId>base-modules</artifactId>
   	<groupId>org.mnode.base</groupId>
-  	<version>0.0.1</version>
+  	<version>0.0.2</version>
   </parent>
   <scm>
-  	<connection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/config</connection>
-  	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/config</developerConnection>
-  	<url>http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/config</url>
+  	<connection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.2/config</connection>
+  	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.2/config</developerConnection>
+  	<url>http://svn.mnode.org/base/modules/tags/base-modules-0.0.2/config</url>
   </scm>
     <build>
         <plugins>
