@@ -27,7 +27,6 @@
         <module>commons</module>
         <module>desktop</module>
         <module>log</module>
-        <module>xmpp</module>
         <module>svg</module>
         <module>substance</module>
 		<module>feed</module>
@@ -35,6 +34,7 @@
         <module>wiki</module>
         <module>config</module>
 		<!-- 
+        <module>xmpp</module>
 		<module>contacts</module>
 		<module>account</module>
 		<module>calendars</module>
