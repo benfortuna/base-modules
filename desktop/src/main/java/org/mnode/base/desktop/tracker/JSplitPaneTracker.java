@@ -23,14 +23,6 @@ import java.beans.PropertyChangeListener;
 
 import javax.swing.JSplitPane;
 
-import org.apache.commons.logging.LogFactory;
-import org.mnode.base.log.FormattedLogEntry;
-import org.mnode.base.log.LogAdapter;
-import org.mnode.base.log.LogEntry;
-import org.mnode.base.log.LogEntry.Level;
-import org.mnode.base.log.adapter.AsyncLogAdapter;
-import org.mnode.base.log.adapter.JclAdapter;
-
 /**
  * Preferences for JSplitPanes
  * 
@@ -38,9 +30,9 @@ import org.mnode.base.log.adapter.JclAdapter;
  */
 public class JSplitPaneTracker extends ComponentTracker implements PropertyChangeListener {
 
-    private static final LogAdapter LOG = new AsyncLogAdapter(new JclAdapter(LogFactory.getLog(JSplitPaneTracker.class)));
+//    private static final LogAdapter LOG = new AsyncLogAdapter(new JclAdapter(LogFactory.getLog(JSplitPaneTracker.class)));
 
-    private static final LogEntry PROPERTY_CHANGED_LOG = new FormattedLogEntry(Level.Debug, "Property changed: %s");
+//    private static final LogEntry PROPERTY_CHANGED_LOG = new FormattedLogEntry(Level.Debug, "Property changed: %s");
     
     private JSplitPane pane;
 
@@ -72,7 +64,7 @@ public class JSplitPaneTracker extends ComponentTracker implements PropertyChang
      */
     public void propertyChange(PropertyChangeEvent e) {
 
-        LOG.log(PROPERTY_CHANGED_LOG, e.getPropertyName());
+//        LOG.log(PROPERTY_CHANGED_LOG, e.getPropertyName());
 
         if ("dividerLocation".equals(e.getPropertyName())) {
             getPreferences().putInt(getUniqueId() + "." + e.getPropertyName(), pane.getDividerLocation());
