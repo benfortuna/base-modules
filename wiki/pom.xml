@@ -3,7 +3,7 @@
   <parent>
   	<artifactId>base-modules</artifactId>
   	<groupId>org.mnode.base</groupId>
-  	<version>0.0.1</version>
+  	<version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>base-wiki</artifactId>
   <packaging>bundle</packaging>
@@ -11,9 +11,9 @@
   <description>Support for wiki text</description>
   <inceptionYear>2010</inceptionYear>
   <scm>
-  	<connection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/wiki</connection>
-  	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/wiki</developerConnection>
-  	<url>http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/wiki</url>
+  	<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/wiki</connection>
+  	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/wiki</developerConnection>
+  	<url>http://svn.mnode.org/base/modules/trunk/wiki</url>
   </scm>
 
 	<build>
