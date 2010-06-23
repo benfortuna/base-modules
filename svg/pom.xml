@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>base-modules</artifactId>
 		<groupId>org.mnode.base</groupId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
 	<artifactId>base-svg</artifactId>
 	<packaging>bundle</packaging>
@@ -12,9 +11,9 @@
 	<description>Support for Scalable Vector Graphics</description>
 	<inceptionYear>2010</inceptionYear>
 	<scm>
-		<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/svg</connection>
-		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/svg</developerConnection>
-		<url>http://svn.mnode.org/base/modules/trunk/svg</url>
+		<connection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/svg</connection>
+		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/svg</developerConnection>
+		<url>http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/svg</url>
 	</scm>
 
 	<build>

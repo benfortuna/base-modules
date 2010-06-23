@@ -2,7 +2,7 @@
   <parent>
     <artifactId>base-modules</artifactId>
     <groupId>org.mnode.base</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>base-cache</artifactId>
@@ -117,9 +117,9 @@
   	</dependency>
   </dependencies>
   <scm>
-  	<connection>scm:svn:http://svn.mnode.org/base/modules/trunk/cache</connection>
-  	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk/cache</developerConnection>
-  	<url>http://svn.mnode.org/base/modules/trunk/cache</url>
+  	<connection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/cache</connection>
+  	<developerConnection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/cache</developerConnection>
+  	<url>http://svn.mnode.org/base/modules/tags/base-modules-0.0.1/cache</url>
   </scm>
 	<build>
 		<finalName>${project.groupId}.${project.artifactId}-${project.version}</finalName>
