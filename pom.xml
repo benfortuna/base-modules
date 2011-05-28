@@ -3,12 +3,13 @@
 	<parent>
 		<artifactId>base-parent</artifactId>
 		<groupId>org.mnode.base</groupId>
-		<version>0.0.1</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
+	<groupId>org.mnode.base</groupId>
 	<artifactId>base-modules</artifactId>
 	<packaging>pom</packaging>
 	<name>Base Modules</name>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<description>Parent POM for Base Modules</description>
 	<url>http://mnode.org/base</url>
 	<licenses>
@@ -18,9 +19,9 @@
 	   </license>
 	</licenses>
 	<scm>
-		<connection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.1</connection>
-		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/tags/base-modules-0.0.1</developerConnection>
-		<url>http://svn.mnode.org/base/modules/tags/base-modules-0.0.1</url>
+		<connection>scm:svn:http://svn.mnode.org/base/modules/trunk</connection>
+		<developerConnection>scm:svn:http://svn.mnode.org/base/modules/trunk</developerConnection>
+		<url>http://svn.mnode.org/base/modules/trunk</url>
 	</scm>
 	<modules>
         <module>commons</module>
@@ -48,7 +49,6 @@
 	</modules>
 	
 	<properties>
-		<slf4j.version>1.5.0</slf4j.version>
 		<spring.osgi.version>1.1.2</spring.osgi.version>
 	</properties>
 	
@@ -143,6 +143,24 @@
     <!--            Repository Configuration              -->
     <!-- ================================================ -->
 	<repositories>
+        <repository>
+            <id>micronode-snapshots</id>
+            <url>http://build.mnode.org/snapshots</url>
+            <releases>
+               <enabled>false</enabled>
+            </releases>
+            <snapshots>
+              <enabled>true</enabled>
+            </snapshots>        
+         </repository>
+        <repository>
+            <id>modularity-releases</id>
+            <name>Modularity Maven Repository</name>
+            <url>http://m2.modularity.net.au/releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
 		<repository>
 			<id>i21-s3-osgi-repo</id>
 			<name>i21 osgi artifacts repo</name>
@@ -173,14 +191,6 @@
 			<url>
 				https://springframework.svn.sourceforge.net/svnroot/springframework/repos/repo-ext/ 
 			</url>
-		</repository>
-		<repository>
-			<id>mnode-releases</id>
-			<name>Micronode Releases</name>
-			<url>http://build.mnode.org/releases</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
 		</repository>
 		<!--
 			Spring-DM snapshot repository - disabled by default <repository>
